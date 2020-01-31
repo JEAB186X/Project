@@ -4,18 +4,17 @@ import java.util.ArrayList;
 
 public class Record {
 	
-	private int length;
-	private int[] pitch;
-	private int[] rhythm;
+	private ArrayList<String> nameList;
+	private ArrayList<int> length;
+	private ArrayList<int[]> pitch;
+	private ArrayList<int[]> rhythm;
 	
 	private boolean recording;
 	private boolean recalling;
-	private boolean loaded;
 	
 	private File file;
 	
-	private ArrayList<String> nameList;
-	private int nameIndex;
+	private int saveIndex;
 	private int index;
 	
 	private Scanner in;
@@ -28,82 +27,49 @@ public class Record {
 	public static void main(String args[]) {
 		Record r = new Record();
 		System.out.println(r.length);
-		for (int i = 0; i < r.length; i++) {
-			System.out.println(i + " : " + r.pitch[i] + " : " + r.rhythm[i]);
+		for (int i = 0; i < 8; i++) {
+			System.out.println(i + " : " + r.pitch.get(r.saveIndex)[i] + " : " + r.rhythm.get(r.saveIndex)[i]);
 		}
 	}
 	
 	public Record() {
 		file = new File("Records.jm");
 		nameList = new ArrayList<String>();
-		getNameList();
-		nameIndex = 0;
-		load();
+		length = new ArrayList<int>();
+		pitch = new ArrayList<int[]>();
+		rhythm = new ArrayList<int[]>();
+		nameList.add("Default");
+		length.add(8);
+		pitch.add(new int[8]);
+		rhythm.add(new int[8]);
+		saveIndex = 0;
+		//load();
+		for (i = 0; i < 8; i++) {
+			pitch.get(saveIndex)[i] = 1;
+			rhythm.get(saveIndex)[i] = 4;
+		}
 		
 		recording = false;
 		recalling = false;
-		loaded = false;
-	}
-	
-	public void getNameList() {
-		try {
-			in = new Scanner(file);
-			while (in.hasNextLine()) {
-				str = in.nextLine();
-				if (str.charAt(0) == ':') {
-					nameList.add(str.substring(1, str.length()));
-				}
-			}
-			in.close();
-		}
-		catch(java.io.FileNotFoundException e) {
-			System.out.println("Darn");
-		}
 	}
 	
 	public int getNameIndex(String name) {
-		for (i = 0; i < nameList.size(); i++) {
-			if (name.equals(nameList.get(i))) {
-				return i;
-			}
-		}
-		return -1;
+		return 0;
 	}
 	
 	public void load() {
-		try {
-			in = new Scanner(file);
-			for (i = 0; i < nameIndex; i++) {
-				in.nextLine();
-				in.nextLine();
-			}
-			in.nextLine();
-			str = in.nextLine();
-			in.close();
-		}
-		catch (java.io.FileNotFoundException e) {
-			System.out.println("Darn");
-		}
-		length = 0;
-		j = 1;
-		for (i = k; str.charAt(k) - '0' < 10; k++);
-		for (i = k - 1; i >= 0; i--) {
-			length += (str.charAt(i) - '0') * j;
-			j *= 10;
-		}
-		pitch = new int[length];
-		rhythm = new int[length];
-		for (i = 0; i < length; i++) {
-			pitch[i] = str.charAt(k+i*2) - 'A';
-			rhythm[i] = str.charAt(k+i*2+1) - 'A';
-		}
-	}
-	
-	public void newSave() {
 		
 	}
 	
 	public void save() {
+		
+	}
+	
+	public void addSave(String name) {
+		
+	}
+	
+	public void deleteSave(String name) {
 		
 	}
 	
