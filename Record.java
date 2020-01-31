@@ -27,25 +27,25 @@ public class Record {
 	//For Testing Purposes:
 	public static void main(String args[]) {
 		Record r = new Record();
+		System.out.println(r.length);
+		for (int i = 0; i < r.length; i++) {
+			System.out.println(i + " : " + r.pitch[i] + " : " + r.rhythm[i]);
+		}
 	}
 	
 	public Record() {
-		length = 8;
-		pitch = new int[8];
-		rhythm = new int[8];
-		
 		file = new File("Records.jm");
-		
 		nameList = new ArrayList<String>();
-		getNames();
-		index = 0;
+		getNameList();
+		nameIndex = 0;
+		load();
 		
 		recording = false;
 		recalling = false;
 		loaded = false;
 	}
 	
-	public void getNames() {
+	public void getNameList() {
 		try {
 			in = new Scanner(file);
 			while (in.hasNextLine()) {
@@ -61,12 +61,42 @@ public class Record {
 		}
 	}
 	
-	public boolean existName(String name) {
-		return false;
+	public int getNameIndex(String name) {
+		for (i = 0; i < nameList.size(); i++) {
+			if (name.equals(nameList.get(i))) {
+				return i;
+			}
+		}
+		return -1;
 	}
 	
-	public int getNameIndex() {
-		return 0;
+	public void load() {
+		try {
+			in = new Scanner(file);
+			for (i = 0; i < nameIndex; i++) {
+				in.nextLine();
+				in.nextLine();
+			}
+			in.nextLine();
+			str = in.nextLine();
+			in.close();
+		}
+		catch (java.io.FileNotFoundException e) {
+			System.out.println("Darn");
+		}
+		length = 0;
+		j = 1;
+		for (i = k; str.charAt(k) - '0' < 10; k++);
+		for (i = k - 1; i >= 0; i--) {
+			length += (str.charAt(i) - '0') * j;
+			j *= 10;
+		}
+		pitch = new int[length];
+		rhythm = new int[length];
+		for (i = 0; i < length; i++) {
+			pitch[i] = str.charAt(k+i*2) - 'A';
+			rhythm[i] = str.charAt(k+i*2+1) - 'A';
+		}
 	}
 	
 	public void newSave() {
@@ -74,10 +104,6 @@ public class Record {
 	}
 	
 	public void save() {
-		
-	}
-	
-	public void load() {
 		
 	}
 	
