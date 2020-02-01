@@ -8,11 +8,11 @@ public class Record {
 	private ArrayList<int[]> pitch;
 	private ArrayList<int[]> rhythm;
 	
-	private boolean recording;
-	private boolean recalling;
-	
 	private int saveIndex;
 	private int index;
+	
+	private boolean recording;
+	private boolean recalling;
 	
 	private String str;
 	private int i;
@@ -150,16 +150,15 @@ public class Record {
 		
 	}
 	
-	//returns whether or not there is more
-	public boolean add(int p) {
-		return false;
+	public void add(int p) {
+		
 	}
 	
 	public void startRecall() {
 		
 	}
 	
-	public int next() {
+	public int nextPitch() {
 		return 0;
 	}
 	
