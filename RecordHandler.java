@@ -41,7 +41,7 @@ public class RecordHandler {
 	 * @param args[] The arguments that can be passed into the program when prompted to run.
 	 */
 	public static void main(String args[]) {
-		//Instance A Record
+		//Instance A Record Handler
 		RecordHandler r = new RecordHandler();
 		
 		//r.removeRecord("New");
@@ -158,8 +158,7 @@ public class RecordHandler {
 	
 	/**
 	 * Removes a record. This change is not saved in the records.jm file until save() is called.
-	 * 
-	 @param name The name of the record that will be removed.
+	 * @param name The name of the record that will be removed.
 	 */
 	public void removeRecord(String name) {
 		i = getIndex(name);
