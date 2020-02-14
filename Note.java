@@ -13,7 +13,7 @@ public class Note {
 		rhythm = r;
 	}
 	
-	public void et(Note n) {
+	public void set(Note n) {
 		pitch = n.pitch;
 		rhythm = n.rhythm;
 	}
