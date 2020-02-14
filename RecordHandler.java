@@ -6,10 +6,8 @@ import java.util.ArrayList;
  * <p>
  * Overview of a record:
  * <p>
- * Each record consists of a name, length, and a pitch array and rhythm array.
+ * Each record consists of a name, length, and a set of notes, each with a pitch and rhythm.
  * The length corrosponds to how many notes are in a record.
- * Each element of the pitch and rhythm arrays corrospond to a same note.
- * The pitch and rhythm elements that have the same index corrospond to the same array.
  * The value of the pitch corrosponds to the frequency of a note: 1 is the lowest value, 13 is the highest value.
  * The "rhythm" is an inverse measure of durration: 4 means it the note is a quarter note, 1 means it is a whole note, etc.
  * 
@@ -19,8 +17,7 @@ import java.util.ArrayList;
 public class RecordHandler {
 	
 	private ArrayList<String> nameList;
-	private ArrayList<int[]> pitch;
-	private ArrayList<int[]> rhythm;
+	private ArrayList<Note[]> notes;
 	
 	private int saveIndex;
 	private int recordIndex;
@@ -29,12 +26,6 @@ public class RecordHandler {
 	private boolean recording;
 	private boolean recalling;
 	
-	private String str;
-	private int i;
-	private int j;
-	private int k;
-	private int l;
-	
 	/**
 	 * For Testing purposes. Please remove only once the project is complete.
 	 * 
@@ -42,34 +33,46 @@ public class RecordHandler {
 	 */
 	public static void main(String args[]) {
 		//Instance A Record Handler
-		RecordHandler r = new RecordHandler();
+		RecordHandler rh = new RecordHandler();
+		int i;
+		int j;
 		
-		//r.removeRecord("New");
-		//r.addRecord("New");
-		//r.changeRecord("New");
-		//r.save();
+		//rh.addRecord("New");
+		//rh.changeRecord("New");
+		//rh.removeRecord("New");
+		
+		/*
+		rh.startRecording();
+		i = 0;
+		while (rh.isRecording()) {
+			rh.addPitch(i);
+			i++;
+		}
+		*/
+		
+		//rh.save();
 		
 		//Display Record Information
-		System.out.println("Current Record: " + r.name());
-		for (int i = 0; i < r.numRecords(); i++) {
-			r.changeRecord(r.nameList.get(i));
-			System.out.println(r.name(i));
-			System.out.println(r.length());
-			for (int j = 0; j < r.length(); j++) {
-				System.out.println(j + " : " + r.pitch.get(i)[j] + " : " + r.rhythm.get(i)[j]);
+		System.out.println("Current Record: " + rh.name());
+		for (i = 0; i < rh.numRecords(); i++) {
+			rh.changeRecord(rh.name(i));
+			System.out.println("Record Name: " + rh.name());
+			rh.startRecalling();
+			j = 0;
+			while (rh.isRecalling()) {
+				System.out.println(j + " : " + rh.nextPitch() + " : " + rh.thisRhythm());
+				j++;
 			}
 		}
+		
 	}
 	
 	/**
 	 * When constructed, all records are loaded from the Records.jm file.
-	 * There will always be a "Default" record.
-	 * The "Default" record will always start as the current record.
 	 */
 	public RecordHandler() {
 		nameList = new ArrayList<String>();
-		pitch = new ArrayList<int[]>();
-		rhythm = new ArrayList<int[]>();
+		notes = new ArrayList<Note[]>();
 		load();
 		saveIndex = 0;
 		
@@ -81,19 +84,21 @@ public class RecordHandler {
 		try {
 			DataInputStream stream = new DataInputStream(
 				new FileInputStream("Records.jm"));
-			k = stream.readInt();
-			for (i = 0; i < k; i++) {
-				str = "";
+			int i;
+			int j;
+			String name;
+			int numRecords = stream.readInt();
+			for (i = 0; i < numRecords; i++) {
+				name = "";
 				j = stream.readChar();
 				while (j != '\0') {
-					str = str + (char) j;
+					name = name + (char) j;
 					j = stream.readChar();
 				}
-				addRecord(str);
+				addRecord(name);
 				setLength(i, stream.readInt());
 				for (j = 0; j < length(i); j++) {
-					pitch.get(i)[j] = stream.readInt();
-					rhythm.get(i)[j] = stream.readInt();
+					notes.get(i)[j].set(stream.readInt(), stream.readInt());
 				}
 			}
 			stream.close();
@@ -107,6 +112,8 @@ public class RecordHandler {
 	 * This saves all records to the Records.jm file.
 	 */
 	public void save() {
+		int i;
+		int j;
 		try {
 			DataOutputStream stream = new DataOutputStream(
 				new BufferedOutputStream(
@@ -119,8 +126,8 @@ public class RecordHandler {
 				stream.writeChar('\0');
 				stream.writeInt(length(i));
 				for (j = 0; j < length(i); j++) {
-					stream.writeInt(pitch.get(i)[j]);
-					stream.writeInt(rhythm.get(i)[j]);
+					stream.writeInt(notes.get(i)[j].pitch);
+					stream.writeInt(notes.get(i)[j].rhythm);
 				}
 			}
 			stream.close();
@@ -136,10 +143,13 @@ public class RecordHandler {
 	 * @param name The name of the record that will be added.
 	 */
 	public void addRecord(String name) {
+		if (getIndex(name) != -1) {
+			System.out.println("Error: record already exists");
+			return;
+		}
 		saveIndex = numRecords();
 		nameList.add(name);
-		pitch.add(null);
-		rhythm.add(null);
+		notes.add(null);
 		setLength(8);
 	}
 	
@@ -152,7 +162,7 @@ public class RecordHandler {
 		saveIndex = getIndex(name);
 		if (saveIndex == -1) {
 			saveIndex = 0;
-			System.out.println("Erorr: Save DNE");
+			System.out.println("Erorr: Record DNE");
 		}
 	}
 	
@@ -161,18 +171,14 @@ public class RecordHandler {
 	 * @param name The name of the record that will be removed.
 	 */
 	public void removeRecord(String name) {
+		int i;
 		i = getIndex(name);
 		if (i == -1) {
-			System.out.println("Error: Save DNE");
-			return;
-		}
-		if (i == 0) {
-			System.out.println("Error: Illegal Operation");
+			System.out.println("Error: Record DNE");
 			return;
 		}
 		nameList.remove(i);
-		pitch.remove(i);
-		rhythm.remove(i);
+		notes.remove(i);
 		if (saveIndex >= i) {
 			saveIndex -= 1;
 		}
@@ -204,6 +210,9 @@ public class RecordHandler {
 	 * @return The name of the current record.
 	 */
 	public String name() {
+		if (numRecords() == 0) {
+			return "(none)";
+		}
 		return nameList.get(saveIndex);
 	}
 	
@@ -214,7 +223,10 @@ public class RecordHandler {
 	 * @return The length of the current record.
 	 */
 	public int length() {
-		return rhythm.get(saveIndex).length;
+		if (notes.get(saveIndex) == null) {
+			return 0;
+		}
+		return notes.get(saveIndex).length;
 	}
 	
 	/**
@@ -224,7 +236,10 @@ public class RecordHandler {
 	 * @return The pitch of the note at the given index.
 	 */
 	public int getPitch(int index) {
-		return pitch.get(saveIndex)[index];
+		if (numRecords() == 0) {
+			return -1;
+		}
+		return notes.get(saveIndex)[index].pitch;
 	}
 	
 	/**
@@ -234,7 +249,10 @@ public class RecordHandler {
 	 * @return The rhythm of the note at the givan index.
 	 */
 	public int getRhythm(int index) {
-		return rhythm.get(saveIndex)[index];
+		if (numRecords() == 0) {
+			return -1;
+		}
+		return notes.get(saveIndex)[index].rhythm;
 	}
 	
 	/**
@@ -248,12 +266,16 @@ public class RecordHandler {
 		if (length < 1) {
 			return;
 		}
-		pitch.set(saveIndex, new int[length]);
-		rhythm.set(saveIndex, new int[length]);
-		for (l = 0; l < length; l++) {
-			setPitch(l, 1);
-			setRhythm(l, 4);
+		int i;
+		int l = Math.min(length, length(saveIndex));
+		Note[] n = new Note[length];
+		for (i = 0; i < l; i++) {
+			n[i] = notes.get(saveIndex)[i];
 		}
+		for (i = i; i < length; i++) {
+			n[i] = new Note();;
+		}
+		notes.set(saveIndex, n);
 	}
 	
 	/**
@@ -263,7 +285,10 @@ public class RecordHandler {
 	 * @param p The pitch the note at the given index will have.
 	 */
 	public void setPitch(int index, int p) {
-		pitch.get(saveIndex)[index] = p;
+		if (numRecords() == 0) {
+			return;
+		}
+		notes.get(saveIndex)[index].pitch = p;
 	}
 	
 	/**
@@ -273,26 +298,40 @@ public class RecordHandler {
 	 * @param r The rhythm the note at the given index will have.
 	 */
 	public void setRhythm(int index, int r) {
-		rhythm.get(saveIndex)[index] = r;
+		if (numRecords() == 0) {
+			return;
+		}
+		notes.get(saveIndex)[index].rhythm = r;
 	}
 	
 	private void setLength(int index, int length) {
+		if (numRecords() == 0) {
+			return;
+		}
 		if (length < 1) {
 			return;
 		}
-		pitch.set(index, new int[length]);
-		rhythm.set(index, new int[length]);
-		for (l = 0; l < l; l++) {
-			pitch.get(index)[l] =  1;
-			rhythm.get(index)[l] =  4;
+		int i;
+		int l = Math.min(length, length(index));
+		Note[] n = new Note[length];
+		for (i = 0; i < l; i++) {
+			n[i] = notes.get(index)[i];
 		}
+		for (i = i; i < length; i++) {
+			n[i] = new Note();;
+		}
+		notes.set(index, n);
 	}
 	
 	private int length(int index) {
-		return rhythm.get(index).length;
+		if (notes.get(index) == null) {
+			return 0;
+		}
+		return notes.get(index).length;
 	}
 	
 	private int getIndex(String name) {
+		int i;
 		for (i = 0; i < nameList.size(); i++) {
 			if (name.equals(nameList.get(i))) {
 				return i;
@@ -306,7 +345,10 @@ public class RecordHandler {
 	 * Recording allows for the pitch of each note in the current record to be set from beginning to end.
 	 */
 	public void startRecording() {
-		recordIndex = 0;
+		if (numRecords() == 0) {
+			return;
+		}
+		recordIndex = -1;
 		recording = true;
 	}
 	
@@ -317,10 +359,11 @@ public class RecordHandler {
 	 * @param p The pitch that may be added to the current record.
 	 */
 	public void addPitch(int p) {
-		if (recording) {
-			addPitch(p);
-			recordIndex += 1;
+		if (!recording) {
+			return;
 		}
+		recordIndex += 1;
+		setPitch(recordIndex, p);
 		if (recordIndex == length()) {
 			recording = false;
 		}
@@ -332,6 +375,9 @@ public class RecordHandler {
 	 * @return True if currently recording; else, False.
 	 */
 	public boolean isRecording() {
+		if (recordIndex == length() - 1) {
+			recording = false;
+		}
 		return recording;
 	}
 	
@@ -340,7 +386,10 @@ public class RecordHandler {
 	 * "Recalling" allows for the rhythm and pitch of each note in the current record to be returned from beginning to end.
 	 */
 	public void startRecalling() {
-		recallIndex = 0;
+		if (numRecords() == 0) {
+			return;
+		}
+		recallIndex = -1;
 		recalling = true;
 	}
 	
@@ -361,9 +410,10 @@ public class RecordHandler {
 	 * @return The next pitch in the record.
 	 */
 	public int nextPitch() {
-		if (recalling) {
-			recallIndex += 1;
+		if (!recalling) {
+			return -1;
 		}
+		recallIndex += 1;
 		if (recallIndex == length()) {
 			recalling = false;
 			return -1;
@@ -378,12 +428,10 @@ public class RecordHandler {
 	 * @return The rhythm of this note.
 	 */
 	public int thisRhythm() {
-		if (recalling) {
-			return getRhythm(recallIndex);
-		}
-		else {
+		if (!recalling) {
 			return -1;
 		}
+		return getRhythm(recallIndex);
 	}
 	
 	/**
@@ -392,6 +440,9 @@ public class RecordHandler {
 	 * @return True if recalling; else, False.
 	 */
 	public boolean isRecalling() {
+		if (recallIndex == length() - 1) {
+			recalling = false;
+		}
 		return recalling;
 	}
 	
