@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author jerem
+ * @author arvid
  */
 public class PianoMan extends javax.swing.JFrame {
 
@@ -31,6 +32,8 @@ public class PianoMan extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+		
+		//Buttons
         cSharp = new javax.swing.JButton();
         lowE = new javax.swing.JButton();
         lowC = new javax.swing.JButton();
