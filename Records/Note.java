@@ -1,3 +1,5 @@
+package Records;
+
 public class Note {
 	
 	public int pitch;

@@ -1,3 +1,5 @@
+package Records;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -83,7 +85,7 @@ public class RecordHandler {
 	private void load() {
 		try {
 			DataInputStream stream = new DataInputStream(
-				new FileInputStream("Records.jm"));
+				new FileInputStream("Records/Records.jm"));
 			int i;
 			int j;
 			String name;
