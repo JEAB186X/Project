@@ -32,25 +32,25 @@ public class PianoMan extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         cSharp = new javax.swing.JButton();
-        lowE = new javax.swing.JButton();
-        lowC = new javax.swing.JButton();
-        lowF = new javax.swing.JButton();
-        lowG = new javax.swing.JButton();
-        lowD = new javax.swing.JButton();
-        lowA = new javax.swing.JButton();
-        lowB = new javax.swing.JButton();
-        highC = new javax.swing.JButton();
-        highD = new javax.swing.JButton();
-        dSharp = new javax.swing.JButton();
-        highE = new javax.swing.JButton();
-        highF = new javax.swing.JButton();
-        highG = new javax.swing.JButton();
         gSharp = new javax.swing.JButton();
-        aSharp = new javax.swing.JButton();
+        dSharp = new javax.swing.JButton();
         hiCSharp = new javax.swing.JButton();
+        aSharp = new javax.swing.JButton();
         hiDSharp = new javax.swing.JButton();
         hiFSharp = new javax.swing.JButton();
         fSharp1 = new javax.swing.JButton();
+        lowC = new javax.swing.JButton();
+        lowE = new javax.swing.JButton();
+        lowF = new javax.swing.JButton();
+        lowG = new javax.swing.JButton();
+        lowA = new javax.swing.JButton();
+        lowD = new javax.swing.JButton();
+        lowB = new javax.swing.JButton();
+        highC = new javax.swing.JButton();
+        highD = new javax.swing.JButton();
+        highE = new javax.swing.JButton();
+        highF = new javax.swing.JButton();
+        highG = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -70,19 +70,98 @@ public class PianoMan extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cSharp);
-        cSharp.setBounds(120, 310, 71, 210);
+        cSharp.setBounds(120, 310, 82, 210);
 
-        lowE.setBackground(java.awt.Color.white);
-        lowE.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        lowE.setText("E");
-        lowE.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        lowE.addActionListener(new java.awt.event.ActionListener() {
+        gSharp.setBackground(java.awt.Color.black);
+        gSharp.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        gSharp.setForeground(new java.awt.Color(255, 255, 255));
+        gSharp.setText("G#");
+        gSharp.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        gSharp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lowEActionPerformed(evt);
+                gSharpActionPerformed(evt);
             }
         });
-        jPanel1.add(lowE);
-        lowE.setBounds(250, 310, 108, 360);
+        jPanel1.add(gSharp);
+        gSharp.setBounds(520, 310, 84, 210);
+
+        dSharp.setBackground(java.awt.Color.black);
+        dSharp.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        dSharp.setForeground(new java.awt.Color(255, 255, 255));
+        dSharp.setText("D#");
+        dSharp.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        dSharp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dSharpActionPerformed(evt);
+            }
+        });
+        jPanel1.add(dSharp);
+        dSharp.setBounds(210, 310, 85, 210);
+
+        hiCSharp.setBackground(java.awt.Color.black);
+        hiCSharp.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        hiCSharp.setForeground(new java.awt.Color(255, 255, 255));
+        hiCSharp.setText("C#");
+        hiCSharp.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        hiCSharp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hiCSharpActionPerformed(evt);
+            }
+        });
+        jPanel1.add(hiCSharp);
+        hiCSharp.setBounds(820, 310, 82, 210);
+
+        aSharp.setBackground(java.awt.Color.black);
+        aSharp.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        aSharp.setForeground(new java.awt.Color(255, 255, 255));
+        aSharp.setText("A#");
+        aSharp.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        aSharp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aSharpActionPerformed(evt);
+            }
+        });
+        jPanel1.add(aSharp);
+        aSharp.setBounds(620, 310, 84, 210);
+
+        hiDSharp.setBackground(java.awt.Color.black);
+        hiDSharp.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        hiDSharp.setForeground(new java.awt.Color(255, 255, 255));
+        hiDSharp.setText("D#");
+        hiDSharp.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        hiDSharp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hiDSharpActionPerformed(evt);
+            }
+        });
+        jPanel1.add(hiDSharp);
+        hiDSharp.setBounds(920, 310, 85, 210);
+
+        hiFSharp.setBackground(java.awt.Color.black);
+        hiFSharp.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        hiFSharp.setForeground(new java.awt.Color(255, 255, 255));
+        hiFSharp.setText("F#");
+        hiFSharp.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        hiFSharp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hiFSharpActionPerformed(evt);
+            }
+        });
+        jPanel1.add(hiFSharp);
+        hiFSharp.setBounds(1120, 310, 81, 210);
+
+        fSharp1.setBackground(java.awt.Color.black);
+        fSharp1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        fSharp1.setForeground(new java.awt.Color(255, 255, 255));
+        fSharp1.setText("F#");
+        fSharp1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        fSharp1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fSharp1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(fSharp1);
+        fSharp1.setBounds(420, 310, 81, 210);
 
         lowC.setBackground(java.awt.Color.white);
         lowC.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
@@ -95,6 +174,18 @@ public class PianoMan extends javax.swing.JFrame {
         });
         jPanel1.add(lowC);
         lowC.setBounds(50, 310, 108, 360);
+
+        lowE.setBackground(java.awt.Color.white);
+        lowE.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        lowE.setText("E");
+        lowE.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        lowE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lowEActionPerformed(evt);
+            }
+        });
+        jPanel1.add(lowE);
+        lowE.setBounds(250, 310, 108, 360);
 
         lowF.setBackground(java.awt.Color.white);
         lowF.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
@@ -120,18 +211,6 @@ public class PianoMan extends javax.swing.JFrame {
         jPanel1.add(lowG);
         lowG.setBounds(450, 310, 108, 360);
 
-        lowD.setBackground(java.awt.Color.white);
-        lowD.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        lowD.setText("D");
-        lowD.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        lowD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lowDActionPerformed(evt);
-            }
-        });
-        jPanel1.add(lowD);
-        lowD.setBounds(150, 310, 108, 360);
-
         lowA.setBackground(java.awt.Color.white);
         lowA.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         lowA.setText("A");
@@ -143,6 +222,18 @@ public class PianoMan extends javax.swing.JFrame {
         });
         jPanel1.add(lowA);
         lowA.setBounds(550, 310, 108, 360);
+
+        lowD.setBackground(java.awt.Color.white);
+        lowD.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        lowD.setText("D");
+        lowD.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        lowD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lowDActionPerformed(evt);
+            }
+        });
+        jPanel1.add(lowD);
+        lowD.setBounds(150, 310, 108, 360);
 
         lowB.setBackground(java.awt.Color.white);
         lowB.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
@@ -180,19 +271,6 @@ public class PianoMan extends javax.swing.JFrame {
         jPanel1.add(highD);
         highD.setBounds(850, 310, 108, 360);
 
-        dSharp.setBackground(java.awt.Color.black);
-        dSharp.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        dSharp.setForeground(new java.awt.Color(255, 255, 255));
-        dSharp.setText("D#");
-        dSharp.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        dSharp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dSharpActionPerformed(evt);
-            }
-        });
-        jPanel1.add(dSharp);
-        dSharp.setBounds(220, 150, 73, 210);
-
         highE.setBackground(java.awt.Color.white);
         highE.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         highE.setText("E");
@@ -229,84 +307,6 @@ public class PianoMan extends javax.swing.JFrame {
         jPanel1.add(highG);
         highG.setBounds(1150, 310, 108, 360);
 
-        gSharp.setBackground(java.awt.Color.black);
-        gSharp.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        gSharp.setForeground(new java.awt.Color(255, 255, 255));
-        gSharp.setText("G#");
-        gSharp.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        gSharp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gSharpActionPerformed(evt);
-            }
-        });
-        jPanel1.add(gSharp);
-        gSharp.setBounds(510, 60, 73, 210);
-
-        aSharp.setBackground(java.awt.Color.black);
-        aSharp.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        aSharp.setForeground(new java.awt.Color(255, 255, 255));
-        aSharp.setText("A#");
-        aSharp.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        aSharp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aSharpActionPerformed(evt);
-            }
-        });
-        jPanel1.add(aSharp);
-        aSharp.setBounds(620, 60, 73, 210);
-
-        hiCSharp.setBackground(java.awt.Color.black);
-        hiCSharp.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        hiCSharp.setForeground(new java.awt.Color(255, 255, 255));
-        hiCSharp.setText("C#");
-        hiCSharp.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        hiCSharp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hiCSharpActionPerformed(evt);
-            }
-        });
-        jPanel1.add(hiCSharp);
-        hiCSharp.setBounds(820, 60, 71, 210);
-
-        hiDSharp.setBackground(java.awt.Color.black);
-        hiDSharp.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        hiDSharp.setForeground(new java.awt.Color(255, 255, 255));
-        hiDSharp.setText("D#");
-        hiDSharp.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        hiDSharp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hiDSharpActionPerformed(evt);
-            }
-        });
-        jPanel1.add(hiDSharp);
-        hiDSharp.setBounds(930, 60, 73, 210);
-
-        hiFSharp.setBackground(java.awt.Color.black);
-        hiFSharp.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        hiFSharp.setForeground(new java.awt.Color(255, 255, 255));
-        hiFSharp.setText("F#");
-        hiFSharp.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        hiFSharp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hiFSharpActionPerformed(evt);
-            }
-        });
-        jPanel1.add(hiFSharp);
-        hiFSharp.setBounds(1120, 60, 69, 210);
-
-        fSharp1.setBackground(java.awt.Color.black);
-        fSharp1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        fSharp1.setForeground(new java.awt.Color(255, 255, 255));
-        fSharp1.setText("F#");
-        fSharp1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        fSharp1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fSharp1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(fSharp1);
-        fSharp1.setBounds(400, 60, 69, 210);
-
         getContentPane().add(jPanel1);
         jPanel1.setBounds(-10, -10, 1570, 820);
 
@@ -317,7 +317,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("C:\\se186\\Music_Note\\C_s.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/C_s.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -331,7 +331,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("C:\\se186\\Music_Note\\E.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/E.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -345,7 +345,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("C:\\se186\\Music_Note\\C.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/C.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -359,7 +359,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("C:\\se186\\Music_Note\\D.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/D.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -370,46 +370,136 @@ public class PianoMan extends javax.swing.JFrame {
     }//GEN-LAST:event_lowDActionPerformed
 
     private void lowFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lowFActionPerformed
-        // TODO add your handling code here:
+         InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/F.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_lowFActionPerformed
 
     private void lowGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lowGActionPerformed
-        // TODO add your handling code here:
+          InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/G.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_lowGActionPerformed
 
     private void lowAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lowAActionPerformed
-        // TODO add your handling code here:
+          InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/A.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_lowAActionPerformed
 
     private void lowBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lowBActionPerformed
-        // TODO add your handling code here:
+        InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/B.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_lowBActionPerformed
 
     private void highCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highCActionPerformed
-        // TODO add your handling code here:
+         InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/C1.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_highCActionPerformed
 
     private void highDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highDActionPerformed
-        // TODO add your handling code here:
+         InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/D1.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_highDActionPerformed
 
     private void highEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highEActionPerformed
-        // TODO add your handling code here:
+         InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/E1.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_highEActionPerformed
 
     private void highFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highFActionPerformed
-        // TODO add your handling code here:
+         InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/F1.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_highFActionPerformed
 
     private void highGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highGActionPerformed
-        // TODO add your handling code here:
+        InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/G.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_highGActionPerformed
 
     private void dSharpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dSharpActionPerformed
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("C:\\se186\\Music_Note\\D_s.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/D_s.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -420,27 +510,87 @@ public class PianoMan extends javax.swing.JFrame {
     }//GEN-LAST:event_dSharpActionPerformed
 
     private void gSharpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gSharpActionPerformed
-        // TODO add your handling code here:
+        InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/G_s.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_gSharpActionPerformed
 
     private void aSharpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aSharpActionPerformed
-        // TODO add your handling code here:
+        InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/Bb.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_aSharpActionPerformed
 
     private void hiCSharpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hiCSharpActionPerformed
-        // TODO add your handling code here:
+      InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/C_s1.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_hiCSharpActionPerformed
 
     private void hiDSharpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hiDSharpActionPerformed
-        // TODO add your handling code here:
+          InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/D_s1.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_hiDSharpActionPerformed
 
     private void hiFSharpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hiFSharpActionPerformed
-        // TODO add your handling code here:
+        InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/F_s.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_hiFSharpActionPerformed
 
     private void fSharp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fSharp1ActionPerformed
-        // TODO add your handling code here:
+        InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/F_s.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_fSharp1ActionPerformed
 
     /**
