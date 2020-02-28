@@ -10,11 +10,6 @@ import javax.swing.*;
  */
 public class PianoManExperiment extends JFrame {
 	
-    private JPanel jPanel1;
-	
-	private JButton[] bKeys;
-	private JButton[] wKeys;
-	
 	private InputStream[] iAudio;
 	
     /**
@@ -45,9 +40,8 @@ public class PianoManExperiment extends JFrame {
      * Creates new form PianoMan
      */
     public PianoManExperiment() {
-        jPanel1 = new javax.swing.JPanel();
-		bKeys = new JButton[8];
-		wKeys = new JButton[12];
+        JPanel jPanel1 = new JPanel();
+		JButton b;
 		iAudio = new InputStream[20];
 		Font font = new Font("Verdana", 1, 24);
 		char[] sharpChar = {'C','D','F','G','A'};
@@ -74,37 +68,37 @@ public class PianoManExperiment extends JFrame {
 		//Buttons:
 		j = 0;
 		for (i = 0; i < 8; i++) {
-			bKeys[i] = new JButton();
-			bKeys[i].setBackground(Color.BLACK);
-			bKeys[i].setFont(font);
-			bKeys[i].setForeground(Color.WHITE);
-			bKeys[i].setText(sharpChar[i % 5] + "#");
-			bKeys[i].setVerticalAlignment(SwingConstants.BOTTOM);
+			b = new JButton();
+			b.setBackground(Color.BLACK);
+			b.setFont(font);
+			b.setForeground(Color.WHITE);
+			b.setText(sharpChar[i % 5] + "#");
+			b.setVerticalAlignment(SwingConstants.BOTTOM);
 			final int index = i + 12;
-			bKeys[i].addActionListener(new ActionListener() {
+			b.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					keyPressed(index);
 				}
 			});
-			jPanel1.add(bKeys[i]);
-			bKeys[i].setBounds(120 + j, 310, 82, 210);
+			jPanel1.add(b);
+			b.setBounds(120 + j, 310, 82, 210);
 			j += sharpSpace[i % 5];
 		}
 		j = 0;
 		for (i = 0; i < 12; i++) {
-			wKeys[i] = new JButton();
-			wKeys[i].setBackground(Color.WHITE);
-			wKeys[i].setFont(font);
-			wKeys[i].setText((char) ((i + 2) % 7 + 'A') + "");
-			wKeys[i].setVerticalAlignment(SwingConstants.BOTTOM);
+			b = new JButton();
+			b.setBackground(Color.WHITE);
+			b.setFont(font);
+			b.setText((char) ((i + 2) % 7 + 'A') + "");
+			b.setVerticalAlignment(SwingConstants.BOTTOM);
 			final int index = i;
-			wKeys[i].addActionListener(new ActionListener() {
+			b.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					keyPressed(index);
 				}
 			});
-			jPanel1.add(wKeys[i]);
-			wKeys[i].setBounds(50 + j, 310, 108, 360);
+			jPanel1.add(b);
+			b.setBounds(50 + j, 310, 108, 360);
 			j += 100;
 		}
 		
