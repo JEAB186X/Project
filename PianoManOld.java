@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PianoMan;
+//package PianoMan;
 
 import sun.audio.*;
 import java.io.*;
@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
  *
  * @author jerem
  */
-public class PianoMan extends javax.swing.JFrame {
+public class PianoManOld extends javax.swing.JFrame {
 
     /**
      * Creates new form PianoMan
      */
-    public PianoMan() {
+    public PianoManOld() {
         initComponents();
     }
 
@@ -37,6 +37,7 @@ public class PianoMan extends javax.swing.JFrame {
         hiCSharp = new javax.swing.JButton();
         aSharp = new javax.swing.JButton();
         hiDSharp = new javax.swing.JButton();
+        hiFSharp = new javax.swing.JButton();
         fSharp1 = new javax.swing.JButton();
         lowC = new javax.swing.JButton();
         lowE = new javax.swing.JButton();
@@ -49,34 +50,7 @@ public class PianoMan extends javax.swing.JFrame {
         highD = new javax.swing.JButton();
         highE = new javax.swing.JButton();
         highF = new javax.swing.JButton();
-        openFile = new javax.swing.JButton();
-        removeFile = new javax.swing.JButton();
-        record = new javax.swing.JToggleButton();
-        changeInstrument = new javax.swing.JComboBox<>();
-        jPanel2 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        wholeNote = new javax.swing.JButton();
-        quarterNote = new javax.swing.JButton();
-        eigthNote = new javax.swing.JButton();
-        sixteenthNote = new javax.swing.JButton();
-        halfNote = new javax.swing.JButton();
-        rhythmOrganizer = new javax.swing.JPanel();
-        note1 = new javax.swing.JPanel();
-        note2 = new javax.swing.JPanel();
-        note3 = new javax.swing.JPanel();
-        note4 = new javax.swing.JPanel();
-        note5 = new javax.swing.JPanel();
-        note6 = new javax.swing.JPanel();
-        note7 = new javax.swing.JPanel();
-        note8 = new javax.swing.JPanel();
-        note9 = new javax.swing.JPanel();
-        note10 = new javax.swing.JPanel();
-        note11 = new javax.swing.JPanel();
-        note12 = new javax.swing.JPanel();
-        note13 = new javax.swing.JPanel();
-        playback = new javax.swing.JToggleButton();
+        highG = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -162,6 +136,19 @@ public class PianoMan extends javax.swing.JFrame {
         });
         jPanel1.add(hiDSharp);
         hiDSharp.setBounds(920, 310, 85, 210);
+
+        hiFSharp.setBackground(java.awt.Color.black);
+        hiFSharp.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        hiFSharp.setForeground(new java.awt.Color(255, 255, 255));
+        hiFSharp.setText("F#");
+        hiFSharp.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        hiFSharp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hiFSharpActionPerformed(evt);
+            }
+        });
+        jPanel1.add(hiFSharp);
+        hiFSharp.setBounds(1120, 310, 81, 210);
 
         fSharp1.setBackground(java.awt.Color.black);
         fSharp1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
@@ -308,172 +295,17 @@ public class PianoMan extends javax.swing.JFrame {
         jPanel1.add(highF);
         highF.setBounds(1050, 310, 108, 360);
 
-        openFile.setText("Open File");
-        openFile.addActionListener(new java.awt.event.ActionListener() {
+        highG.setBackground(java.awt.Color.white);
+        highG.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        highG.setText("G");
+        highG.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        highG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openFileActionPerformed(evt);
+                highGActionPerformed(evt);
             }
         });
-        jPanel1.add(openFile);
-        openFile.setBounds(30, 20, 220, 70);
-
-        removeFile.setText("Remove File");
-        jPanel1.add(removeFile);
-        removeFile.setBounds(30, 100, 220, 60);
-
-        record.setText("Record");
-        record.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                recordActionPerformed(evt);
-            }
-        });
-        jPanel1.add(record);
-        record.setBounds(30, 170, 220, 50);
-
-        changeInstrument.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Piano", "Steel Drums", "Saxaphone", "Trumpet" }));
-        jPanel1.add(changeInstrument);
-        changeInstrument.setBounds(270, 30, 150, 40);
-
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField2.setText("Enter up to 13");
-        jTextField2.setBorder(null);
-        jPanel2.add(jTextField2);
-
-        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField3.setText("Notes");
-        jTextField3.setBorder(null);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jTextField3);
-
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(520, 20, 560, 30);
-
-        wholeNote.setIcon(new javax.swing.ImageIcon("/Users/brandonburt/Desktop/modifiedWholeNote.jpg")); // NOI18N
-        wholeNote.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                wholeNoteActionPerformed(evt);
-            }
-        });
-
-        quarterNote.setIcon(new javax.swing.ImageIcon("/Users/brandonburt/Desktop/modifiedHalfnote.png")); // NOI18N
-
-        eigthNote.setIcon(new javax.swing.ImageIcon("/Users/brandonburt/Desktop/modifiedQuarterNote.jpg")); // NOI18N
-
-        sixteenthNote.setIcon(new javax.swing.ImageIcon("/Users/brandonburt/Desktop/Music Note Images/modifiedeigthNew.png")); // NOI18N
-
-        halfNote.setIcon(new javax.swing.ImageIcon("/Users/brandonburt/Desktop/modifiedSixteenthNote.jpg")); // NOI18N
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(wholeNote, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(quarterNote, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(eigthNote, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sixteenthNote, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(halfNote, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(eigthNote, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(quarterNote, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(wholeNote, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(sixteenthNote, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(halfNote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        sixteenthNote.getAccessibleContext().setAccessibleDescription("");
-
-        jPanel1.add(jPanel3);
-        jPanel3.setBounds(520, 50, 560, 110);
-
-        rhythmOrganizer.setBackground(new java.awt.Color(0, 0, 0));
-
-        note1.setBackground(new java.awt.Color(0, 0, 0));
-        note1.setPreferredSize(new java.awt.Dimension(50, 100));
-        rhythmOrganizer.add(note1);
-
-        note2.setBackground(new java.awt.Color(0, 0, 0));
-        note2.setPreferredSize(new java.awt.Dimension(50, 100));
-        rhythmOrganizer.add(note2);
-
-        note3.setBackground(new java.awt.Color(0, 0, 0));
-        note3.setPreferredSize(new java.awt.Dimension(50, 100));
-        rhythmOrganizer.add(note3);
-
-        note4.setBackground(new java.awt.Color(0, 0, 0));
-        note4.setPreferredSize(new java.awt.Dimension(50, 100));
-        rhythmOrganizer.add(note4);
-
-        note5.setBackground(new java.awt.Color(0, 0, 0));
-        note5.setPreferredSize(new java.awt.Dimension(50, 100));
-        rhythmOrganizer.add(note5);
-
-        note6.setBackground(new java.awt.Color(0, 0, 0));
-        note6.setPreferredSize(new java.awt.Dimension(50, 100));
-        rhythmOrganizer.add(note6);
-
-        note7.setBackground(new java.awt.Color(0, 0, 0));
-        note7.setPreferredSize(new java.awt.Dimension(50, 100));
-        rhythmOrganizer.add(note7);
-
-        note8.setBackground(new java.awt.Color(0, 0, 0));
-        note8.setPreferredSize(new java.awt.Dimension(50, 100));
-        rhythmOrganizer.add(note8);
-
-        note9.setBackground(new java.awt.Color(0, 0, 0));
-        note9.setPreferredSize(new java.awt.Dimension(50, 100));
-        rhythmOrganizer.add(note9);
-
-        note10.setBackground(new java.awt.Color(0, 0, 0));
-        note10.setPreferredSize(new java.awt.Dimension(50, 100));
-        rhythmOrganizer.add(note10);
-
-        note11.setBackground(new java.awt.Color(0, 0, 0));
-        note11.setPreferredSize(new java.awt.Dimension(50, 100));
-        rhythmOrganizer.add(note11);
-
-        note12.setBackground(new java.awt.Color(0, 0, 0));
-        note12.setPreferredSize(new java.awt.Dimension(50, 100));
-        rhythmOrganizer.add(note12);
-
-        note13.setBackground(new java.awt.Color(0, 0, 0));
-        note13.setPreferredSize(new java.awt.Dimension(50, 100));
-        rhythmOrganizer.add(note13);
-
-        jPanel1.add(rhythmOrganizer);
-        rhythmOrganizer.setBounds(430, 180, 730, 110);
-
-        playback.setText("Playback");
-        jPanel1.add(playback);
-        playback.setBounds(30, 230, 220, 60);
+        jPanel1.add(highG);
+        highG.setBounds(1150, 310, 108, 360);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(-10, -10, 1570, 820);
@@ -485,7 +317,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/C_s.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/C_s.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -499,7 +331,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/E.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/E.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -513,7 +345,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/C.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/C.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -527,7 +359,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/D.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/D.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -541,7 +373,7 @@ public class PianoMan extends javax.swing.JFrame {
          InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/F.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/F.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -555,7 +387,7 @@ public class PianoMan extends javax.swing.JFrame {
           InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/G.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/G.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -569,7 +401,7 @@ public class PianoMan extends javax.swing.JFrame {
           InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/A.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/A.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -583,7 +415,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/B.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/B.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -597,7 +429,7 @@ public class PianoMan extends javax.swing.JFrame {
          InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/C1.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/C1.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -611,7 +443,7 @@ public class PianoMan extends javax.swing.JFrame {
          InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/D1.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/D1.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -625,7 +457,7 @@ public class PianoMan extends javax.swing.JFrame {
          InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/E1.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/E1.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -639,7 +471,7 @@ public class PianoMan extends javax.swing.JFrame {
          InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/F1.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/F1.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -649,11 +481,25 @@ public class PianoMan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_highFActionPerformed
 
+    private void highGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highGActionPerformed
+        InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/G.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_highGActionPerformed
+
     private void dSharpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dSharpActionPerformed
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/D_s.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/D_s.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -667,7 +513,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/G_s.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/G_s.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -681,7 +527,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/Bb.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/Bb.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -695,7 +541,7 @@ public class PianoMan extends javax.swing.JFrame {
       InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/C_s1.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/C_s1.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -709,7 +555,7 @@ public class PianoMan extends javax.swing.JFrame {
           InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/D_s1.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/D_s1.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -719,11 +565,25 @@ public class PianoMan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_hiDSharpActionPerformed
 
+    private void hiFSharpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hiFSharpActionPerformed
+        InputStream iAudio;
+        try
+        {
+           iAudio = new FileInputStream(new File ("Music_Note/F_s.wav") );
+           AudioStream iMusic = new AudioStream(iAudio);
+           AudioPlayer.player.start(iMusic );
+        }
+        catch (IOException e)
+        {
+           JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_hiFSharpActionPerformed
+
     private void fSharp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fSharp1ActionPerformed
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/F_s.wav") );
+           iAudio = new FileInputStream(new File ("Music_Note/F_s.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -732,22 +592,6 @@ public class PianoMan extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_fSharp1ActionPerformed
-
-    private void openFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_openFileActionPerformed
-
-    private void recordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_recordActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void wholeNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wholeNoteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_wholeNoteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -787,23 +631,18 @@ public class PianoMan extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aSharp;
     private javax.swing.JButton cSharp;
-    private javax.swing.JComboBox<String> changeInstrument;
     private javax.swing.JButton dSharp;
-    private javax.swing.JButton eigthNote;
     private javax.swing.JButton fSharp1;
     private javax.swing.JButton gSharp;
-    private javax.swing.JButton halfNote;
     private javax.swing.JButton hiCSharp;
     private javax.swing.JButton hiDSharp;
+    private javax.swing.JButton hiFSharp;
     private javax.swing.JButton highC;
     private javax.swing.JButton highD;
     private javax.swing.JButton highE;
     private javax.swing.JButton highF;
+    private javax.swing.JButton highG;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JButton lowA;
     private javax.swing.JButton lowB;
     private javax.swing.JButton lowC;
@@ -811,26 +650,5 @@ public class PianoMan extends javax.swing.JFrame {
     private javax.swing.JButton lowE;
     private javax.swing.JButton lowF;
     private javax.swing.JButton lowG;
-    private javax.swing.JPanel note1;
-    private javax.swing.JPanel note10;
-    private javax.swing.JPanel note11;
-    private javax.swing.JPanel note12;
-    private javax.swing.JPanel note13;
-    private javax.swing.JPanel note2;
-    private javax.swing.JPanel note3;
-    private javax.swing.JPanel note4;
-    private javax.swing.JPanel note5;
-    private javax.swing.JPanel note6;
-    private javax.swing.JPanel note7;
-    private javax.swing.JPanel note8;
-    private javax.swing.JPanel note9;
-    private javax.swing.JButton openFile;
-    private javax.swing.JToggleButton playback;
-    private javax.swing.JButton quarterNote;
-    private javax.swing.JToggleButton record;
-    private javax.swing.JButton removeFile;
-    private javax.swing.JPanel rhythmOrganizer;
-    private javax.swing.JButton sixteenthNote;
-    private javax.swing.JButton wholeNote;
     // End of variables declaration//GEN-END:variables
 }
