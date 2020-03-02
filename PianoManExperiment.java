@@ -128,7 +128,7 @@ public class PianoManExperiment extends JFrame {
 		//Recrord Button:
 		t = new JToggleButton();
 		t.setText("Record");
-		t.addActionListener(new ActionLIstener() {
+		t.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				recordPressed();
 			}
@@ -141,12 +141,18 @@ public class PianoManExperiment extends JFrame {
 			new String[] { "Piano", "SteelDrums", "Saxaphone", "Trumpet" }
 		));
 		
-		jPanel.add(c);
+		jPanel1.add(c);
 		c.setBounds(270, 30, 150, 40);
 		//JPanel2 and Text Fields:
 		jPanel2.setBackground(new Color(204, 204, 204));
-		f = new FTextField();
-		
+		f = new JTextField();
+		f.setBackground(new Color(204, 204, 204));
+		f.setText("Enter up to 13");
+		f.setBorder(null);
+		jPanel2.add(f);
+		f = new JTextField();
+		f.setBackground(new Color(204, 204, 204));
+		f.setText("Notes");
 		
 		
         getContentPane().add(jPanel1);
@@ -169,5 +175,15 @@ public class PianoManExperiment extends JFrame {
 	private void openPressed() {
 		
 	}
+	
+	private void removePressed() {
+		
+	}
+	
+	private void recordPressed() {
+		
+	}
+	
+	
 	
 }
