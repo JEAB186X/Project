@@ -307,6 +307,8 @@ public class PianoMan extends javax.swing.JFrame {
         });
         jPanel1.add(highF);
         highF.setBounds(1050, 310, 108, 360);
+		
+		//-------------------START-NEW---------------
 
         openFile.setText("Open File");
         openFile.addActionListener(new java.awt.event.ActionListener() {
@@ -320,7 +322,7 @@ public class PianoMan extends javax.swing.JFrame {
         removeFile.setText("Remove File");
         jPanel1.add(removeFile);
         removeFile.setBounds(30, 100, 220, 60);
-
+		
         record.setText("Record");
         record.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,6 +335,7 @@ public class PianoMan extends javax.swing.JFrame {
         changeInstrument.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Piano", "Steel Drums", "Saxaphone", "Trumpet" }));
         jPanel1.add(changeInstrument);
         changeInstrument.setBounds(270, 30, 150, 40);
+		//----------------------PIN-----------------------
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 

@@ -41,7 +41,11 @@ public class PianoManExperiment extends JFrame {
      */
     public PianoManExperiment() {
         JPanel jPanel1 = new JPanel();
+		JPanel jPanel2 = new JPanel();
 		JButton b;
+		JToggleButton t;
+		JComboBox<String> c;
+		JTextField f;
 		iAudio = new InputStream[20];
 		Font font = new Font("Verdana", 1, 24);
 		char[] sharpChar = {'C','D','F','G','A'};
@@ -64,8 +68,7 @@ public class PianoManExperiment extends JFrame {
 				System.out.println(ex);
 			}
 		}
-		
-		//Buttons:
+		//Black Keys:
 		j = 0;
 		for (i = 0; i < 8; i++) {
 			b = new JButton();
@@ -84,6 +87,7 @@ public class PianoManExperiment extends JFrame {
 			b.setBounds(120 + j, 310, 82, 210);
 			j += sharpSpace[i % 5];
 		}
+		//White Keys:
 		j = 0;
 		for (i = 0; i < 12; i++) {
 			b = new JButton();
@@ -101,6 +105,49 @@ public class PianoManExperiment extends JFrame {
 			b.setBounds(50 + j, 310, 108, 360);
 			j += 100;
 		}
+		//Open Button:
+		b = new JButton();
+		b.setText("Open File");
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				openPressed();
+			}
+		});
+		jPanel1.add(b);
+		b.setBounds(30, 20, 220, 70);
+		//Remove Button:
+		b = new JButton();
+		b.setText("Remove File");
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				removePressed();
+			}
+		});
+		jPanel1.add(b);
+		b.setBounds(30, 100, 220, 60);
+		//Recrord Button:
+		t = new JToggleButton();
+		t.setText("Record");
+		t.addActionListener(new ActionLIstener() {
+			public void actionPerformed(ActionEvent evt) {
+				recordPressed();
+			}
+		});
+		jPanel1.add(t);
+		t.setBounds(30, 170, 220, 50);
+		//Change Instrument Button --------------ADD-EVENT-LISTENER-------------
+		c = new JComboBox<>();
+		c.setModel(new DefaultComboBoxModel<>(
+			new String[] { "Piano", "SteelDrums", "Saxaphone", "Trumpet" }
+		));
+		
+		jPanel.add(c);
+		c.setBounds(270, 30, 150, 40);
+		//JPanel2 and Text Fields:
+		jPanel2.setBackground(new Color(204, 204, 204));
+		f = new FTextField();
+		
+		
 		
         getContentPane().add(jPanel1);
         jPanel1.setBounds(-10, -10, 1570, 820);
@@ -117,6 +164,10 @@ public class PianoManExperiment extends JFrame {
 		catch(IOException ex) {
 			System.out.println(ex);
 		}
+	}
+	
+	private void openPressed() {
+		
 	}
 	
 }
