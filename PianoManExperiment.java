@@ -41,7 +41,7 @@ public class PianoManExperiment extends JFrame {
      */
     public PianoManExperiment() {
         JPanel jPanel1 = new JPanel();
-		JPanel jPanel2 = new JPanel();
+		JPanel jPanel;
 		JButton b;
 		JToggleButton t;
 		JComboBox<String> c;
@@ -143,16 +143,85 @@ public class PianoManExperiment extends JFrame {
 		
 		jPanel1.add(c);
 		c.setBounds(270, 30, 150, 40);
-		//JPanel2 and Text Fields:
-		jPanel2.setBackground(new Color(204, 204, 204));
+		//jPanel and Text Fields:
+		jPanel = new JPanel();
+		jPanel.setBackground(new Color(204, 204, 204));
 		f = new JTextField();
 		f.setBackground(new Color(204, 204, 204));
 		f.setText("Enter up to 13");
 		f.setBorder(null);
-		jPanel2.add(f);
+		jPanel.add(f);
 		f = new JTextField();
 		f.setBackground(new Color(204, 204, 204));
 		f.setText("Notes");
+		f.setBorder(null);
+		f.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				System.out.println("Think of a cool method name");
+			}
+		});
+		jPanel.add(f);
+		
+		jPanel1.add(jPanel);
+		jPanel.setBounds(520, 20, 560, 30);
+		//Rhythmic Pattern Setter Buttons:
+		jPanel = new JPanel();
+		JButton wNote = new JButton();
+		wNote.setIcon(new Icon(""));
+		JButton hNote = new JButton();
+		hNote.setIcon(new Icon(""));
+		JButton qNote = new JButton();
+		qNote.setIcon(new Icon(""));
+		JButton eNote = new JButton();
+		eNote.setIcon(new Icon(""));
+		JButton sNote = new JButton();
+		sNote.setIcon(new Icon(""));
+		b.setIcon(new ImageIcon(""));
+		GroupLayout jPanelLayout = new GroupLayout(jPanel);
+		jPanel.setLayout(jPanelLayout);
+		jPanelLayout.setHorizontalGroup(
+			jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+			.addGroup(jPanelLayout.createSequentialGroup()
+				.addGap(3, 3, 3)
+				.addComponent(b, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+				.addGap(18, 18, 18)
+				.addComponent(b, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
+				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+				.addComponent(b, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+				.addComponent(b, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+				.addGap(18, 18, 18)
+				.addComponent(b, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+				.addContainerGap())
+		);
+		jPanelLayout.setVerticalGroup(
+			jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+			.addGroup(jPanelLayout.createSequentialGroup()
+				.addGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+					.addGroup(jPanelLayout.createSequentialGroup()
+						.addGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+							.addGroup(jPanelLayout.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(b, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+							.addGroup(jPanelLayout.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(b, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+							.addGroup(jPanelLayout.createSequentialGroup()
+								.addGap(5, 5, 5)
+								.addComponent(b, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
+							.addGroup(jPanelLayout.createSequentialGroup()
+								.addComponent(b, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)))
+						.addGap(0, 0, Short.MAX_VALUE))
+					.addComponent(b, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addContainerGap())
+		);
+		
+		b.getAccessibleContext().setAccessibleDescription("");
+		
+		jPanel1.add(jPanel);
+		jPanel.setBounds(520, 50, 560, 110);
+		
+		jPanel.setBackground(new Color(0, 0, 0));
+		
 		
 		
         getContentPane().add(jPanel1);
