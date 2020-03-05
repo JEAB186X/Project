@@ -1,36 +1,30 @@
 package Core;
 
+import Records.*;
 import sun.audio.*;
 import java.io.*;
-import javax.swing.JFrame;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 
 public class PianoManCore extends JFrame {
 	
-	private InputStream[] iAudio;
+	protected RecordHandler rh;
+	
+	protected JToggleButton recordButton;
+	protected JToggleButton playbackButton;
+	protected JComboBox instrument;
 	
 	public PianoManCore() {
-		iAudio = new InputStream[20];
-		int i;
-		//Audio:
-		for(i = 0; i < 20; i++) {
-			try {
-				iAudio[i] = new FileInputStream(new File("Notes/Piano/Note" + i + ".wav"));
-			}
-			catch(IOException ex) {
-				ex.printStackTrace();
-			}
-		}
+		rh = new RecordHandler();
 	}
 	
 	protected void keyPressed(int index) {
-		try {
-			AudioPlayer.player.start(new AudioStream(iAudio[index]));
-			iAudio[index] = new FileInputStream(new File("Notes/Piano/Note" + index + ".wav"));
-		}
-		catch(IOException ex) {
-			System.out.println(ex);
-		}
+		//Old Code; Please Replace
+		try {AudioPlayer.player.start(new AudioStream(new FileInputStream(new File(
+		"Notes/"  + instrument.getSelectedItem() + "/Note" + index + ".wav"))));}
+		catch(IOException ex) {ex.printStackTrace();}
 	}
 	
 	protected void openPressed() {
@@ -48,5 +42,19 @@ public class PianoManCore extends JFrame {
 	protected void playbackPressed() {
 		
 	}
+	
+	protected void instrumentSelected() {
+		
+	}
+	
+	protected void rhythmButtonPressed(int value) {
+		
+	}
+	
+	/*COOL THINGS :D
+		JToggleButton.setSelected(boolan);
+		JToggleButton.isSelected(boolean);
+		JComboBox.getSelectedItem();
+	*/
 	
 }

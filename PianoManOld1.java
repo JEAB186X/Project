@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
  *
  * @author jerem
  */
-public class PianoMan extends javax.swing.JFrame {
+public class PianoManOld1 extends javax.swing.JFrame {
 
     /**
      * Creates new form PianoMan
      */
-    public PianoMan() {
+    public PianoManOld1() {
         initComponents();
     }
 

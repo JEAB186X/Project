@@ -28,7 +28,7 @@ public class PianoMan extends PianoManCore {
             public void run() {
                 PianoMan piano = new PianoMan();
 				piano.setVisible(true);
-				piano.setSize(1300, 700);
+				piano.setSize(1200, 700);
             }
         });
     }
@@ -36,13 +36,12 @@ public class PianoMan extends PianoManCore {
     /**
      * Creates new form PianoMan
      */
+    @SuppressWarnings("unchecked")
     public PianoMan() {
         JPanel jPanelMain = new JPanel();
 		JPanel jPanel;
 		JPanel jp;
 		JButton b;
-		JToggleButton t;
-		JComboBox<String> c;
 		JTextField f;
 		Font font = new Font("Verdana", 1, 24);
 		char[] sharpChar = {'C','D','F','G','A'};
@@ -56,16 +55,17 @@ public class PianoMan extends PianoManCore {
         jPanelMain.setBackground(Color.black);
         jPanelMain.setBorder(BorderFactory.createLineBorder(Color.WHITE, 8));
         jPanelMain.setLayout(null);
+		
 		//Black Keys:
 		j = 0;
-		for (i = 0; i < 8; i++) {
+		for (i = 0; i < 7; i++) {
 			b = new JButton();
 			b.setBackground(Color.BLACK);
 			b.setFont(font);
 			b.setForeground(Color.WHITE);
 			b.setText(sharpChar[i % 5] + "#");
 			b.setVerticalAlignment(SwingConstants.BOTTOM);
-			final int index = i + 12;
+			final int index = i + 11;
 			b.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					keyPressed(index);
@@ -74,9 +74,10 @@ public class PianoMan extends PianoManCore {
 			b.setBounds(120 + j, 310, 82, 210);
 			j += sharpSpace[i % 5];
 		}
+		
 		//White Keys:
 		j = 0;
-		for (i = 0; i < 12; i++) {
+		for (i = 0; i < 11; i++) {
 			b = new JButton();
 			b.setBackground(Color.WHITE);
 			b.setFont(font);
@@ -91,6 +92,7 @@ public class PianoMan extends PianoManCore {
 			b.setBounds(50 + j, 310, 108, 360);
 			j += 100;
 		}
+		
 		//Open Button:
 		b = new JButton();
 		b.setText("Open File");
@@ -100,6 +102,7 @@ public class PianoMan extends PianoManCore {
 		}});
 		jPanelMain.add(b);
 		b.setBounds(30, 20, 220, 70);
+		
 		//Remove Button:
 		b = new JButton();
 		b.setText("Remove File");
@@ -109,31 +112,39 @@ public class PianoMan extends PianoManCore {
 		}});
 		jPanelMain.add(b);
 		b.setBounds(30, 100, 220, 60);
+		
 		//Recrord Toggle Button:
-		t = new JToggleButton();
-		t.setText("Record");
-		t.addActionListener(new ActionListener() {
+		recordButton = new JToggleButton();
+		recordButton.setText("Record");
+		recordButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				recordPressed();
 		}});
-		jPanelMain.add(t);
-		t.setBounds(30, 170, 220, 50);
+		jPanelMain.add(recordButton);
+		recordButton.setBounds(30, 170, 220, 50);
+		
 		//Playback Toggle Button:
-		t = new JToggleButton();
-		t.setText("Playback");
-		t.addActionListener(new ActionListener() {
+		playbackButton = new JToggleButton();
+		playbackButton.setText("Playback");
+		playbackButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				playbackPressed();
 		}});
-		jPanelMain.add(t);
-		t.setBounds(30, 230, 220, 60);
+		jPanelMain.add(playbackButton);
+		playbackButton.setBounds(30, 230, 220, 60);
+		
 		//Change Instrument Combo Button
-		c = new JComboBox<>();
-		c.setModel(new DefaultComboBoxModel<>(
+		instrument = new JComboBox<>();
+		instrument.setModel(new DefaultComboBoxModel<>(
 			new String[] { "Piano", "SteelDrums", "Saxaphone", "Trumpet" }
 		));
-		jPanelMain.add(c);
-		c.setBounds(270, 30, 150, 40);
+		instrument.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				instrumentSelected();
+		}});
+		jPanelMain.add(instrument);
+		instrument.setBounds(270, 30, 150, 40);
+		
 		//jPanel and Text Fields:
 		jPanel = new JPanel();
 		jPanel.setBackground(new Color(204, 204, 204));
@@ -153,21 +164,24 @@ public class PianoMan extends PianoManCore {
 		jPanel.add(f);
 		jPanelMain.add(jPanel);
 		jPanel.setBounds(520, 20, 560, 30);
+		
 		//Rhythmic Pattern Setter Buttons:
 		jPanel = new JPanel();
-		JButton wNote = new JButton();wNote.setIcon(new ImageIcon(""));
-		JButton hNote = new JButton();hNote.setIcon(new ImageIcon(""));
-		JButton qNote = new JButton();qNote.setIcon(new ImageIcon(""));
-		JButton eNote = new JButton();eNote.setIcon(new ImageIcon(""));
-		JButton sNote = new JButton();sNote.setIcon(new ImageIcon(""));
+		JButton wNote = new JButton();wNote.setIcon(new ImageIcon(""));wNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed( 1);}});
+		JButton hNote = new JButton();hNote.setIcon(new ImageIcon(""));hNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed( 2);}});
+		JButton qNote = new JButton();qNote.setIcon(new ImageIcon(""));qNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed( 4);}});
+		JButton eNote = new JButton();eNote.setIcon(new ImageIcon(""));eNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed( 8);}});
+		JButton sNote = new JButton();sNote.setIcon(new ImageIcon(""));sNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed(16);}});
 		GroupLayout jPanelLayout = new GroupLayout(jPanel);jPanel.setLayout(jPanelLayout);//do not question
 		jPanelLayout.setHorizontalGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanelLayout.createSequentialGroup().addGap(3, 3, 3).addComponent(wNote, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE).addGap(18, 18, 18).addComponent(qNote, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(eNote, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(sNote, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE).addGap(18, 18, 18).addComponent(hNote, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 		jPanelLayout.setVerticalGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanelLayout.createSequentialGroup().addGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanelLayout.createSequentialGroup().addGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false).addGroup(jPanelLayout.createSequentialGroup().addContainerGap().addComponent(eNote, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)).addGroup(jPanelLayout.createSequentialGroup().addContainerGap().addComponent(qNote, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)).addGroup(jPanelLayout.createSequentialGroup().addGap(5, 5, 5).addComponent(wNote, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)).addGroup(jPanelLayout.createSequentialGroup().addContainerGap().addComponent(sNote, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE))).addGap(0, 0, Short.MAX_VALUE)).addComponent(hNote, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addContainerGap()));
 		sNote.getAccessibleContext().setAccessibleDescription("");
+		
 		jPanelMain.add(jPanel);jPanel.setBounds(520, 50, 560, 110);
 		/*	Seems that the display of the rhythmic patterns should be next.
 			They can be found in the file labeled "buffer.txt"
 			They don't appear to be serving any purpose as is.*/
+			
         getContentPane().add(jPanelMain);
         jPanelMain.setBounds(-10, -10, 1570, 820);
 		
