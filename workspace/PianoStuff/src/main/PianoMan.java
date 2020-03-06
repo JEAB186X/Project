@@ -1,4 +1,6 @@
-import Core.PianoManCore;
+package main;
+
+import core.PianoManCore;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

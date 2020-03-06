@@ -1,0 +1,71 @@
+
+		//Note Buttons
+		jPanel = new JPanel();
+		jPanel.setBackground(new Color(0, 0, 0));
+		//Note 1
+		jp = new JPanel();
+		jp.setBackground(new Color(0, 0, 0));
+		jp.setPreferredSize(new Dimension(50, 100));
+		jPanel.add(jp);
+		//Note 2
+		jp = new JPanel();
+		jp.setBackground(new Color(0, 0, 0));
+		jp.setPreferredSize(new Dimension(50, 100));
+		jPanel.add(jp);
+		//Note 3
+		jp = new JPanel();
+		jp.setBackground(new Color(0, 0, 0));
+		jp.setPreferredSize(new Dimension(50, 100));
+		jPanel.add(jp);
+		//Note 4
+		jp = new JPanel();
+		jp.setBackground(new Color(0, 0, 0));
+		jp.setPreferredSize(new Dimension(50, 100));
+		jPanel.add(jp);
+		//Note 5
+		jp = new JPanel();
+		jp.setBackground(new Color(0, 0, 0));
+		jp.setPreferredSize(new Dimension(50, 100));
+		jPanel.add(jp);
+		//Note 6
+		jp = new JPanel();
+		jp.setBackground(new Color(0, 0, 0));
+		jp.setPreferredSize(new Dimension(50, 100));
+		jPanel.add(jp);
+		//Note 7
+		jp = new JPanel();
+		jp.setBackground(new Color(0, 0, 0));
+		jp.setPreferredSize(new Dimension(50, 100));
+		jPanel.add(jp);
+		//Note 8
+		jp = new JPanel();
+		jp.setBackground(new Color(0, 0, 0));
+		jp.setPreferredSize(new Dimension(50, 100));
+		jPanel.add(jp);
+		//Note 9
+		jp = new JPanel();
+		jp.setBackground(new Color(0, 0, 0));
+		jp.setPreferredSize(new Dimension(50, 100));
+		jPanel.add(jp);
+		//Note 10
+		jp = new JPanel();
+		jp.setBackground(new Color(0, 0, 0));
+		jp.setPreferredSize(new Dimension(50, 100));
+		jPanel.add(jp);
+		//Note 11
+		jp = new JPanel();
+		jp.setBackground(new Color(0, 0, 0));
+		jp.setPreferredSize(new Dimension(50, 100));
+		jPanel.add(jp);
+		//Note 12
+		jp = new JPanel();
+		jp.setBackground(new Color(0, 0, 0));
+		jp.setPreferredSize(new Dimension(50, 100));
+		jPanel.add(jp);
+		//Note 13
+		jp = new JPanel();
+		jp.setBackground(new Color(0, 0, 0));
+		jp.setPreferredSize(new Dimension(50, 100));
+		jPanel.add(jp);
+		jPanelMain.add(jPanel);
+		jPanel.setBounds(430, 180, 730, 110);
