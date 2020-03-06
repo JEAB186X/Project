@@ -6,7 +6,7 @@ import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
+import audio.AudioHandler;
 
 public class PianoManCore extends JFrame {
 	
@@ -22,9 +22,10 @@ public class PianoManCore extends JFrame {
 	
 	protected void keyPressed(int index) {
 		//Old Code; Please Replace
-		try {AudioPlayer.player.start(new AudioStream(new FileInputStream(new File(
-		"Notes/"  + instrument.getSelectedItem() + "/Note" + index + ".wav"))));}
-		catch(IOException ex) {ex.printStackTrace();}
+			
+		AudioHandler musicObject = new AudioHandler(); 
+		musicObject.playFile(index);
+		
 	}
 	
 	protected void openPressed() {
