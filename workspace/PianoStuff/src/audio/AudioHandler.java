@@ -19,7 +19,7 @@ public class AudioHandler {
 		
 		
 		AudioHandler musicObject = new AudioHandler(); 
-		musicObject.playFile(index);
+		musicObject.playFile(index, "Piano");
 		
 		
 		
@@ -29,14 +29,13 @@ public class AudioHandler {
 		
 		
 	}
-	protected JComboBox instrument;
-
-	public void playFile(int index) {
+	
+	public void playFile(int index, String instrument) {
 		
 		try {
 			
 			
-			File music = new File("Notes/"  + instrument.getSelectedItem() + "/Note" + index + ".wav");
+			File music = new File("Notes/"  + instrument + "/Note" + index + ".wav");
 			
 			
 			if (music.exists()) {
