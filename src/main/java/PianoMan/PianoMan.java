@@ -354,20 +354,11 @@ public class PianoMan extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(520, 20, 560, 30);
 
-        wholeNote.setIcon(new javax.swing.ImageIcon("/Users/brandonburt/Desktop/modifiedWholeNote.jpg")); // NOI18N
         wholeNote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 wholeNoteActionPerformed(evt);
             }
         });
-
-        quarterNote.setIcon(new javax.swing.ImageIcon("/Users/brandonburt/Desktop/modifiedHalfnote.png")); // NOI18N
-
-        eigthNote.setIcon(new javax.swing.ImageIcon("/Users/brandonburt/Desktop/modifiedQuarterNote.jpg")); // NOI18N
-
-        sixteenthNote.setIcon(new javax.swing.ImageIcon("/Users/brandonburt/Desktop/Music Note Images/modifiedeigthNew.png")); // NOI18N
-
-        halfNote.setIcon(new javax.swing.ImageIcon("/Users/brandonburt/Desktop/modifiedSixteenthNote.jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -405,7 +396,9 @@ public class PianoMan extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(sixteenthNote, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(halfNote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(halfNote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -417,54 +410,67 @@ public class PianoMan extends javax.swing.JFrame {
         rhythmOrganizer.setBackground(new java.awt.Color(0, 0, 0));
 
         note1.setBackground(new java.awt.Color(0, 0, 0));
+        note1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         note1.setPreferredSize(new java.awt.Dimension(50, 100));
         rhythmOrganizer.add(note1);
 
         note2.setBackground(new java.awt.Color(0, 0, 0));
+        note2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         note2.setPreferredSize(new java.awt.Dimension(50, 100));
         rhythmOrganizer.add(note2);
 
         note3.setBackground(new java.awt.Color(0, 0, 0));
+        note3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         note3.setPreferredSize(new java.awt.Dimension(50, 100));
         rhythmOrganizer.add(note3);
 
         note4.setBackground(new java.awt.Color(0, 0, 0));
+        note4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         note4.setPreferredSize(new java.awt.Dimension(50, 100));
         rhythmOrganizer.add(note4);
 
         note5.setBackground(new java.awt.Color(0, 0, 0));
+        note5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         note5.setPreferredSize(new java.awt.Dimension(50, 100));
         rhythmOrganizer.add(note5);
 
         note6.setBackground(new java.awt.Color(0, 0, 0));
+        note6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         note6.setPreferredSize(new java.awt.Dimension(50, 100));
         rhythmOrganizer.add(note6);
 
         note7.setBackground(new java.awt.Color(0, 0, 0));
+        note7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         note7.setPreferredSize(new java.awt.Dimension(50, 100));
         rhythmOrganizer.add(note7);
 
         note8.setBackground(new java.awt.Color(0, 0, 0));
+        note8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         note8.setPreferredSize(new java.awt.Dimension(50, 100));
         rhythmOrganizer.add(note8);
 
         note9.setBackground(new java.awt.Color(0, 0, 0));
+        note9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         note9.setPreferredSize(new java.awt.Dimension(50, 100));
         rhythmOrganizer.add(note9);
 
         note10.setBackground(new java.awt.Color(0, 0, 0));
+        note10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         note10.setPreferredSize(new java.awt.Dimension(50, 100));
         rhythmOrganizer.add(note10);
 
         note11.setBackground(new java.awt.Color(0, 0, 0));
+        note11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         note11.setPreferredSize(new java.awt.Dimension(50, 100));
         rhythmOrganizer.add(note11);
 
         note12.setBackground(new java.awt.Color(0, 0, 0));
+        note12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         note12.setPreferredSize(new java.awt.Dimension(50, 100));
         rhythmOrganizer.add(note12);
 
         note13.setBackground(new java.awt.Color(0, 0, 0));
+        note13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         note13.setPreferredSize(new java.awt.Dimension(50, 100));
         rhythmOrganizer.add(note13);
 
