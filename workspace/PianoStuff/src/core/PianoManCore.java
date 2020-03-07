@@ -22,7 +22,7 @@ public class PianoManCore extends JFrame {
 	}
 	
 	protected void keyPressed(int index) {
-		//Old Code; Please Replace
+		//Old Code; Replaced
 		
 		String device = (String) instrument.getSelectedItem();
 				
