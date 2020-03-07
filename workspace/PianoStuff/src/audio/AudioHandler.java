@@ -12,7 +12,7 @@ public class AudioHandler {
 		
 		try {
 			
-			File music = new File("/C:/Users/elvis/Documents/Notes/"  + instrument + "/Note" + index + ".wav");
+			File music = new File("Notes/"  + instrument + "/Note" + index + ".wav");
 			
 			if (music.exists()) {
 				AudioInputStream audioInput = AudioSystem.getAudioInputStream(music);	
