@@ -16,15 +16,18 @@ public class PianoManCore extends JFrame {
 	protected JToggleButton playbackButton;
 	protected JComboBox instrument;
 	
+	
 	public PianoManCore() {
 		rh = new RecordHandler();
 	}
 	
 	protected void keyPressed(int index) {
 		//Old Code; Please Replace
-			
+		
+		String device = (String) instrument.getSelectedItem();
+				
 		AudioHandler musicObject = new AudioHandler(); 
-		musicObject.playFile(index);
+		musicObject.playFile(index, device);
 		
 	}
 	
