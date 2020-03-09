@@ -183,7 +183,23 @@ public class PianoMan extends PianoManCore {
 		/*	Seems that the display of the rhythmic patterns should be next.
 			They can be found in the file labeled "buffer.txt"
 			They don't appear to be serving any purpose as is.*/
-			
+		
+		
+		//Note Buttons:
+		jPanel = new JPanel();
+		jPanel.setBackground(new Color(0, 0, 0));
+		//Notes:
+		rhythmNotes = new JPanel[13];
+		for (i = 0; i < 13; i++) {
+			rhythmNotes[i] = new JPanel();
+			rhythmNotes[i].setBackground(new Color(0, 0, 0));
+			rhythmNotes[i].setPreferredSize(new Dimension(50, 100));
+			jPanel.add(rhythmNotes[i]);
+		}
+		jPanelMain.add(jPanel);
+		jPanel.setBounds(430, 180, 730, 110);
+		
+		//End:	
         getContentPane().add(jPanelMain);
         jPanelMain.setBounds(-10, -10, 1570, 820);
 		

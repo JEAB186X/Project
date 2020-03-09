@@ -10,25 +10,21 @@ import audio.AudioHandler;
 
 public class PianoManCore extends JFrame {
 	
-	protected RecordHandler rh;
+	private RecordHandler rh;
+	private AudioHandler ah;
 	
 	protected JToggleButton recordButton;
 	protected JToggleButton playbackButton;
 	protected JComboBox instrument;
-	
+	protected JPanel[] rhythmNotes;
 	
 	public PianoManCore() {
 		rh = new RecordHandler();
+		ah = new AudioHandler(); 
 	}
 	
 	protected void keyPressed(int index) {
-		//Old Code; Please Replace
-		
-		String device = (String) instrument.getSelectedItem();
-				
-		AudioHandler musicObject = new AudioHandler(); 
-		musicObject.playFile(index, device);
-		
+		ah.playFile(index, "Piano");
 	}
 	
 	protected void openPressed() {
