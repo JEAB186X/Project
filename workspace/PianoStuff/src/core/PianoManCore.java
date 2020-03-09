@@ -21,6 +21,7 @@ public class PianoManCore extends JFrame {
 	public PianoManCore() {
 		rh = new RecordHandler();
 		ah = new AudioHandler(); 
+		//Initialize according to the data in the Record Handler.
 	}
 	
 	protected void keyPressed(int index) {

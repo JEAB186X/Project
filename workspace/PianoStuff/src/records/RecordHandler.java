@@ -19,6 +19,8 @@ import java.util.ArrayList;
 public class RecordHandler {
 	
 	private ArrayList<String> nameList;
+	private ArrayList<String> instList;
+	private ArrayList<Integer> tempoList;
 	private ArrayList<Note[]> notes;
 	
 	private int saveIndex;
@@ -39,7 +41,7 @@ public class RecordHandler {
 		int i;
 		int j;
 		
-		//rh.addRecord("New");
+		//rh.addRecord("Default");
 		//rh.changeRecord("New");
 		//rh.removeRecord("New");
 		
@@ -59,6 +61,8 @@ public class RecordHandler {
 		for (i = 0; i < rh.numRecords(); i++) {
 			rh.changeRecord(rh.name(i));
 			System.out.println("Record Name: " + rh.name());
+			System.out.println("Instrument: " + rh.instrument());
+			System.out.println("Tempo: " + rh.tempo());
 			rh.startRecalling();
 			j = 0;
 			while (rh.isRecalling()) {
@@ -74,6 +78,8 @@ public class RecordHandler {
 	 */
 	public RecordHandler() {
 		nameList = new ArrayList<String>();
+		instList = new ArrayList<String>();
+		tempoList = new ArrayList<Integer>();
 		notes = new ArrayList<Note[]>();
 		load();
 		saveIndex = 0;
@@ -85,7 +91,7 @@ public class RecordHandler {
 	private void load() {
 		try {
 			DataInputStream stream = new DataInputStream(
-				new FileInputStream("Records/Records.jm"));
+				new FileInputStream("records/Records.jm"));
 			int i;
 			int j;
 			String name;
@@ -98,6 +104,14 @@ public class RecordHandler {
 					j = stream.readChar();
 				}
 				addRecord(name);
+				name = "";
+				j = stream.readChar();
+				while (j != '\0') {
+					name = name + (char) j;
+					j = stream.readChar();
+				}
+				setInstrument(name);
+				setTempo(stream.readInt());
 				setLength(i, stream.readInt());
 				for (j = 0; j < length(i); j++) {
 					notes.get(i)[j].set(stream.readInt(), stream.readInt());
@@ -106,7 +120,8 @@ public class RecordHandler {
 			stream.close();
 		}
 		catch (IOException e) {
-			System.out.println("1: " + e);
+			System.out.println("1: ");
+			e.printStackTrace();
 		}
 	}
 	
@@ -119,13 +134,18 @@ public class RecordHandler {
 		try {
 			DataOutputStream stream = new DataOutputStream(
 				new BufferedOutputStream(
-					new FileOutputStream("Records.jm")));
+					new FileOutputStream("records/Records.jm")));
 			stream.writeInt(numRecords());
 			for (i = 0; i < numRecords(); i++) {
 				for (j = 0; j < name(i).length(); j++) {
 					stream.writeChar(name(i).charAt(j));
 				}
 				stream.writeChar('\0');
+				for (j = 0; j < instrument(i).length(); j++) {
+					stream.writeChar(instrument(i).charAt(j));
+				}
+				stream.writeChar('\0');
+				stream.writeInt(tempo(i));
 				stream.writeInt(length(i));
 				for (j = 0; j < length(i); j++) {
 					stream.writeInt(notes.get(i)[j].pitch);
@@ -151,6 +171,8 @@ public class RecordHandler {
 		}
 		saveIndex = numRecords();
 		nameList.add(name);
+		instList.add("Piano");
+		tempoList.add(60);
 		notes.add(null);
 		setLength(8);
 	}
@@ -180,6 +202,8 @@ public class RecordHandler {
 			return;
 		}
 		nameList.remove(i);
+		instList.remove(i);
+		tempoList.remove(i);
 		notes.remove(i);
 		if (saveIndex >= i) {
 			saveIndex -= 1;
@@ -216,6 +240,50 @@ public class RecordHandler {
 			return "(none)";
 		}
 		return nameList.get(saveIndex);
+	}
+	
+	/**
+	 * Returns the instrument of a record at a given index.
+	 * 
+	 * @param index The index of a record
+	 * @return The instrument that the given record uses.
+	 */
+	private String instrument(int index) {
+		return instList.get(index);
+	}
+	
+	/**
+	 * Returns the instrument the current record uses.
+	 * 
+	 * @return The instrument of the current record.
+	 */
+	public String instrument() {
+		if (numRecords() == 0) {
+			return "(none)";
+		}
+		return instList.get(saveIndex);
+	}
+	
+	/**
+	 * Returns the tempo of a given record given its index.
+	 * 
+	 * @param index The index of the subject record.
+	 * @return The tempo of an index.
+	 */
+	private int tempo(int index) {
+		return tempoList.get(index);
+	}
+	
+	/**
+	 * Returns the tempo of a given record given its index.
+	 * 
+	 * @return The tempo of an index.
+	 */
+	public int tempo() {
+		if (numRecords() == 0) {
+			return -1;
+		}
+		return tempoList.get(saveIndex);
 	}
 	
 	/**
@@ -258,6 +326,24 @@ public class RecordHandler {
 	}
 	
 	/**
+	 * Sets the instrument of the current record.
+	 * 
+	 * @param instrument The instrument the current record will use.
+	 */
+	public void setInstrument(String instrument) {
+		instList.set(saveIndex, instrument);
+	}
+	
+	/**
+	 * Sets teh tempo of the current record.
+	 * 
+	 * @param tempo The tempo the current record will have.
+	 */
+	public void setTempo(int tempo) {
+		tempoList.set(saveIndex, tempo);
+	}
+	
+	/**
 	 * Sets the length of the current record.
 	 * Basically, it sets how many notes the record will have.
 	 * The length can not be less than 1.
@@ -275,7 +361,7 @@ public class RecordHandler {
 			n[i] = notes.get(saveIndex)[i];
 		}
 		for (i = i; i < length; i++) {
-			n[i] = new Note();;
+			n[i] = new Note();
 		}
 		notes.set(saveIndex, n);
 	}
