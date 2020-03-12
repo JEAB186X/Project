@@ -44,7 +44,6 @@ public class AudioHandler {
 	 }
 
 }
-=======
 	
 	//must start playing the current record in the recordhandler class.
 	void startPlayingRecord(RecordHandler rh) {
