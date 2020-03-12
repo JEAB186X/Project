@@ -14,7 +14,7 @@ public class AudioHandler {
 			
 			
 			// this directory might change depending mine starts with /C:/Users/elvis/Documents/
-			File music = new File("/C:/Users/elvis/Documents/Notes/"  + instrument + "/Note" + index + ".wav");
+			File music = new File("Notes/"  + instrument + "/Note" + index + ".wav");
 			
 			if (music.exists()) {
 				AudioInputStream audioInput = AudioSystem.getAudioInputStream(music);	
@@ -44,23 +44,3 @@ public class AudioHandler {
 	 }
 
 }
-	
-	//must start playing the current record in the recordhandler class.
-	void startPlayingRecord(RecordHandler rh) {
-	
-	}
-	// must stop playing the current record if it is playing.
-	void stopPlayingRecord() {
-		 
-		 
-		 
-	 }
-
-}
-	
-	
-	
-	
-	
-	
->>>>>>> kimara
