@@ -18,6 +18,7 @@ public class PianoManCore extends JFrame {
 	protected JComboBox instrument;
 	protected JPanel[] rhythmNotes;
 	
+	
 	public PianoManCore() {
 		rh = new RecordHandler();
 		ah = new AudioHandler(); 
