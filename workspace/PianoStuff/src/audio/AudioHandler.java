@@ -11,8 +11,6 @@ public class AudioHandler {
 	
 	public void playFile(int index, String instrument) {
 		try {
-			
-			
 			// this directory might change depending mine starts with /C:/Users/elvis/Documents/
 			File music = new File("Notes/"  + instrument + "/Note" + index + ".wav");
 			
@@ -21,7 +19,6 @@ public class AudioHandler {
 				Clip clip = AudioSystem.getClip();
 				clip.open(audioInput);
 				clip.start();
-				
 			}
 			else {
 				System.out.println("Couldnt find the file");
@@ -38,9 +35,7 @@ public class AudioHandler {
 	}
 	// must stop playing the current record if it is playing.
 	void stopPlayingRecord() {
-
-
-
+		
 	 }
 
 }
