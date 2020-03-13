@@ -21,12 +21,16 @@ public class PianoManCore extends JFrame {
 	
 	public PianoManCore() {
 		rh = new RecordHandler();
-		ah = new AudioHandler(); 
+		ah = new AudioHandler(rh); 
 		//Initialize according to the data in the Record Handler.
 	}
 	
+	public void initialize() {
+		instrument.setSelectedItem(rh.instrument());
+	}
+	
 	protected void keyPressed(int index) {
-		ah.playFile(index, "Piano");
+		ah.playFile(index);
 	}
 	
 	protected void openPressed() {
@@ -46,7 +50,7 @@ public class PianoManCore extends JFrame {
 	}
 	
 	protected void instrumentSelected() {
-		
+		rh.setInstrument(instrument.getSelectedItem().toString());
 	}
 	
 	protected void rhythmButtonPressed(int value) {
@@ -57,6 +61,7 @@ public class PianoManCore extends JFrame {
 		JToggleButton.setSelected(boolan);
 		JToggleButton.isSelected(boolean);
 		JComboBox.getSelectedItem();
+		JComboBox.setSelectedItem();
 	*/
 	
 }
