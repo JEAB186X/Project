@@ -180,78 +180,26 @@ public class PianoMan extends PianoManCore {
 		sNote.getAccessibleContext().setAccessibleDescription("");
 		
 		jPanelMain.add(jPanel);jPanel.setBounds(520, 50, 560, 110);
-
-		//Note Buttons
+		/*	Seems that the display of the rhythmic patterns should be next.
+			They can be found in the file labeled "buffer.txt"
+			They don't appear to be serving any purpose as is.*/
+		
+		
+		//Note Buttons:
 		jPanel = new JPanel();
 		jPanel.setBackground(new Color(0, 0, 0));
-		//Note 1
-		jp = new JPanel();
-		jp.setBackground(new Color(0, 0, 0));
-		jp.setPreferredSize(new Dimension(50, 100));
-		jPanel.add(jp);
-		//Note 2
-		jp = new JPanel();
-		jp.setBackground(new Color(0, 0, 0));
-		jp.setPreferredSize(new Dimension(50, 100));
-		jPanel.add(jp);
-		//Note 3
-		jp = new JPanel();
-		jp.setBackground(new Color(0, 0, 0));
-		jp.setPreferredSize(new Dimension(50, 100));
-		jPanel.add(jp);
-		//Note 4
-		jp = new JPanel();
-		jp.setBackground(new Color(0, 0, 0));
-		jp.setPreferredSize(new Dimension(50, 100));
-		jPanel.add(jp);
-		//Note 5
-		jp = new JPanel();
-		jp.setBackground(new Color(0, 0, 0));
-		jp.setPreferredSize(new Dimension(50, 100));
-		jPanel.add(jp);
-		//Note 6
-		jp = new JPanel();
-		jp.setBackground(new Color(0, 0, 0));
-		jp.setPreferredSize(new Dimension(50, 100));
-		jPanel.add(jp);
-		//Note 7
-		jp = new JPanel();
-		jp.setBackground(new Color(0, 0, 0));
-		jp.setPreferredSize(new Dimension(50, 100));
-		jPanel.add(jp);
-		//Note 8
-		jp = new JPanel();
-		jp.setBackground(new Color(0, 0, 0));
-		jp.setPreferredSize(new Dimension(50, 100));
-		jPanel.add(jp);
-		//Note 9
-		jp = new JPanel();
-		jp.setBackground(new Color(0, 0, 0));
-		jp.setPreferredSize(new Dimension(50, 100));
-		jPanel.add(jp);
-		//Note 10
-		jp = new JPanel();
-		jp.setBackground(new Color(0, 0, 0));
-		jp.setPreferredSize(new Dimension(50, 100));
-		jPanel.add(jp);
-		//Note 11
-		jp = new JPanel();
-		jp.setBackground(new Color(0, 0, 0));
-		jp.setPreferredSize(new Dimension(50, 100));
-		jPanel.add(jp);
-		//Note 12
-		jp = new JPanel();
-		jp.setBackground(new Color(0, 0, 0));
-		jp.setPreferredSize(new Dimension(50, 100));
-		jPanel.add(jp);
-		//Note 13
-		jp = new JPanel();
-		jp.setBackground(new Color(0, 0, 0));
-		jp.setPreferredSize(new Dimension(50, 100));
-		jPanel.add(jp);
+		//Notes:
+		rhythmNotes = new JPanel[13];
+		for (i = 0; i < 13; i++) {
+			rhythmNotes[i] = new JPanel();
+			rhythmNotes[i].setBackground(new Color(0, 0, 0));
+			rhythmNotes[i].setPreferredSize(new Dimension(50, 100));
+			jPanel.add(rhythmNotes[i]);
+		}
 		jPanelMain.add(jPanel);
 		jPanel.setBounds(430, 180, 730, 110);
-			
+		
+		//End:	
         getContentPane().add(jPanelMain);
         jPanelMain.setBounds(-10, -10, 1570, 820);
 		

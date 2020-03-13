@@ -317,7 +317,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/C_s.wav") );
+           iAudio = new FileInputStream(new File ("/c:/Users/elvis/Documents/Music_Note/C_s.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -331,7 +331,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/E.wav") );
+           iAudio = new FileInputStream(new File ("/c:/Users/elvis/Documents/Music_Note/E.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -345,7 +345,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/C.wav") );
+           iAudio = new FileInputStream(new File ("/c:/Users/elvis/Documents/Music_Note/C.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -359,7 +359,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/D.wav") );
+           iAudio = new FileInputStream(new File ("/c:/Users/elvis/Documents/Music_Note/D.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -373,7 +373,7 @@ public class PianoMan extends javax.swing.JFrame {
          InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/F.wav") );
+           iAudio = new FileInputStream(new File ("/c:/Users/elvis/Documents/Music_Note/F.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -387,7 +387,7 @@ public class PianoMan extends javax.swing.JFrame {
           InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/G.wav") );
+           iAudio = new FileInputStream(new File ("/c:/Users/elvis/Documents/Music_Note/G.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -401,7 +401,7 @@ public class PianoMan extends javax.swing.JFrame {
           InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/A.wav") );
+           iAudio = new FileInputStream(new File ("/c:/Users/elvis/Documents/Music_Note/A.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }
@@ -415,7 +415,7 @@ public class PianoMan extends javax.swing.JFrame {
         InputStream iAudio;
         try
         {
-           iAudio = new FileInputStream(new File ("/Users/brandonburt/Desktop/COM S 227/Music_Note/B.wav") );
+           iAudio = new FileInputStream(new File ("/c:/Users/elvis/Documents/Music_Note/B.wav") );
            AudioStream iMusic = new AudioStream(iAudio);
            AudioPlayer.player.start(iMusic );
         }

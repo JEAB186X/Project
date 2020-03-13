@@ -6,25 +6,27 @@ import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
+import audio.AudioHandler;
 
 public class PianoManCore extends JFrame {
 	
-	protected RecordHandler rh;
+	private RecordHandler rh;
+	private AudioHandler ah;
 	
 	protected JToggleButton recordButton;
 	protected JToggleButton playbackButton;
 	protected JComboBox instrument;
+	protected JPanel[] rhythmNotes;
+	
 	
 	public PianoManCore() {
 		rh = new RecordHandler();
+		ah = new AudioHandler(); 
+		//Initialize according to the data in the Record Handler.
 	}
 	
 	protected void keyPressed(int index) {
-		//Old Code; Please Replace
-		try {AudioPlayer.player.start(new AudioStream(new FileInputStream(new File(
-		"Notes/"  + instrument.getSelectedItem() + "/Note" + index + ".wav"))));}
-		catch(IOException ex) {ex.printStackTrace();}
+		ah.playFile(index, "Piano");
 	}
 	
 	protected void openPressed() {
