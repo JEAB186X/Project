@@ -11,6 +11,8 @@ import javax.swing.*;
  */
 public class PianoMan extends PianoManCore {
 	
+	static final long serialVersionUID = 00001111L;
+	
     /**
      * @param args the command line arguments
      */
@@ -42,7 +44,6 @@ public class PianoMan extends PianoManCore {
     public PianoMan() {
         JPanel jPanelMain = new JPanel();
 		JPanel jPanel;
-		JPanel jp;
 		JButton b;
 		JTextField f;
 		Font font = new Font("Verdana", 1, 24);
@@ -120,7 +121,7 @@ public class PianoMan extends PianoManCore {
 		b.setText("Save");
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				removePressed();
+				savePressed();
 		}});
 		jPanelMain.add(b);
 		b.setBounds(270, 100, 150, 60);

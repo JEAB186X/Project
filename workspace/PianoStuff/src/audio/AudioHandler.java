@@ -34,6 +34,8 @@ public class AudioHandler {
 			ex.printStackTrace();
 		}
 	}
+	
+	//240000 / tempo / this rhythm.
 
 	//must start playing the current record in the recordhandler class.
 	void startPlayingRecord(RecordHandler rh) {

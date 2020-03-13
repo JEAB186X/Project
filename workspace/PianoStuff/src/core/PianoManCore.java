@@ -41,6 +41,10 @@ public class PianoManCore extends JFrame {
 		
 	}
 	
+	protected void savePressed() {
+		rh.save();
+	}
+	
 	protected void recordPressed() {
 		
 	}

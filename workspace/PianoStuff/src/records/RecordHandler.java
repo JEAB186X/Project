@@ -91,7 +91,7 @@ public class RecordHandler {
 	private void load() {
 		try {
 			DataInputStream stream = new DataInputStream(
-				new FileInputStream("records/Records.jm"));
+				new FileInputStream("src/records/Records.jm"));
 			int i;
 			int j;
 			String name;
@@ -259,7 +259,7 @@ public class RecordHandler {
 	 */
 	public String instrument() {
 		if (numRecords() == 0) {
-			return "(none)";
+			return "Piano";
 		}
 		return instList.get(saveIndex);
 	}
@@ -520,6 +520,10 @@ public class RecordHandler {
 			return -1;
 		}
 		return getRhythm(recallIndex);
+	}
+	
+	public void haltRecall() {
+		
 	}
 	
 	/**
