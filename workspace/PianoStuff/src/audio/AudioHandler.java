@@ -14,7 +14,7 @@ public class AudioHandler {
 		try {
 			
 			
-			// this directory might change depending mine starts with /C:/Users/elvis/Documents/
+			
 			File music = new File("/C:/Users/elvis/Documents/Notes/"  + instrument + "/Note" + index + ".wav");
 			
 			if (music.exists()) {
@@ -36,11 +36,25 @@ public class AudioHandler {
 	
 	//must start playing the current record in the recordhandler class.
 	void startPlayingRecord(RecordHandler rh) {
+
+
+
+
+
+
+
 	
 	}
 	// must stop playing the current record if it is playing.
 	void stopPlayingRecord() {
 		 
+
+
+
+
+
+
+
 		 
 		 
 	 }
