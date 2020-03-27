@@ -148,7 +148,7 @@ public class PianoMan extends PianoManCore {
 		//Change Instrument Combo Button
 		instrument = new JComboBox<>();
 		instrument.setModel(new DefaultComboBoxModel<>(
-			new String[] { "Piano", "SteelDrums", "Saxaphone", "Trumpet" }
+			new String[] { "Piano", "SteelDrums"}
 		));
 		instrument.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
