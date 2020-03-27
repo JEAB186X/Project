@@ -115,6 +115,16 @@ public class PianoMan extends PianoManCore {
 		jPanelMain.add(b);
 		b.setBounds(30, 100, 220, 60);
 		
+		//Save Button:
+		b = new JButton();
+		b.setText("Save");
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				removePressed();
+		}});
+		jPanelMain.add(b);
+		b.setBounds(270, 100, 150, 60);
+		
 		//Recrord Toggle Button:
 		recordButton = new JToggleButton();
 		recordButton.setText("Record");
@@ -169,11 +179,11 @@ public class PianoMan extends PianoManCore {
 		
 		//Rhythmic Pattern Setter Buttons:
 		jPanel = new JPanel();
-		JButton wNote = new JButton();wNote.setIcon(new ImageIcon(""));wNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed( 1);}});
-		JButton hNote = new JButton();hNote.setIcon(new ImageIcon(""));hNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed( 2);}});
-		JButton qNote = new JButton();qNote.setIcon(new ImageIcon(""));qNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed( 4);}});
-		JButton eNote = new JButton();eNote.setIcon(new ImageIcon(""));eNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed( 8);}});
-		JButton sNote = new JButton();sNote.setIcon(new ImageIcon(""));sNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed(16);}});
+		JButton wNote = new JButton();wNote.setIcon(new ImageIcon("Notes/Images/modifiedWholeNote.jpg"));wNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed( 1);}});
+		JButton hNote = new JButton();hNote.setIcon(new ImageIcon("Notes/Images/modifiedHalfnote.png"));hNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed( 2);}});
+		JButton qNote = new JButton();qNote.setIcon(new ImageIcon("Notes/Images/modifiedQuarterNote.jpg"));qNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed( 4);}});
+		JButton eNote = new JButton();eNote.setIcon(new ImageIcon("Notes/Images/modifiedeigthNew.png"));eNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed( 8);}});
+		JButton sNote = new JButton();sNote.setIcon(new ImageIcon("Notes/Images/modifiedSixteenthNote.jpg"));sNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed(16);}});
 		GroupLayout jPanelLayout = new GroupLayout(jPanel);jPanel.setLayout(jPanelLayout);//do not question
 		jPanelLayout.setHorizontalGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanelLayout.createSequentialGroup().addGap(3, 3, 3).addComponent(wNote, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE).addGap(18, 18, 18).addComponent(qNote, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(eNote, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(sNote, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE).addGap(18, 18, 18).addComponent(hNote, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 		jPanelLayout.setVerticalGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanelLayout.createSequentialGroup().addGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanelLayout.createSequentialGroup().addGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false).addGroup(jPanelLayout.createSequentialGroup().addContainerGap().addComponent(eNote, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)).addGroup(jPanelLayout.createSequentialGroup().addContainerGap().addComponent(qNote, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)).addGroup(jPanelLayout.createSequentialGroup().addGap(5, 5, 5).addComponent(wNote, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)).addGroup(jPanelLayout.createSequentialGroup().addContainerGap().addComponent(sNote, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE))).addGap(0, 0, Short.MAX_VALUE)).addComponent(hNote, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addContainerGap()));
@@ -183,11 +193,29 @@ public class PianoMan extends PianoManCore {
 		/*	Seems that the display of the rhythmic patterns should be next.
 			They can be found in the file labeled "buffer.txt"
 			They don't appear to be serving any purpose as is.*/
-			
+		
+		
+		//Note Buttons:
+		jPanel = new JPanel();
+		jPanel.setBackground(new Color(0, 0, 0));
+		//Notes:
+		rhythmNotes = new JPanel[13];
+		for (i = 0; i < 13; i++) {
+			rhythmNotes[i] = new JPanel();
+			rhythmNotes[i].setBackground(new Color(0, 0, 0));
+			rhythmNotes[i].setPreferredSize(new Dimension(50, 100));
+			jPanel.add(rhythmNotes[i]);
+		}
+		jPanelMain.add(jPanel);
+		jPanel.setBounds(430, 180, 730, 110);
+		
+		//End:	
         getContentPane().add(jPanelMain);
         jPanelMain.setBounds(-10, -10, 1570, 820);
 		
         pack();
+		
+		initialize();
     }
 	
 }
