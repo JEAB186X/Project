@@ -77,6 +77,8 @@ public class PianoMan extends javax.swing.JFrame {
         note12 = new javax.swing.JPanel();
         note13 = new javax.swing.JPanel();
         playback = new javax.swing.JToggleButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -315,11 +317,11 @@ public class PianoMan extends javax.swing.JFrame {
             }
         });
         jPanel1.add(openFile);
-        openFile.setBounds(30, 20, 220, 70);
+        openFile.setBounds(30, 30, 220, 70);
 
         removeFile.setText("Remove File");
         jPanel1.add(removeFile);
-        removeFile.setBounds(30, 100, 220, 60);
+        removeFile.setBounds(30, 110, 220, 60);
 
         record.setText("Record");
         record.addActionListener(new java.awt.event.ActionListener() {
@@ -328,11 +330,11 @@ public class PianoMan extends javax.swing.JFrame {
             }
         });
         jPanel1.add(record);
-        record.setBounds(30, 170, 220, 50);
+        record.setBounds(30, 180, 220, 50);
 
         changeInstrument.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Piano", "Steel Drums", "Saxaphone", "Trumpet" }));
         jPanel1.add(changeInstrument);
-        changeInstrument.setBounds(270, 30, 150, 40);
+        changeInstrument.setBounds(270, 20, 150, 40);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -354,52 +356,55 @@ public class PianoMan extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(520, 20, 560, 30);
 
+        wholeNote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PianoMan/modifiedeigthNew.png"))); // NOI18N
         wholeNote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 wholeNoteActionPerformed(evt);
             }
         });
 
+        quarterNote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PianoMan/modifiedHalfnote.png"))); // NOI18N
+
+        eigthNote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PianoMan/modifiedQuarterNote.jpg"))); // NOI18N
+
+        sixteenthNote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PianoMan/modifiedSixteenthNote.jpg"))); // NOI18N
+
+        halfNote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PianoMan/modifiedWholeNote.jpg"))); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(wholeNote, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
+                .addComponent(halfNote, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(quarterNote, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(eigthNote, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(wholeNote, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sixteenthNote, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(halfNote, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(118, 118, 118))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(eigthNote, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(quarterNote, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(wholeNote, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(sixteenthNote, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(halfNote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(halfNote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(quarterNote, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(sixteenthNote, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eigthNote, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(wholeNote, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         sixteenthNote.getAccessibleContext().setAccessibleDescription("");
@@ -479,7 +484,20 @@ public class PianoMan extends javax.swing.JFrame {
 
         playback.setText("Playback");
         jPanel1.add(playback);
-        playback.setBounds(30, 230, 220, 60);
+        playback.setBounds(30, 240, 220, 60);
+
+        jButton1.setText("Delete Previous Rhythm");
+        jPanel1.add(jButton1);
+        jButton1.setBounds(300, 120, 200, 60);
+
+        jButton2.setText("Play Demo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2);
+        jButton2.setBounds(370, 60, 130, 60);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(-10, -10, 1570, 820);
@@ -755,6 +773,10 @@ public class PianoMan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_wholeNoteActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -805,6 +827,8 @@ public class PianoMan extends javax.swing.JFrame {
     private javax.swing.JButton highD;
     private javax.swing.JButton highE;
     private javax.swing.JButton highF;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
