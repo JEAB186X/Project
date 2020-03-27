@@ -115,6 +115,16 @@ public class PianoMan extends PianoManCore {
 		jPanelMain.add(b);
 		b.setBounds(30, 100, 220, 60);
 		
+		//Save Button:
+		b = new JButton();
+		b.setText("Save");
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				removePressed();
+		}});
+		jPanelMain.add(b);
+		b.setBounds(270, 100, 150, 60);
+		
 		//Recrord Toggle Button:
 		recordButton = new JToggleButton();
 		recordButton.setText("Record");
@@ -186,7 +196,7 @@ public class PianoMan extends PianoManCore {
         jPanelMain.setBounds(-10, -10, 1570, 820);
 		
         pack();
-		
+
 		//Rhythmic Pattern Setter Buttons:
 		jPanel = new JPanel();
 		rhythmButtonPressed(rhythmNotes, 1);
@@ -205,6 +215,8 @@ public class PianoMan extends PianoManCore {
 		/*	Seems that the display of the rhythmic patterns should be next.
 			They can be found in the file labeled "buffer.txt"
 			They don't appear to be serving any purpose as is.*/
+
+		//initialize();
     }
 	
 }

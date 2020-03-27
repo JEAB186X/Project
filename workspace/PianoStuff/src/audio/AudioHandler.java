@@ -9,10 +9,16 @@ import records.RecordHandler;
 
 public class AudioHandler {
 	
-	public void playFile(int index, String instrument) {
+	RecordHandler rh;
+	
+	public AudioHandler(RecordHandler rh) {
+		this.rh = rh;
+	}
+	
+	public void playFile(int index) {
 		try {
 			// this directory might change depending mine starts with /C:/Users/elvis/Documents/
-			File music = new File("Notes/"  + instrument + "/Note" + index + ".wav");
+			File music = new File("Notes/"  + rh.instrument() + "/Note" + index + ".wav");
 			
 			if (music.exists()) {
 				AudioInputStream audioInput = AudioSystem.getAudioInputStream(music);	
