@@ -1,5 +1,6 @@
 package records;
 
+<<<<<<< HEAD
 import java.io.File;
 import java.io.IOException;
 
@@ -18,6 +19,15 @@ public class NewRecordHandler {
 		AudioFormat format = new AudioFormat(16000, 8, 2, true, true);
 		
 		DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);	
+=======
+public class NewRecordHandler {
+	
+	public static void main(String[] args) {
+		
+		AudioFormat format = new AudioFormat(16000, 8, 2, true, true);
+		
+		DataLine.Info info = new DataLine.info(TargetDataLine.class, format);	
+>>>>>>> devel
 	
 	
 	    if (!AudioSystem.isLineSupported(info) ) {
@@ -25,6 +35,7 @@ public class NewRecordHandler {
 			
 		}	
 		
+<<<<<<< HEAD
 	//	final TargetDataLine targetDataLine = null;
 		
 	    final TargetDataLine targetDataLine = (TargetDataLine) AudioSystem.getLine(info);
@@ -45,6 +56,20 @@ public class NewRecordHandler {
 		
 		
 	//    final targetDataLine;
+=======
+		final TargetDataLine targetDataLine = (TargetDataLine)AudioSystem.getLine(info);
+		
+		
+		
+		TargetDataLine.open();
+		
+		System.out.println("Start recording");
+
+	    TargetDataLine.start();
+		
+		
+		
+>>>>>>> devel
 		
 		
 		Thread stopper = new Thread(new Runnable() {
@@ -57,9 +82,15 @@ public class NewRecordHandler {
 				
 				
 				try {
+<<<<<<< HEAD
 					AudioSystem.write(audioStream, AudioFileFormat.Type.WAVE, waveFile);
 				} 
 				catch (IOException e) {
+=======
+					AudioSystem.write(audioStream, AudioFileFormat.type.WAVE, waveFile);
+				} 
+				catch (IOexception e) {
+>>>>>>> devel
 					e.printStackTrace();
 					
 				}	
@@ -74,6 +105,7 @@ public class NewRecordHandler {
 			
 			stopper.start();
 			
+<<<<<<< HEAD
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -86,6 +118,13 @@ public class NewRecordHandler {
 			
 			
 			targetDataLine.close();
+=======
+			Thread.sleep(5000);
+			
+			targetDataLine.stop();
+			
+			targetDataLine.close():
+>>>>>>> devel
 				
 			System.out.println("Ended sound test");	
 				
@@ -97,3 +136,7 @@ public class NewRecordHandler {
 	}
 	
 	
+<<<<<<< HEAD
+=======
+}
+>>>>>>> devel
