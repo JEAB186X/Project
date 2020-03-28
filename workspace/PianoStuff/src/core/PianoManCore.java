@@ -1,10 +1,16 @@
 package core;
 
 import records.*;
-import sun.audio.*;
-import java.io.*;
-import java.awt.*;
-import java.awt.event.*;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import audio.AudioHandler;
 
@@ -32,16 +38,132 @@ public class PianoManCore extends JFrame {
 		ah.playFile(index);
 	}
 	
-	protected void openPressed() {
+	protected void openPressed()  {
 		
+		
+		
+		
+		 JButton open = new JButton();
+	        JFileChooser fc = new JFileChooser();
+	        
+	        fc.setCurrentDirectory(new java.io.File("Recorded"));
+	        fc.setDialogTitle("Open File");
+	        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+	        
+	        
+	        if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
+	            
+	        	
+	        	   
+	            try {
+	            	 File file = fc.getSelectedFile();
+	            	
+
+	            	 if (file.isFile() || file.exists()) {
+	            		 
+	     				AudioInputStream audioInput = AudioSystem.getAudioInputStream(file);	
+	     				Clip clip = AudioSystem.getClip();
+	     				clip.open(audioInput);
+	     				clip.start();
+	     			}
+	     			else {
+	     				System.out.println("Couldnt find the file");
+	     			}
+	            	 
+	            
+	           
+	            	 
+	            	 
+	            	 
+	            	 
+	            	 
+	            	 
+	            
+	            }
+	            catch ( LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+	            	e.printStackTrace();
+	            }
+	           
+	        }    
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	            
+	        
 	}
 	
 	protected void removePressed() {
 		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		 JButton open = new JButton();
+	        JFileChooser fc = new JFileChooser();
+	        
+	        fc.setCurrentDirectory(new java.io.File("Recorded"));
+	        fc.setDialogTitle("Delete File");
+	        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+	        
+	        
+	        if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
+	            
+	        	
+	        	   
+	            File file = fc.getSelectedFile();
+				
+
+				 if (file.isFile() || file.exists()) {
+					 
+					 
+					 
+					 JOptionPane.showMessageDialog(null, "Are you sure you want to delete this file!");
+					 file.delete();
+					 
+					 
+				}
+				else {
+					System.out.println("Couldnt delete this file");
+				}
+	           
+	        }    
+		
+		
+		
+	
+		
 	}
 	
 	protected void recordPressed() {
-		
+
 	}
 	
 	protected void playbackPressed() {
