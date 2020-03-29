@@ -81,6 +81,11 @@ public class NewRecordHandler {
 				e.printStackTrace();
 			}
 			
+			
+			
+			
+			
+			
 			targetDataLine.stop();
 			
 			
