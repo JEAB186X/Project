@@ -18,7 +18,7 @@ public class AudioHandler {
 	public void playFile(int index) {
 		try {
 			// this directory might change depending mine starts with /C:/Users/elvis/Documents/
-			File music = new File("Notes/"  + "Piano" + "/Note" + index + ".wav");
+			File music = new File("Notes/"  + rh.instrument() + "/Note" + index + ".wav");
 			
 			if (music.exists()) {
 				AudioInputStream audioInput = AudioSystem.getAudioInputStream(music);	

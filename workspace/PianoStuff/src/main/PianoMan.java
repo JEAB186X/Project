@@ -125,12 +125,6 @@ public class PianoMan extends PianoManCore {
 		//jPanelMain.add(b);
 		//b.setBounds(270, 100, 150, 60);
 		
-		
-		
-
-		
-
-		
 		JComboBox Message = new JComboBox<>();
 		Message.setModel(new DefaultComboBoxModel<>(
 			new String[]{"Record", "Pause", "Save"}
@@ -218,9 +212,7 @@ public class PianoMan extends PianoManCore {
 
 		//Rhythmic Pattern Setter Buttons:
 		jPanel = new JPanel();
-		rhythmButtonPressed(rhythmNotes, 1);
 		JButton wNote = new JButton();wNote.setIcon(new ImageIcon("Notes/Images/modifiedWholeNote.jpg"));wNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed(rhythmNotes, 1);}});
-		System.out.println(rhythmNotes[0]);
 		JButton hNote = new JButton();hNote.setIcon(new ImageIcon("Notes/Images/modifiedHalfnote.png"));hNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed(rhythmNotes, 2);}});
 		JButton qNote = new JButton();qNote.setIcon(new ImageIcon("Notes/Images/modifiedQuarterNote.jpg"));qNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed(rhythmNotes, 4);}});
 		JButton eNote = new JButton();eNote.setIcon(new ImageIcon("Notes/Images/modifiedeigthNew.png"));eNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed(rhythmNotes, 8);}});

@@ -39,10 +39,6 @@ public class PianoManCore extends JFrame {
 	}
 	
 	protected void openPressed()  {
-		
-		
-		
-		
 		 JButton open = new JButton();
 	        JFileChooser fc = new JFileChooser();
 	        
@@ -69,63 +65,15 @@ public class PianoManCore extends JFrame {
 	     			else {
 	     				System.out.println("Couldnt find the file");
 	     			}
-	            	 
-	            
-	           
-	            	 
-	            	 
-	            	 
-	            	 
-	            	 
-	            	 
-	            
 	            }
 	            catch ( LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 	            	e.printStackTrace();
 	            }
 	           
-	        }    
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-	            
-	        
+	        }   
 	}
 	
 	protected void removePressed() {
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
 		 JButton open = new JButton();
 	        JFileChooser fc = new JFileChooser();
 	        
@@ -154,12 +102,7 @@ public class PianoManCore extends JFrame {
 					System.out.println("Couldnt delete this file");
 				}
 	           
-	        }    
-		
-		
-		
-	
-		
+	        }
 	}
 	
 	protected void recordPressed() {
@@ -190,28 +133,28 @@ public class PianoManCore extends JFrame {
 			}
 			if (value == 2)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
+				ImageIcon a = new ImageIcon("Notes/Images/modifiedHalfNote.jpg");
 				JLabel label = new JLabel(a);
 				p.add(label);
 				rhythmNotes[i] = p;
 			}
 			if (value == 4)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
+				ImageIcon a = new ImageIcon("Notes/Images/modifiedQuarterNote.jpg");
 				JLabel label = new JLabel(a);
 				p.add(label);
 				rhythmNotes[i] = p;
 			}
 			if (value == 8)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
+				ImageIcon a = new ImageIcon("Notes/Images/modifiedeigthNew.jpg");
 				JLabel label = new JLabel(a);
 				p.add(label);
 				rhythmNotes[i] = p;
 			}
 			if (value == 16)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
+				ImageIcon a = new ImageIcon("Notes/Images/modifiedSixteenthNote.jpg");
 				JLabel label = new JLabel(a);
 				p.add(label);
 				rhythmNotes[i] = p;
