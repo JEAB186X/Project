@@ -360,7 +360,7 @@ public class RecordHandler {
 		for (i = 0; i < l; i++) {
 			n[i] = notes.get(saveIndex)[i];
 		}
-		for (i = i; i < length; i++) {
+		for (i = 0; i < length; i++) {
 			n[i] = new Note();
 		}
 		notes.set(saveIndex, n);
@@ -405,7 +405,7 @@ public class RecordHandler {
 		for (i = 0; i < l; i++) {
 			n[i] = notes.get(index)[i];
 		}
-		for (i = i; i < length; i++) {
+		for (i = 0; i < length; i++) {
 			n[i] = new Note();;
 		}
 		notes.set(index, n);
