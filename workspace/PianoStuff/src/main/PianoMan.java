@@ -116,39 +116,58 @@ public class PianoMan extends PianoManCore {
 		b.setBounds(30, 100, 220, 60);
 		
 		//Save Button:
-		b = new JButton();
-		b.setText("Save");
-		b.addActionListener(new ActionListener() {
+		//b = new JButton();
+		//b.setText("Save");
+		//b.addActionListener(new ActionListener() {
+			//public void actionPerformed(ActionEvent evt) {
+			//	removePressed();
+		//}});
+		//jPanelMain.add(b);
+		//b.setBounds(270, 100, 150, 60);
+		
+		
+		
+
+		
+
+		
+		JComboBox Message = new JComboBox<>();
+		Message.setModel(new DefaultComboBoxModel<>(
+			new String[]{"Record", "Pause", "Save"}
+		));
+		Message.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				removePressed();
+				//instrumentSelected();
 		}});
-		jPanelMain.add(b);
-		b.setBounds(270, 100, 150, 60);
+		jPanelMain.add(Message);
+		Message.setBounds(30, 170, 220, 50);
+		
+		
 		
 		//Recrord Toggle Button:
-		recordButton = new JToggleButton();
-		recordButton.setText("Record");
-		recordButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				recordPressed();
-		}});
-		jPanelMain.add(recordButton);
-		recordButton.setBounds(30, 170, 220, 50);
+		//recordButton = new JToggleButton();
+		//recordButton.setText("Record");
+		//recordButton.addActionListener(new ActionListener() {
+		//	public void actionPerformed(ActionEvent evt) {
+		//		recordPressed();
+		//}});
+		///jPanelMain.add(recordButton);
+		//recordButton.setBounds(30, 170, 220, 50);
 		
 		//Playback Toggle Button:
-		playbackButton = new JToggleButton();
-		playbackButton.setText("Playback");
-		playbackButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				playbackPressed();
-		}});
-		jPanelMain.add(playbackButton);
-		playbackButton.setBounds(30, 230, 220, 60);
+		//playbackButton = new JToggleButton();
+		//playbackButton.setText("Playback");
+		//playbackButton.addActionListener(new ActionListener() {
+			//public void actionPerformed(ActionEvent evt) {
+				//playbackPressed();
+		//}});
+		//jPanelMain.add(playbackButton);
+		//playbackButton.setBounds(30, 230, 220, 60);
 		
 		//Change Instrument Combo Button
 		instrument = new JComboBox<>();
 		instrument.setModel(new DefaultComboBoxModel<>(
-			new String[] { "Piano", "SteelDrums", "Saxaphone", "Trumpet" }
+			new String[] { "Piano", "SteelDrums"}
 		));
 		instrument.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
