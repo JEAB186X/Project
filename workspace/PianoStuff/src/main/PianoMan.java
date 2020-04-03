@@ -3,6 +3,8 @@ package main;
 import core.PianoManCore;
 import java.awt.*;
 import java.awt.event.*;
+
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.*;
 /**
  *
@@ -116,43 +118,64 @@ public class PianoMan extends PianoManCore {
 		b.setBounds(30, 100, 220, 60);
 		
 		//Save Button:
-		//b = new JButton();
-		//b.setText("Save");
-		//b.addActionListener(new ActionListener() {
-			//public void actionPerformed(ActionEvent evt) {
-			//	removePressed();
-		//}});
-		//jPanelMain.add(b);
-		//b.setBounds(270, 100, 150, 60);
-		
-		
-		
-
-		
-
-		
-		JComboBox Message = new JComboBox<>();
-		Message.setModel(new DefaultComboBoxModel<>(
-			new String[]{"Record", "Pause", "Save"}
-		));
-		Message.addActionListener(new ActionListener() {
+		b = new JButton();
+		b.setText("Save");
+		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//instrumentSelected();
-		}});
-		jPanelMain.add(Message);
-		Message.setBounds(30, 170, 220, 50);
+
+				saveNewRecord();
+			}});
+		jPanelMain.add(b);
+		b.setBounds(270, 100, 150, 60);
+		
+		
+		
+
+		
+
+		
+	//	JComboBox Message = new JComboBox<>();
+//		
+	///	Message.setModel(new DefaultComboBoxModel<>(
+		//	new String[]{"Record", "Pause", "Save"}
+	//	));
+		//Message.addActionListener(new ActionListener() {
+			//public void actionPerformed(ActionEvent evt) {
+				
+	//		if (evt.getSource() == recordButton) {
+		//		try {
+			//		recordPressed();
+				//} catch (LineUnavailableException e) {
+//					// TODO Auto-generated catch block
+	//				e.printStackTrace();
+		//		}
+			//}
+			//else if (evt.getSource() == playbackButton) {
+				
+			//}
+			
+				
+				
+//		}});
+	//	jPanelMain.add(Message);
+		//Message.setBounds(30, 170, 220, 50);
 		
 		
 		
 		//Recrord Toggle Button:
-		//recordButton = new JToggleButton();
-		//recordButton.setText("Record");
-		//recordButton.addActionListener(new ActionListener() {
-		//	public void actionPerformed(ActionEvent evt) {
-		//		recordPressed();
-		//}});
-		///jPanelMain.add(recordButton);
-		//recordButton.setBounds(30, 170, 220, 50);
+		recordButton = new JToggleButton();
+		recordButton.setText("Record");
+		recordButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				try {
+					recordPressed();
+				} catch (LineUnavailableException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}});
+		jPanelMain.add(recordButton);
+		recordButton.setBounds(30, 170, 220, 50);
 		
 		//Playback Toggle Button:
 		//playbackButton = new JToggleButton();

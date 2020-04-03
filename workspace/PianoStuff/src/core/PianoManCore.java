@@ -18,6 +18,8 @@ public class PianoManCore extends JFrame {
 	
 	private RecordHandler rh;
 	private AudioHandler ah;
+	private NewRecordHandler Rh;
+	
 	
 	protected JToggleButton recordButton;
 	protected JToggleButton playbackButton;
@@ -26,7 +28,8 @@ public class PianoManCore extends JFrame {
 	
 	public PianoManCore() {
 		rh = new RecordHandler();
-		ah = new AudioHandler(rh); 
+		Rh = new NewRecordHandler();
+		ah = new AudioHandler(rh, Rh); 
 		//Initialize according to the data in the Record Handler.
 	}
 	
@@ -47,11 +50,13 @@ public class PianoManCore extends JFrame {
 		ah.removeFile();
 	}
 	
-	protected void recordPressed() {
+	protected void recordPressed() throws LineUnavailableException {
+		 Rh.startRecording();
 
 	}
 	
-	protected void playbackPressed() {
+	protected void saveNewRecord() {
+		Rh.saving();
 		
 	}
 	

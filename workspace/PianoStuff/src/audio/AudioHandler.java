@@ -3,6 +3,7 @@ package audio;
 import java.io.File;
 import java.io.IOException;
 
+import records.NewRecordHandler;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.Clip;
@@ -17,10 +18,13 @@ import records.RecordHandler;
 
 public class AudioHandler {
 	
-	RecordHandler rh;
+	private RecordHandler rh;
+	private NewRecordHandler Nh;
 	
-	public AudioHandler(RecordHandler rh) {
+	
+	public AudioHandler(RecordHandler rh, NewRecordHandler Nh) {
 		this.rh = rh;
+		this.Nh = Nh;
 	}
 	
 	public void playFile(int index) {
@@ -77,9 +81,13 @@ public class AudioHandler {
 	}
 	
 	
+	public void startRecording() throws LineUnavailableException {
+		Nh.startRecording();
+	}
 	
+
 	// must stop playing the current record if it is playing.
-	public void stopPlayingRecord() {
+	public void pauseRecord() {
 		
 	 }
 

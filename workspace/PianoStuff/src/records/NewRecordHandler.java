@@ -16,10 +16,14 @@ import javax.swing.JOptionPane;
 
 // throws LineUnavailableException
 public class NewRecordHandler {
+	
+	private TargetDataLine line;
+	private static boolean safe;
 
 	public static void main(String[] args) throws LineUnavailableException  {
 		NewRecordHandler Rh = new NewRecordHandler();
 		Rh.startRecording( );	
+		safe = false;
 	}
 	
 	public NewRecordHandler() {
@@ -35,9 +39,12 @@ public class NewRecordHandler {
 	
     public static String fileName() {
     	
-    	System.out.println("Enter the file name");
+    	
+    	//System.out.println("Enter the file name");
+    	
     	
     	Scanner scan = new Scanner(System.in);
+    	JOptionPane.showMessageDialog(null, "Enter the file name");
     	String filename = scan.next();
     	
     	
@@ -54,27 +61,28 @@ public class NewRecordHandler {
 	    	System.out.println("line is supported");
 		}	
 		
-	    final TargetDataLine targetDataLine = (TargetDataLine) AudioSystem.getLine(info);
+              line  = (TargetDataLine) AudioSystem.getLine(info);
 		
 		try {
-			targetDataLine.open();
+			line.open();
 		} catch (LineUnavailableException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
-		System.out.println("Start recording");
-
-	    targetDataLine.start();
+		//System.out.println("Start recording");
+		String name = fileName();
+		//JOptionPane.showMessageDialog(null, "Only Press Okay after entering file name in terminal");
+	    line.start();
 		
 		
-		Thread stopper = new Thread(new Runnable() {
+	Thread stopper = new Thread(new Runnable() {
 			
 			public void run() {
-				AudioInputStream audioStream = new AudioInputStream(targetDataLine);
+				AudioInputStream audioStream = new AudioInputStream(line);
 				
 				
-				File waveFile = new File("Recorded/" + fileName() + ".wav");
+				File waveFile = new File("Recorded/" + name + ".wav");
 				
 				
 				try {
@@ -88,19 +96,47 @@ public class NewRecordHandler {
 			}
 			
 		});
+		
+		
 			
+	    	JOptionPane.showMessageDialog(null, "Press Okay to Start Recording!");
 			stopper.start();
 			
-			JOptionPane.showMessageDialog(null, "Recording, Press Okay to Stop!");
+
 			
-			targetDataLine.stop();
 			
-			targetDataLine.close();
-				
-			System.out.println("Ended sound test");	
-				
+		//	JOptionPane.showMessageDialog(null, "Recording, Press Okay to Stop!");
+			//line = targetDataLine;
+			
+	
+			
+	
+			
 		}
 	
+	//private void save(TargetDataLine targetDataLine) {
+	  //  targetDataLine.stop();
+		
+		//targetDataLine.close();
+	//		
+	//	System.out.println("Ended sound test");	
+	//}
+	
+	public void saving() {
+		safe = true;
+	   // save(line);
+		line.stop();
+		line.close();
+		line.flush();
+		System.out.println("Ended sound test");	
+		
+		
+		
 	}
+	
+	
+}
+	
+	
 	
 	
