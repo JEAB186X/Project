@@ -18,6 +18,8 @@ public class PianoManCore extends JFrame {
 	
 	private RecordHandler rh;
 	private AudioHandler ah;
+	private NewRecordHandler Rh;
+	
 	
 	protected JToggleButton recordButton;
 	protected JToggleButton playbackButton;
@@ -26,7 +28,8 @@ public class PianoManCore extends JFrame {
 	
 	public PianoManCore() {
 		rh = new RecordHandler();
-		ah = new AudioHandler(rh); 
+		Rh = new NewRecordHandler();
+		ah = new AudioHandler(rh, Rh); 
 		//Initialize according to the data in the Record Handler.
 	}
 	
@@ -39,77 +42,21 @@ public class PianoManCore extends JFrame {
 	}
 	
 	protected void openPressed()  {
-		 JButton open = new JButton();
-	        JFileChooser fc = new JFileChooser();
-	        
-	        fc.setCurrentDirectory(new java.io.File("Recorded"));
-	        fc.setDialogTitle("Open File");
-	        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-	        
-	        
-	        if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
-	            
-	        	
-	        	   
-	            try {
-	            	 File file = fc.getSelectedFile();
-	            	
-
-	            	 if (file.isFile() || file.exists()) {
-	            		 
-	     				AudioInputStream audioInput = AudioSystem.getAudioInputStream(file);	
-	     				Clip clip = AudioSystem.getClip();
-	     				clip.open(audioInput);
-	     				clip.start();
-	     			}
-	     			else {
-	     				System.out.println("Couldnt find the file");
-	     			}
-	            }
-	            catch ( LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-	            	e.printStackTrace();
-	            }
-	           
-	        }   
+		ah.startPlayingRecord();
 	}
+
 	
 	protected void removePressed() {
-		 JButton open = new JButton();
-	        JFileChooser fc = new JFileChooser();
-	        
-	        fc.setCurrentDirectory(new java.io.File("Recorded"));
-	        fc.setDialogTitle("Delete File");
-	        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-	        
-	        
-	        if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
-	            
-	        	
-	        	   
-	            File file = fc.getSelectedFile();
-				
-
-				 if (file.isFile() || file.exists()) {
-					 
-					 
-					 
-					 JOptionPane.showMessageDialog(null, "Are you sure you want to delete this file!");
-					 file.delete();
-					 
-					 
-				}
-				else {
-					System.out.println("Couldnt delete this file");
-				}
-	           
-	        }
+		ah.removeFile();
 	}
 	
-	protected void recordPressed() {
+	protected void recordPressed() throws LineUnavailableException {
+		 Rh.startRecording();
 
 	}
 	
-	protected void playbackPressed() {
+	protected void saveNewRecord() {
+		Rh.saving();
 		
 	}
 	
@@ -133,28 +80,28 @@ public class PianoManCore extends JFrame {
 			}
 			if (value == 2)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedHalfNote.jpg");
+				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
 				JLabel label = new JLabel(a);
 				p.add(label);
 				rhythmNotes[i] = p;
 			}
 			if (value == 4)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedQuarterNote.jpg");
+				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
 				JLabel label = new JLabel(a);
 				p.add(label);
 				rhythmNotes[i] = p;
 			}
 			if (value == 8)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedeigthNew.jpg");
+				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
 				JLabel label = new JLabel(a);
 				p.add(label);
 				rhythmNotes[i] = p;
 			}
 			if (value == 16)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedSixteenthNote.jpg");
+				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
 				JLabel label = new JLabel(a);
 				p.add(label);
 				rhythmNotes[i] = p;
