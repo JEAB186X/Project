@@ -2,6 +2,8 @@ package core;
 
 import records.*;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -117,49 +119,43 @@ public class PianoManCore extends JFrame {
 		rh.setInstrument(instrument.getSelectedItem().toString());
 	}
 	
-	protected void rhythmButtonPressed(JPanel[] rhythmNotes, int value) {
+	protected void rhythmButtonPressed(JPanel[] rhythmNotes, int[] rhythms, int value) {
 		int i = 0;
-		JPanel p = new JPanel();
-		while (i < 13)
+		ImageIcon a;
+		while (rhythmNotes[i] != null)
+		{
+			i++;
+		}
+		if (i < 13)
 		{
 			if (value == 1)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
-				JLabel label = new JLabel(a);
-				p.add(label);
-				rhythmNotes[i] = p;
+				a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
 			//	rhythmNotes[i] = rhythmNotes[i].add("Notes/Images/modifiedWholeNote.jpg");
 			//	rhythmNotes[i] = new ImageIcon
 			}
-			if (value == 2)
+			else if (value == 2)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedHalfNote.jpg");
-				JLabel label = new JLabel(a);
-				p.add(label);
-				rhythmNotes[i] = p;
+				a = new ImageIcon("Notes/Images/modifiedHalfNote.jpg");
 			}
-			if (value == 4)
+			else if (value == 4)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedQuarterNote.jpg");
-				JLabel label = new JLabel(a);
-				p.add(label);
-				rhythmNotes[i] = p;
+				a = new ImageIcon("Notes/Images/modifiedQuarterNote.jpg");
 			}
-			if (value == 8)
+			else if (value == 8)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedeigthNew.jpg");
-				JLabel label = new JLabel(a);
-				p.add(label);
-				rhythmNotes[i] = p;
+				a = new ImageIcon("Notes/Images/modifiedeigthNew.jpg");
 			}
-			if (value == 16)
+			else
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedSixteenthNote.jpg");
-				JLabel label = new JLabel(a);
-				p.add(label);
-				rhythmNotes[i] = p;
+				a = new ImageIcon("Notes/Images/modifiedSixteenthNote.jpg");
 			}
-			i++;
+			JLabel label = new JLabel(a);
+			label.setLayout(new BorderLayout());
+			rhythmNotes[i] = new JPanel();
+			rhythmNotes[i].add(label);
+			rhythmNotes[i].setVisible(true);
+			rhythms[i] = value;
 		}
 	}
 	
