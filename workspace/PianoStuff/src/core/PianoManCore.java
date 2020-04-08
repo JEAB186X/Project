@@ -83,47 +83,19 @@ public class PianoManCore extends JFrame {
 			}
 			else if (value == 2)
 			{
-<<<<<<< HEAD
 				a = new ImageIcon("Notes/Images/modifiedHalfNote.jpg");
-=======
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
-				JLabel label = new JLabel(a);
-				p.add(label);
-				rhythmNotes[i] = p;
->>>>>>> 7ea101ec768d105ef43117ae549686e92dc667b1
 			}
 			else if (value == 4)
 			{
-<<<<<<< HEAD
 				a = new ImageIcon("Notes/Images/modifiedQuarterNote.jpg");
-=======
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
-				JLabel label = new JLabel(a);
-				p.add(label);
-				rhythmNotes[i] = p;
->>>>>>> 7ea101ec768d105ef43117ae549686e92dc667b1
 			}
 			else if (value == 8)
 			{
-<<<<<<< HEAD
 				a = new ImageIcon("Notes/Images/modifiedeigthNew.jpg");
-=======
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
-				JLabel label = new JLabel(a);
-				p.add(label);
-				rhythmNotes[i] = p;
->>>>>>> 7ea101ec768d105ef43117ae549686e92dc667b1
 			}
 			else
 			{
-<<<<<<< HEAD
 				a = new ImageIcon("Notes/Images/modifiedSixteenthNote.jpg");
-=======
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
-				JLabel label = new JLabel(a);
-				p.add(label);
-				rhythmNotes[i] = p;
->>>>>>> 7ea101ec768d105ef43117ae549686e92dc667b1
 			}
 			JLabel label = new JLabel(a);
 			label.setLayout(new BorderLayout());
@@ -140,5 +112,4 @@ public class PianoManCore extends JFrame {
 		JComboBox.getSelectedItem();
 		JComboBox.setSelectedItem();
 	*/
-	
-}
+}	
