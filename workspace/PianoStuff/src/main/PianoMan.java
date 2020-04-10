@@ -10,6 +10,8 @@ import javax.swing.*;
  *
  * @author jerem
  * @author arvidg
+ * @author elvis
+ * @author brandon
  */
 public class PianoMan extends PianoManCore {
 	
@@ -128,8 +130,12 @@ public class PianoMan extends PianoManCore {
 		jPanelMain.add(b);
 		b.setBounds(270, 100, 150, 60);
 		
-		
-		
+		//delete Previous Rhythm
+		b = new JButton();
+		b.setText("Delete Previous Rhythm");
+		jPanelMain.add(b);
+       // b.setBounds(300, 120, 200, 60);
+        b.setBounds(270, 170, 200, 50);
 
 		
 
@@ -162,17 +168,12 @@ public class PianoMan extends PianoManCore {
 		
 		
 		
-		//Recrord Toggle Button:
+		//Record Toggle Button:
 		recordButton = new JToggleButton();
 		recordButton.setText("Record");
 		recordButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				try {
-					recordPressed();
-				} catch (LineUnavailableException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				recordPressed();
 		}});
 		jPanelMain.add(recordButton);
 		recordButton.setBounds(30, 170, 220, 50);
