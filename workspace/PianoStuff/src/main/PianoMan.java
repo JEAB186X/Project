@@ -232,8 +232,6 @@ public class PianoMan extends PianoManCore {
 			rhythmNotes[i].setPreferredSize(new Dimension(50, 100));
 		}
 		*/
-		jPanelMain.add(jPanel);
-		jPanel.setBounds(430, 180, 730, 110);
 		
 		//End:	
         getContentPane().add(jPanelMain);

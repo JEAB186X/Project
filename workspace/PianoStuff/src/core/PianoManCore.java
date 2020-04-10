@@ -4,8 +4,10 @@ import records.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -74,40 +76,45 @@ public class PianoManCore extends JFrame {
 		while (rhythmNotes[i] != null)
 		{
 			i++;
+			if(i > 12)
+			{
+				break;
+			}
 		}
 		if (i < 13)
 		{
 			if (value == 1)
 			{
-				a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
+				a = new ImageIcon("Notes/Images/clickedWholeNote.jpg");
 			//	rhythmNotes[i] = rhythmNotes[i].add("Notes/Images/modifiedWholeNote.jpg");
 			//	rhythmNotes[i] = new ImageIcon
 			}
 			else if (value == 2)
 			{
-				a = new ImageIcon("Notes/Images/modifiedHalfNote.png");
+				a = new ImageIcon("Notes/Images/clickedHalfNote.png");
 			}
 			else if (value == 4)
 			{
-				a = new ImageIcon("Notes/Images/modifiedQuarterNote.jpg");
+				a = new ImageIcon("Notes/Images/clickedQuarterNote.jpg");
 			}
 			else if (value == 8)
 			{
-				a = new ImageIcon("Notes/Images/modifiedeigthNew.png");
+				a = new ImageIcon("Notes/Images/clickedEigthNew.png");
 			}
 			else
 			{
-				a = new ImageIcon("Notes/Images/modifiedSixteenthNote.jpg");
+				a = new ImageIcon("Notes/Images/clickedSixteenthNote.jpg");
 			}
 			JLabel label = new JLabel(a);
 			rhythmNotes[i] = new JPanel();
-			rhythmNotes[i].setLayout(new GridBagLayout());
-			rhythmNotes[i].setBounds((450 + (50 * i)), 165, 50, 100);
-			rhythmNotes[i].setBackground(Color.BLACK);
-			rhythmNotes[i].setVisible(true);
 			rhythmNotes[i].add(label);
 			x.add(rhythmNotes[i]);
+			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			pack();
+			rhythmNotes[i].setLayout(new GridBagLayout());
+			rhythmNotes[i].setBounds((450 + (55 * i)), 165, 50, 100);
+			setSize(screenSize.width,screenSize.height);
+			rhythmNotes[i].setVisible(true);
 			rhythms[i] = value;
 		}
 	}
