@@ -81,8 +81,6 @@ public class AudioHandler {
 		jm.startPlaying();
 		
 		
-		
-		
 	}
 	
 	public void playFile(File file) {
@@ -196,7 +194,7 @@ public class AudioHandler {
 	public void startRecording()  {
 		
 		addRecord();
-//		setLength();
+		setLength();
 		
 		
 		
@@ -213,6 +211,7 @@ public class AudioHandler {
 			System.out.println("Didnt start recording");
 		}
 		while (rh.isRecording()) {
+			//audio.setRhythm(i, in);
 			
 			rh.addPitch(in);
 		}
