@@ -47,6 +47,27 @@ public class AudioHandler {
 			ex.printStackTrace();
 		}
 	}
+	
+	//useful for the old code only
+	public void playFile(String index) {
+		try {
+			// this directory might change depending mine starts with /C:/Users/elvis/Documents/_________rh.instrument() 
+			File music = new File(" /C:/Users/elvis/Documents/ Notes/" + "Piano"  + "/" + index);
+			
+			if (music.exists()) {
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(music);	
+				Clip clip = AudioSystem.getClip();
+				clip.open(audioInput);
+				clip.start();
+			}
+			else {
+				System.out.println("Couldnt find the file");
+			}
+		}
+		catch (Exception ex ) {
+			ex.printStackTrace();
+		}
+	}
 
 	public void playFile(File file) {
 		  try {
@@ -82,16 +103,27 @@ public class AudioHandler {
 	}
 	
 	
-	public void startRecording() throws LineUnavailableException {
-		Nh.startRecording();
-	}
+	//public void startRecording() throws LineUnavailableException {
+		//Nh.startRecording();
+	//}
 	
+	public void startRecording()  {
+		rh.startRecording();
+	}
 
 	// must stop playing the current record if it is playing.
 	public void pauseRecord() {
 		
 	 }
+	
+	public void save() {
+		rh.save();
+	}
 
+	public boolean isRecording() {
+		return rh.isRecording();
+	}
+	
 	public void removeFile() {
 		 JButton open = new JButton();
 		 

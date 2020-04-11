@@ -100,13 +100,21 @@ public class PianoManCore extends JFrame {
 		ah.removeFile();
 	}
 	
-	protected void recordPressed() throws LineUnavailableException {
-		 Rh.startRecording();
-
+	protected void recordPressed() {
+		 ah.startRecording();
+		 
+		 if(ah.isRecording()) {
+				System.out.println("Is recording");
+			} else {
+				System.out.println("Is not recording");
+			}
+			
+		 
 	}
 	
 	protected void saveNewRecord() {
-		Rh.saving();
+		ah.save();
+		
 		
 	}
 	

@@ -10,6 +10,8 @@ import javax.swing.*;
  *
  * @author jerem
  * @author arvidg
+ * @author elvis
+ * @author brandon
  */
 public class PianoMan extends PianoManCore {
 	
@@ -169,7 +171,6 @@ public class PianoMan extends PianoManCore {
 		b.setBounds(270, 205, 150, 60);
 		
 		
-		
 	//	JComboBox Message = new JComboBox<>();
 //		
 	///	Message.setModel(new DefaultComboBoxModel<>(
@@ -198,17 +199,12 @@ public class PianoMan extends PianoManCore {
 		
 		
 		
-		//Recrord Toggle Button:
+		//Record Toggle Button:
 		recordButton = new JToggleButton();
 		recordButton.setText("Record");
 		recordButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				try {
-					recordPressed();
-				} catch (LineUnavailableException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				recordPressed();
 		}});
 		jPanelMain.add(recordButton);
 		recordButton.setBounds(30, 170, 220, 50);
