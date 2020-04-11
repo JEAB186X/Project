@@ -40,43 +40,6 @@ public class RecordHandler {
 	 */
 	public static void main(String args[]) {
 		//Instance A Record Handler
-		RecordHandler rh = new RecordHandler();
-		int i;
-		int j;
-		
-		//rh.addRecord("elvis");
-		//rh.changeRecord("New");
-		//rh.removeRecord("New");
-		
-		
-		//rh.startRecording();
-		//i = 0;
-		//while (rh.isRecording()) {
-			//rh.addPitch(i);
-			//i++;
-		//}
-		
-		
-		//rh.save();
-		
-		//Display Record Information
-		System.out.println("Current Record: " + rh.name());
-		for (i = 0; i < rh.numRecords(); i++) {
-			rh.changeRecord(rh.name(i));
-			System.out.println("Record Name: " + rh.name());
-			System.out.println("Instrument: " + rh.instrument());
-			System.out.println("Tempo: " + rh.tempo());
-			rh.startRecalling();
-			j = 0;
-			while (rh.isRecalling()) {
-				System.out.println(j + " : " + rh.nextPitch() + " : " + rh.thisRhythm());
-				j++;
-			}
-		}
-		
-		
-		
-		
 	}
 	
 	/**
@@ -98,7 +61,7 @@ public class RecordHandler {
 	private void load() {
 		try {
 			DataInputStream stream = new DataInputStream(
-				new FileInputStream("records/Records.jm"));
+				new FileInputStream("src/records/Records.jm"));
 			int i;
 			int j;
 			String name;

@@ -38,6 +38,8 @@ public class PianoManCore extends JFrame {
 	
 	protected void keyPressed(JPanel x, int index, JCheckBox c, String[] b, JTextField[] t) {
 		ah.playFile(index);
+		
+		
 		int i = 0;
 		if (c.isSelected()) 
 		{
@@ -92,6 +94,8 @@ public class PianoManCore extends JFrame {
 				setSize(screenSize.width,screenSize.height);
 			}
 		}
+		
+		
 	}
 	
 	protected void openPressed()  {
@@ -103,22 +107,16 @@ public class PianoManCore extends JFrame {
 		ah.removeFile();
 	}
 	
+	// problem
 	protected void recordPressed() {
 		 ah.startRecording();
-		 
-		 if(ah.isRecording()) {
-				System.out.println("Is recording");
-			} else {
-				System.out.println("Is not recording");
-			}
-			
+		 	
 		 
 	}
-	
+//	problem
 	protected void saveNewRecord() {
+//		rh.setsavePressed();
 		ah.save();
-		
-		
 	}
 	
 	protected void instrumentSelected() {

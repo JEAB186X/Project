@@ -72,8 +72,7 @@ public class NewRecordHandler {
 			public void run() {
 				AudioInputStream audioStream = new AudioInputStream(line);
 
-				File waveFile = new File("Recorded/" + name + ".wav");
-
+				File waveFile = new File("record/" + name + ".wav");
 				try {
 
 					AudioSystem.write(audioStream, AudioFileFormat.Type.WAVE, waveFile);
