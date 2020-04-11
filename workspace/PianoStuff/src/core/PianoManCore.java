@@ -2,12 +2,13 @@ package core;
 
 import records.*;
 
-import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.util.concurrent.TimeUnit;
 
+import java.awt.Color;
 import javax.sound.sampled.LineUnavailableException;
 import javax.swing.*;
 import audio.AudioHandler;

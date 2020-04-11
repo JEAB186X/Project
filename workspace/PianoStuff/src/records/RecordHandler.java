@@ -2,6 +2,7 @@ package records;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * This class loads, saves, and manages all records.
@@ -26,6 +27,8 @@ public class RecordHandler {
 	private int saveIndex;
 	private int recordIndex;
 	private int recallIndex;
+	private Scanner scan;
+	private boolean use;
 	
 	private boolean recording;
 	private boolean recalling;
@@ -41,18 +44,18 @@ public class RecordHandler {
 		int i;
 		int j;
 		
-		//rh.addRecord("Default");
+		//rh.addRecord("elvis");
 		//rh.changeRecord("New");
 		//rh.removeRecord("New");
 		
-		/*
-		rh.startRecording();
-		i = 0;
-		while (rh.isRecording()) {
-			rh.addPitch(i);
-			i++;
-		}
-		*/
+		
+		//rh.startRecording();
+		//i = 0;
+		//while (rh.isRecording()) {
+			//rh.addPitch(i);
+			//i++;
+		//}
+		
 		
 		//rh.save();
 		
@@ -71,6 +74,9 @@ public class RecordHandler {
 			}
 		}
 		
+		
+		
+		
 	}
 	
 	/**
@@ -83,9 +89,10 @@ public class RecordHandler {
 		notes = new ArrayList<Note[]>();
 		load();
 		saveIndex = 0;
-		
+		scan = new Scanner(System.in);
 		recording = false;
 		recalling = false;
+		use = false;
 	}
 	
 	private void load() {
@@ -128,13 +135,27 @@ public class RecordHandler {
 	/**
 	 * This saves all records to the Records.jm file.
 	 */
+	private String saveName() {
+		
+		String recordName = "";
+		if (use) {
+			System.out.println("Enter name to save file as");
+		    recordName = scan.next();
+		}
+		else {
+			recordName = "Records";
+		}
+		
+		return recordName;
+	}
+	
 	public void save() {
 		int i;
 		int j;
 		try {
 			DataOutputStream stream = new DataOutputStream(
 				new BufferedOutputStream(
-					new FileOutputStream("records/Records.jm")));
+					new FileOutputStream("records/" + saveName() + ".jm")));
 			stream.writeInt(numRecords());
 			for (i = 0; i < numRecords(); i++) {
 				for (j = 0; j < name(i).length(); j++) {
@@ -175,6 +196,7 @@ public class RecordHandler {
 		tempoList.add(60);
 		notes.add(null);
 		setLength(8);
+		use = true;
 	}
 	
 	/**
@@ -187,6 +209,9 @@ public class RecordHandler {
 		if (saveIndex == -1) {
 			saveIndex = 0;
 			System.out.println("Erorr: Record DNE");
+		}
+		else {
+			use = true;
 		}
 	}
 	
@@ -465,6 +490,10 @@ public class RecordHandler {
 	public boolean isRecording() {
 		if (recordIndex == length() - 1) {
 			recording = false;
+		}
+		
+		if (recording) {
+			use = true;
 		}
 		return recording;
 	}
