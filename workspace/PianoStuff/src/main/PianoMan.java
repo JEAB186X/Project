@@ -40,12 +40,19 @@ public class PianoMan extends PianoManCore {
     /**
      * Creates new form PianoMan
      */
+    
+  //Notes:
+  	JPanel rhythmNotes[] = new JPanel[13];
+  	int rhythms[] = new int[13];
+  	String notesRhythm[] = new String[13];
+    
     @SuppressWarnings("unchecked")
     public PianoMan() {
         JPanel jPanelMain = new JPanel();
 		JPanel jPanel;
 		JPanel jp;
 		JButton b;
+		JCheckBox c;
 		JTextField f;
 		Font font = new Font("Verdana", 1, 24);
 		char[] sharpChar = {'C','D','F','G','A'};
@@ -60,6 +67,17 @@ public class PianoMan extends PianoManCore {
         jPanelMain.setBorder(BorderFactory.createLineBorder(Color.WHITE, 8));
         jPanelMain.setLayout(null);
 		
+      //Notes Under Rhythm
+      	c = new JCheckBox("Notes Under Rhythms");
+      	c.setForeground(Color.WHITE);
+      	/*	c.addActionListener(new ActionListener() {
+      		public void actionPerformed(ActionEvent evt) {
+      				
+      			NotesPressed(jPanelMain, rhythms);
+      		}});*/
+      	jPanelMain.add(c);
+      	c.setBounds(270, 255, 150, 60);
+        
 		//Black Keys:
 		j = 0;
 		for (i = 0; i < 7; i++) {
@@ -72,7 +90,7 @@ public class PianoMan extends PianoManCore {
 			final int index = i + 11;
 			b.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					keyPressed(index);
+					keyPressed(jPanelMain, index, c, notesRhythm);
 			}});
 			jPanelMain.add(b);
 			b.setBounds(120 + j, 310, 82, 210);
@@ -90,7 +108,7 @@ public class PianoMan extends PianoManCore {
 			final int index = i;
 			b.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					keyPressed(index);
+					keyPressed(jPanelMain, index, c, notesRhythm);
 			}});
 			jPanelMain.add(b);
 			b.setBounds(50 + j, 310, 108, 360);
@@ -126,13 +144,31 @@ public class PianoMan extends PianoManCore {
 				saveNewRecord();
 			}});
 		jPanelMain.add(b);
-		b.setBounds(270, 100, 150, 60);
+		b.setBounds(270, 75, 150, 60);
 		
-		
-		
+		//Remove Rhythms Button:
+		b = new JButton();
+		b.setText("Remove Rhythm");
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 
+				RemoveRhythm(jPanelMain, rhythmNotes);
+			}});
+		jPanelMain.add(b);
+		b.setBounds(270, 140, 150, 60);
 		
-
+		//Remove Note Button:
+		b = new JButton();
+		b.setText("Remove Note");
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+					
+				RemoveNote();
+			}});
+		jPanelMain.add(b);
+		b.setBounds(270, 205, 150, 60);
+		
+		
 		
 	//	JComboBox Message = new JComboBox<>();
 //		
@@ -222,9 +258,7 @@ public class PianoMan extends PianoManCore {
 		//Note Buttons:
 		jPanel = new JPanel();
 		jPanel.setBackground(new Color(0, 0, 0));
-		//Notes:
-		JPanel rhythmNotes[] = new JPanel[13];
-		int rhythms[] = new int[13];
+		
 		/*
 		for (i = 0; i < 13; i++) {
 			rhythmNotes[i] = new JPanel();
