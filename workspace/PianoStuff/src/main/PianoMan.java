@@ -47,6 +47,7 @@ public class PianoMan extends PianoManCore {
   	JPanel rhythmNotes[] = new JPanel[13];
   	int rhythms[] = new int[13];
   	String notesRhythm[] = new String[13];
+  	JTextField box[] = new JTextField[13];
     
     @SuppressWarnings("unchecked")
     public PianoMan() {
@@ -92,7 +93,7 @@ public class PianoMan extends PianoManCore {
 			final int index = i + 11;
 			b.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					keyPressed(jPanelMain, index, c, notesRhythm);
+					keyPressed(jPanelMain, index, c, notesRhythm, box);
 			}});
 			jPanelMain.add(b);
 			b.setBounds(120 + j, 310, 82, 210);
@@ -110,7 +111,7 @@ public class PianoMan extends PianoManCore {
 			final int index = i;
 			b.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					keyPressed(jPanelMain, index, c, notesRhythm);
+					keyPressed(jPanelMain, index, c, notesRhythm, box);
 			}});
 			jPanelMain.add(b);
 			b.setBounds(50 + j, 310, 108, 360);
@@ -165,7 +166,7 @@ public class PianoMan extends PianoManCore {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 					
-				RemoveNote();
+				RemoveNote(jPanelMain, notesRhythm, box);
 			}});
 		jPanelMain.add(b);
 		b.setBounds(270, 205, 150, 60);
@@ -253,15 +254,6 @@ public class PianoMan extends PianoManCore {
 		
 		//Note Buttons:
 		jPanel = new JPanel();
-		jPanel.setBackground(new Color(0, 0, 0));
-		
-		/*
-		for (i = 0; i < 13; i++) {
-			rhythmNotes[i] = new JPanel();
-			rhythmNotes[i].setBackground(new Color(0, 0, 0));
-			rhythmNotes[i].setPreferredSize(new Dimension(50, 100));
-		}
-		*/
 		
 		//End:	
         getContentPane().add(jPanelMain);

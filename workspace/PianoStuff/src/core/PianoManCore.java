@@ -33,7 +33,7 @@ public class PianoManCore extends JFrame {
 		instrument.setSelectedItem(rh.instrument());
 	}
 	
-	protected void keyPressed(JPanel x, int index, JCheckBox c, String[] b) {
+	protected void keyPressed(JPanel x, int index, JCheckBox c, String[] b, JTextField[] t) {
 		ah.playFile(index);
 		int i = 0;
 		if (c.isSelected()) 
@@ -80,12 +80,12 @@ public class PianoManCore extends JFrame {
 				{
 					b[i] += "#";
 				}
-				JTextField t = new JTextField();
-				t.setText(b[i]);
-				x.add(t);
+				t[i] = new JTextField();
+				t[i].setText(b[i]);
+				x.add(t[i]);
 				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 				pack();
-				t.setBounds((460 + (55 * i)), 275, 28, 25);
+				t[i].setBounds((460 + (55 * i)), 275, 28, 25);
 				setSize(screenSize.width,screenSize.height);
 			}
 		}
@@ -143,8 +143,26 @@ public class PianoManCore extends JFrame {
 		}
 	}
 	
-	protected void RemoveNote() {
-		
+	protected void RemoveNote(JPanel x, String[] b, JTextField [] t) {
+		int i = 0;
+		while (t[i] != null)
+		{
+			i++;
+			if(i > 12)
+			{
+				break;
+			}
+		}
+		if (i != 0)
+		{
+			i--;
+			x.remove(t[i]);
+			t[i] = null;
+			b[i] = null;
+			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			pack();
+			setSize(screenSize.width,screenSize.height);
+		}
 	}
 	
 	protected void rhythmButtonPressed(JPanel x, JPanel[] rhythmNotes, int[] rhythms, int value) {
@@ -189,12 +207,7 @@ public class PianoManCore extends JFrame {
 			rhythmNotes[i].setLayout(new GridBagLayout());
 			rhythmNotes[i].setBounds((450 + (55 * i)), 165, 50, 100);
 			setSize(screenSize.width,screenSize.height);
-			rhythmNotes[i].setVisible(true);
 			rhythms[i] = value;
 		}
-	}
-	
-	protected void NotesPressed(int[] rhythms) {
-		
 	}
 }	
