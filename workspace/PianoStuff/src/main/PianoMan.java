@@ -4,7 +4,6 @@ import core.PianoManCore;
 import java.awt.*;
 import java.awt.event.*;
 
-import javax.sound.sampled.LineUnavailableException;
 import javax.swing.*;
 /**
  *
@@ -134,9 +133,7 @@ public class PianoMan extends PianoManCore {
 		b = new JButton();
 		b.setText("Delete Previous Rhythm");
 		jPanelMain.add(b);
-       // b.setBounds(300, 120, 200, 60);
-        b.setBounds(270, 170, 200, 50);
-
+        b.setBounds(270, 170, 165, 50);
 		
 
 		
