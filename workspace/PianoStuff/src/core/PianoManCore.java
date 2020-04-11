@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
+import java.util.concurrent.TimeUnit;
+
 import javax.sound.sampled.LineUnavailableException;
 import javax.swing.*;
 import audio.AudioHandler;
@@ -33,7 +35,8 @@ public class PianoManCore extends JFrame {
 		instrument.setSelectedItem(rh.instrument());
 	}
 	
-	protected void keyPressed(JPanel x, int index, JCheckBox c, String[] b, JTextField[] t) {
+	protected void keyPressed(JPanel x, int index, JCheckBox c, String[] b, 
+												JTextField[] t, int[] notes) {
 		ah.playFile(index);
 		int i = 0;
 		if (c.isSelected()) 
@@ -80,6 +83,7 @@ public class PianoManCore extends JFrame {
 				{
 					b[i] += "#";
 				}
+				notes[i] = index;
 				t[i] = new JTextField();
 				t[i].setText(b[i]);
 				x.add(t[i]);
@@ -122,7 +126,7 @@ public class PianoManCore extends JFrame {
 		rh.setInstrument(instrument.getSelectedItem().toString());
 	}
 	
-	protected void RemoveRhythm(JPanel x, JPanel[] rhythmNotes) {
+	protected void RemoveRhythm(JPanel x, JPanel[] rhythmNotes, int[] rhythms) {
 		int i = 0;
 		while (rhythmNotes[i] != null)
 		{
@@ -140,6 +144,7 @@ public class PianoManCore extends JFrame {
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			pack();
 			setSize(screenSize.width,screenSize.height);
+			rhythms[i] = 0;
 		}
 	}
 	
@@ -208,6 +213,45 @@ public class PianoManCore extends JFrame {
 			rhythmNotes[i].setBounds((450 + (55 * i)), 165, 50, 100);
 			setSize(screenSize.width,screenSize.height);
 			rhythms[i] = value;
+		}
+	}
+	
+	protected void PlaybackSelected(int notes[], int[] rhythms) throws InterruptedException
+	{
+		int i = 0;
+		while (i < 13)
+		{
+			if (rhythms[i] == 0)
+			{
+				break;
+			}
+			
+			if (rhythms[i] == 1)
+			{
+				ah.playFile(notes[i]);
+				TimeUnit.MILLISECONDS.sleep(2570);
+			}
+			else if (rhythms[i] == 2)
+			{
+				ah.playFile(notes[i]);
+				TimeUnit.MILLISECONDS.sleep(1285);
+			}
+			else if (rhythms[i] == 4)
+			{
+				ah.playFile(notes[i]);
+				TimeUnit.MILLISECONDS.sleep(643);
+			}
+			else if (rhythms[i] == 8)
+			{
+				ah.playFile(notes[i]);
+				TimeUnit.MILLISECONDS.sleep(321);
+			}
+			else
+			{
+				ah.playFile(notes[i]);
+				TimeUnit.MILLISECONDS.sleep(161);
+			}
+			i++;
 		}
 	}
 }	
