@@ -47,6 +47,7 @@ public class PianoMan extends PianoManCore {
   	int rhythms[] = new int[13];
   	String notesRhythm[] = new String[13];
   	JTextField box[] = new JTextField[13];
+  	int notes[] = new int[13];
     
     @SuppressWarnings("unchecked")
     public PianoMan() {
@@ -78,7 +79,7 @@ public class PianoMan extends PianoManCore {
       			NotesPressed(jPanelMain, rhythms);
       		}});*/
       	jPanelMain.add(c);
-      	c.setBounds(270, 255, 150, 60);
+      	c.setBounds(270, 195, 150, 60);
         
 		//Black Keys:
 		j = 0;
@@ -92,7 +93,7 @@ public class PianoMan extends PianoManCore {
 			final int index = i + 11;
 			b.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					keyPressed(jPanelMain, index, c, notesRhythm, box);
+					keyPressed(jPanelMain, index, c, notesRhythm, box, notes);
 			}});
 			jPanelMain.add(b);
 			b.setBounds(120 + j, 310, 82, 210);
@@ -110,7 +111,7 @@ public class PianoMan extends PianoManCore {
 			final int index = i;
 			b.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					keyPressed(jPanelMain, index, c, notesRhythm, box);
+					keyPressed(jPanelMain, index, c, notesRhythm, box, notes);
 			}});
 			jPanelMain.add(b);
 			b.setBounds(50 + j, 310, 108, 360);
@@ -154,10 +155,10 @@ public class PianoMan extends PianoManCore {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 
-				RemoveRhythm(jPanelMain, rhythmNotes);
+				RemoveRhythm(jPanelMain, rhythmNotes, rhythms);
 			}});
 		jPanelMain.add(b);
-		b.setBounds(270, 140, 150, 60);
+		b.setBounds(270, 140, 150, 30);
 		
 		//Remove Note Button:
 		b = new JButton();
@@ -168,8 +169,23 @@ public class PianoMan extends PianoManCore {
 				RemoveNote(jPanelMain, notesRhythm, box);
 			}});
 		jPanelMain.add(b);
-		b.setBounds(270, 205, 150, 60);
+		b.setBounds(270, 175, 150, 30);
 		
+		//Play Selected Notes/Rhythms
+		b = new JButton();
+		b.setText("Play Selected Notes/Rhythms");
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+					
+				try {
+					PlaybackSelected(notes, rhythms);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}});
+		jPanelMain.add(b);
+		b.setBounds(245, 240, 200, 60);
 		
 	//	JComboBox Message = new JComboBox<>();
 //		
