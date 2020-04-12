@@ -2,6 +2,7 @@ package audio;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import java.util.Scanner;
 
 import records.NewRecordHandler;
@@ -11,7 +12,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -22,9 +22,8 @@ import records.jmPlayer;
 public class AudioHandler {
 	
 	private RecordHandler rh;
-	private NewRecordHandler Nh;
+//	private NewRecordHandler Nh;
 	private Scanner scan;
-	private static int in;
 	private  boolean so;
 	
 	public static void main(String[] args) {
@@ -36,7 +35,7 @@ public class AudioHandler {
 		
 	
 		audio.startRecording();
-//		audio.save();
+		audio.save();
 		
 	
 		audio.showEverything();
@@ -47,14 +46,12 @@ public class AudioHandler {
 
 	public AudioHandler(RecordHandler rh, NewRecordHandler Nh) {
 		this.rh = rh;
-		this.Nh = Nh;
+//		this.Nh = Nh;
 		scan = new Scanner(System.in);
-		in = 0;
 		so = false;
 	}
 	
 	public void playFile(int index) {
-		in = index;
 		try {
 			// this directory might change depending mine starts with "C:/Users/elvis/Documents/Notes"  + "/Note" + index + ".wav"
 			File music = new File("Notes/"  + rh.instrument()  + "/Note" + index + ".wav");
@@ -111,7 +108,7 @@ public class AudioHandler {
 	public void showEverything() {
 		int j, i;
 		//System.out.println("Current Record: " + name());
-		for (i = 0; i < numRecords(); i++) {
+		for (i = 1; i < numRecords(); i++) {
 			changeRecord(rh.name(i));
 			System.out.println("Record Name: " + name());
 			System.out.println("Instrument: " + instrument());
@@ -130,7 +127,7 @@ public class AudioHandler {
 		int i;
 		
 		System.out.println("\n\n\n\n" + "Current Record: " + name());
-		for (i = 0; i < numRecords(); i++) {
+		for (i = 1; i < numRecords(); i++) {
 			changeRecord(rh.name(i));
 			System.out.println("Record Name: " + name());
 			System.out.println("Instrument: " + instrument());
@@ -183,24 +180,10 @@ public class AudioHandler {
 	
 	
 	
-
-	
-	
-	
-	//public void startRecording() throws LineUnavailableException {
-		//Nh.startRecording();
-	//}
-	
 	public void startRecording()  {
 		
 		addRecord();
 		setLength();
-		
-		
-		
-		
-		
-		
 		
 		rh.startRecording();
 		
@@ -210,13 +193,45 @@ public class AudioHandler {
 		else {
 			System.out.println("Didnt start recording");
 		}
-		while (rh.isRecording()) {
-			//audio.setRhythm(i, in);
-			
-			rh.addPitch(in);
+	
+		
+		System.out.println("Manually / Automatically.\n Enter M/A");
+		String ans = scan.next();
+		
+		char a = ans.charAt(0);
+		
+		if (a == 'M' ) {
+			while (rh.isRecording()) {
+				
+
+				int b = scan.nextInt();
+				rh.addPitch(b);
+			}
 		}
+		else if (a == 'A') {
+			Random r = new Random();
+			while (rh.isRecording()) {
+				
+				ran(r);
+			}
+			
+		}
+//		    int i;		
+//			int a = scan.nextInt();
+//			rh.setRhythm(i, a);
+//			int b = scan.nextInt();
+//			rh.setPitch(i, b);
+//			++i;
+			
+
 
 		System.out.println("Stoppped recording");
+	}
+	
+	
+	private void ran(Random r) {
+		int q = r.nextInt(18);
+		rh.addPitch(q);
 	}
 
 	// must stop playing the current record if it is playing.
@@ -254,7 +269,7 @@ public class AudioHandler {
 	
 	public void addRecord() {
 		System.out.println("Enter Record name");
-//		where to add the Jasker record name thing
+//		where to add the J-asker record name thing
 		String recordName = scan.next();
 		rh.addRecord(recordName);
 		
@@ -297,7 +312,7 @@ public class AudioHandler {
 	
 	public void setLength() {
 		System.out.println("Enter set length");
-//		where ill neeed a j asker to get the length
+//		where ill need a j asker to get the length
 		int p = scan.nextInt();
 		rh.setLength(p);
 	}
