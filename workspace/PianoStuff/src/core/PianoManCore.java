@@ -2,15 +2,14 @@ package core;
 
 import records.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import java.awt.Dimension;
+import java.awt.GridBagLayout;
+import java.awt.Toolkit;
+import java.util.concurrent.TimeUnit;
+
+import java.awt.Color;
 import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import audio.AudioHandler;
 
@@ -37,8 +36,68 @@ public class PianoManCore extends JFrame {
 		instrument.setSelectedItem(rh.instrument());
 	}
 	
-	protected void keyPressed(int index) {
+	protected void keyPressed(JPanel x, int index, JCheckBox c, String[] b, 
+												JTextField[] t, int[] notes) {
 		ah.playFile(index);
+		
+		
+		int i = 0;
+		if (c.isSelected()) 
+		{
+			while (b[i] != null)
+			{
+				i++;
+				if(i > 12)
+				{
+					break;
+				}
+			}
+			if (i < 13)
+			{
+				if (index == 0 || index == 7 || index == 11 || index == 16)
+				{
+					b[i] = "C";
+				}
+				else if (index == 1 || index == 8 || index == 12 || index == 17)
+				{
+					b[i] = "D";
+				}
+				else if (index == 2 || index == 9)
+				{
+					b[i] = "E";
+				}
+				else if (index == 3 || index == 10 | index == 13)
+				{
+					b[i] = "F";
+				}
+				else if (index == 4 || index == 14)
+				{
+					b[i] = "G";
+				}
+				else if (index == 5 || index == 15)
+				{
+					b[i] = "A";
+				}
+				else if (index == 6)
+				{
+					b[i] = "B";
+				}
+				if (index > 10 && index < 18)
+				{
+					b[i] += "#";
+				}
+				notes[i] = index;
+				t[i] = new JTextField();
+				t[i].setText(b[i]);
+				x.add(t[i]);
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+				pack();
+				t[i].setBounds((460 + (55 * i)), 275, 28, 25);
+				setSize(screenSize.width,screenSize.height);
+			}
+		}
+		
+		
 	}
 	
 	protected void openPressed()  {
@@ -50,71 +109,148 @@ public class PianoManCore extends JFrame {
 		ah.removeFile();
 	}
 	
-	protected void recordPressed() throws LineUnavailableException {
-		 Rh.startRecording();
-
+	// problem
+	protected void recordPressed() {
+		 ah.startRecording();
+		 	
+		 
 	}
-	
+//	problem
 	protected void saveNewRecord() {
-		Rh.saving();
-		
+//		rh.setsavePressed();
+		ah.save();
 	}
 	
 	protected void instrumentSelected() {
 		rh.setInstrument(instrument.getSelectedItem().toString());
 	}
 	
-	protected void rhythmButtonPressed(JPanel[] rhythmNotes, int value) {
+	protected void RemoveRhythm(JPanel x, JPanel[] rhythmNotes, int[] rhythms) {
 		int i = 0;
-		JPanel p = new JPanel();
-		while (i < 13)
+		while (rhythmNotes[i] != null)
+		{
+			i++;
+			if(i > 12)
+			{
+				break;
+			}
+		}
+		if (i != 0)
+		{
+			i--;
+			x.remove(rhythmNotes[i]);
+			rhythmNotes[i] = null;
+			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			pack();
+			setSize(screenSize.width,screenSize.height);
+			rhythms[i] = 0;
+		}
+	}
+	
+	protected void RemoveNote(JPanel x, String[] b, JTextField [] t) {
+		int i = 0;
+		while (t[i] != null)
+		{
+			i++;
+			if(i > 12)
+			{
+				break;
+			}
+		}
+		if (i != 0)
+		{
+			i--;
+			x.remove(t[i]);
+			t[i] = null;
+			b[i] = null;
+			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			pack();
+			setSize(screenSize.width,screenSize.height);
+		}
+	}
+	
+	protected void rhythmButtonPressed(JPanel x, JPanel[] rhythmNotes, int[] rhythms, int value) {
+		int i = 0;
+		ImageIcon a;
+		while (rhythmNotes[i] != null)
+		{
+			i++;
+			if(i > 12)
+			{
+				break;
+			}
+		}
+		if (i < 13)
 		{
 			if (value == 1)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
-				JLabel label = new JLabel(a);
-				p.add(label);
-				rhythmNotes[i] = p;
-			//	rhythmNotes[i] = rhythmNotes[i].add("Notes/Images/modifiedWholeNote.jpg");
-			//	rhythmNotes[i] = new ImageIcon
+				a = new ImageIcon("Notes/Images/clickedWholeNote.jpg");
 			}
-			if (value == 2)
+			else if (value == 2)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
-				JLabel label = new JLabel(a);
-				p.add(label);
-				rhythmNotes[i] = p;
+				a = new ImageIcon("Notes/Images/clickedHalfNote.png");
 			}
-			if (value == 4)
+			else if (value == 4)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
-				JLabel label = new JLabel(a);
-				p.add(label);
-				rhythmNotes[i] = p;
+				a = new ImageIcon("Notes/Images/clickedQuarterNote.jpg");
 			}
-			if (value == 8)
+			else if (value == 8)
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
-				JLabel label = new JLabel(a);
-				p.add(label);
-				rhythmNotes[i] = p;
+				a = new ImageIcon("Notes/Images/clickedEigthNew.png");
 			}
-			if (value == 16)
+			else
 			{
-				ImageIcon a = new ImageIcon("Notes/Images/modifiedWholeNote.jpg");
-				JLabel label = new JLabel(a);
-				p.add(label);
-				rhythmNotes[i] = p;
+				a = new ImageIcon("Notes/Images/clickedSixteenthNote.jpg");
+			}
+			JLabel label = new JLabel(a);
+			rhythmNotes[i] = new JPanel();
+			rhythmNotes[i].add(label);
+			x.add(rhythmNotes[i]);
+			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			pack();
+			rhythmNotes[i].setLayout(new GridBagLayout());
+			rhythmNotes[i].setBounds((450 + (55 * i)), 165, 50, 100);
+			setSize(screenSize.width,screenSize.height);
+			rhythms[i] = value;
+		}
+	}
+	
+	protected void PlaybackSelected(int notes[], int[] rhythms) throws InterruptedException
+	{
+		int i = 0;
+		while (i < 13)
+		{
+			if (rhythms[i] == 0)
+			{
+				break;
+			}
+			
+			if (rhythms[i] == 1)
+			{
+				ah.playFile(notes[i]);
+				TimeUnit.MILLISECONDS.sleep(2570);
+			}
+			else if (rhythms[i] == 2)
+			{
+				ah.playFile(notes[i]);
+				TimeUnit.MILLISECONDS.sleep(1285);
+			}
+			else if (rhythms[i] == 4)
+			{
+				ah.playFile(notes[i]);
+				TimeUnit.MILLISECONDS.sleep(643);
+			}
+			else if (rhythms[i] == 8)
+			{
+				ah.playFile(notes[i]);
+				TimeUnit.MILLISECONDS.sleep(321);
+			}
+			else
+			{
+				ah.playFile(notes[i]);
+				TimeUnit.MILLISECONDS.sleep(161);
 			}
 			i++;
 		}
 	}
-	
-	/*COOL THINGS :D
-		JToggleButton.setSelected(boolan);
-		JToggleButton.isSelected();
-		JComboBox.getSelectedItem();
-		JComboBox.setSelectedItem();
-	*/
-	
-}
+}	

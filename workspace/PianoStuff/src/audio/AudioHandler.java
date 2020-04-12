@@ -2,6 +2,8 @@ package audio;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
+import java.util.Scanner;
 
 import records.NewRecordHandler;
 import javax.sound.sampled.AudioSystem;
@@ -14,22 +16,44 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import records.RecordHandler;
+import records.jmPlayer;
 
 
 public class AudioHandler {
 	
 	private RecordHandler rh;
-	private NewRecordHandler Nh;
+//	private NewRecordHandler Nh;
+	private Scanner scan;
+	private  boolean so;
 	
+	public static void main(String[] args) {
+		RecordHandler rh = new RecordHandler();
+		NewRecordHandler Nh = new NewRecordHandler();
+		AudioHandler audio = new AudioHandler(rh, Nh);
+		
+//		audio.removeRecord();
+		
 	
+		audio.startRecording();
+		audio.save();
+		
+	
+		audio.showEverything();
+		audio.playEverything();
+
+	}
+
+
 	public AudioHandler(RecordHandler rh, NewRecordHandler Nh) {
 		this.rh = rh;
-		this.Nh = Nh;
+//		this.Nh = Nh;
+		scan = new Scanner(System.in);
+		so = false;
 	}
 	
 	public void playFile(int index) {
 		try {
-			// this directory might change depending mine starts with /C:/Users/elvis/Documents/_________rh.instrument() 
+			// this directory might change depending mine starts with "C:/Users/elvis/Documents/Notes"  + "/Note" + index + ".wav"
 			File music = new File("Notes/"  + rh.instrument()  + "/Note" + index + ".wav");
 			
 			if (music.exists()) {
@@ -46,14 +70,31 @@ public class AudioHandler {
 			ex.printStackTrace();
 		}
 	}
-
+	
+	public void playjmFile(File file) {
+		jmPlayer jm = new jmPlayer(file);
+		
+		jm.showEverything();
+		jm.startPlaying();
+		
+		
+	}
+	
 	public void playFile(File file) {
 		  try {
 		 if (file.isFile() || file.exists()) {
-				AudioInputStream audioInput = AudioSystem.getAudioInputStream(file);	
-				Clip clip = AudioSystem.getClip();
-				clip.open(audioInput);
-				clip.start();
+			 
+			 if (so) {
+				 playjmFile(file);
+			 }
+			 else {
+				    AudioInputStream audioInput = AudioSystem.getAudioInputStream(file);	
+					Clip clip = AudioSystem.getClip();
+					clip.open(audioInput);
+					clip.start();
+				 
+			 }
+				
 			}
 			else {
 				System.out.println("Couldnt find the file");
@@ -64,38 +105,153 @@ public class AudioHandler {
      }
 	}
 	
+	public void showEverything() {
+		int j, i;
+		//System.out.println("Current Record: " + name());
+		for (i = 1; i < numRecords(); i++) {
+			changeRecord(rh.name(i));
+			System.out.println("Record Name: " + name());
+			System.out.println("Instrument: " + instrument());
+			System.out.println("Tempo: " + tempo());
+			startRecalling();
+			j = 0;
+			while (rh.isRecalling()) {
+				System.out.println(j + " : " + nextPitch() + " : " + 	thisRhythm());
+				j++;
+			}
+			System.out.println("\n\n\n");
+		}
+	}
+
+	public void playEverything() {
+		int i;
+		
+		System.out.println("\n\n\n\n" + "Current Record: " + name());
+		for (i = 1; i < numRecords(); i++) {
+			changeRecord(rh.name(i));
+			System.out.println("Record Name: " + name());
+			System.out.println("Instrument: " + instrument());
+			System.out.println("Tempo: " + tempo());
+			startRecalling();
+
+			while (rh.isRecalling()) {
+				//System.out.println(j + " : " + bh.nextPitch() + " : " + 	bh.thisRhythm());
+				
+				playFile(nextPitch());
+				
+				try {
+					final int num = thisRhythm();
+					Thread.sleep(num * 1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				
+			}
+			System.out.println("\n\n\n");
+		}
+		
+	}
+	
 	
 	//must start playing the current record in the recordhandler class.
+
 	public void startPlayingRecord() {
   		 JButton open = new JButton();
 	        JFileChooser fc = new JFileChooser();
 	        
-	        fc.setCurrentDirectory(new java.io.File("Recorded"));
+	        fc.setCurrentDirectory(new java.io.File("records"));
 	        fc.setDialogTitle("Open File");
 	        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 	        
 	        if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
 	            	 File file = fc.getSelectedFile();
+	            	 String name = file.getAbsolutePath();
+	            	
+					if (name.charAt(name.length() -1) == 'v') {
+	            		 so = false;
+	            	 }
+	            	 else if (name.charAt(name.length() -1) == 'm') {
+	            		 so = true;
+	            	 }
 	            	 playFile(file);
 	        }    
 	}
 	
 	
-	public void startRecording() throws LineUnavailableException {
-		Nh.startRecording();
+	
+	public void startRecording()  {
+		
+		addRecord();
+		setLength();
+		
+		rh.startRecording();
+		
+		if(rh.isRecording()) {
+			System.out.println("recording Started");
+		}
+		else {
+			System.out.println("Didnt start recording");
+		}
+	
+		
+		System.out.println("Manually / Automatically.\n Enter M/A");
+		String ans = scan.next();
+		
+		char a = ans.charAt(0);
+		
+		if (a == 'M' ) {
+			while (rh.isRecording()) {
+				
+
+				int b = scan.nextInt();
+				rh.addPitch(b);
+			}
+		}
+		else if (a == 'A') {
+			Random r = new Random();
+			while (rh.isRecording()) {
+				
+				ran(r);
+			}
+			
+		}
+//		    int i;		
+//			int a = scan.nextInt();
+//			rh.setRhythm(i, a);
+//			int b = scan.nextInt();
+//			rh.setPitch(i, b);
+//			++i;
+			
+
+
+		System.out.println("Stoppped recording");
 	}
 	
+	
+	private void ran(Random r) {
+		int q = r.nextInt(18);
+		rh.addPitch(q);
+	}
 
 	// must stop playing the current record if it is playing.
 	public void pauseRecord() {
 		
 	 }
+	
+	public void save() {
+		rh.save();
+	}
 
+	public boolean isRecording() {
+		return rh.isRecording();
+	}
+	
 	public void removeFile() {
 		 JButton open = new JButton();
 		 
 	        JFileChooser fc = new JFileChooser();
-	        fc.setCurrentDirectory(new java.io.File("Recorded"));
+	        fc.setCurrentDirectory(new java.io.File("records"));
 	        fc.setDialogTitle("Delete File");
 	        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 	        
@@ -109,5 +265,98 @@ public class AudioHandler {
 					System.out.println("Couldnt delete this file");
 				}
 	        }    
+	}
+	
+	public void addRecord() {
+		System.out.println("Enter Record name");
+//		where to add the J-asker record name thing
+		String recordName = scan.next();
+		rh.addRecord(recordName);
+		
+	}
+	
+	public void changeRecord() {
+		System.out.println("Enter Another record name");
+		String recordName = scan.next();
+		rh.changeRecord(recordName);
+	}
+	
+	
+	public boolean isRecalling() {
+		return rh.isRecalling();
+	}
+	
+	public int thisRhythm() {
+		return rh.thisRhythm();
+	}
+	
+	public int getRhythm(int index) {
+		return rh.getRhythm(index);
+	}
+	public int tempo() {
+		return rh.tempo();
+	}
+	
+	public void setTempo() {
+		System.out.println("Enter Required tempo");
+		int p = scan.nextInt();
+		rh.setTempo(p);
+	}
+	
+	public void setRhythm(int nam, int num) {
+		rh.setRhythm(nam, num);
+	}
+	public void setPitch(int nam, int num) {
+		rh.setPitch(nam, num);
+	}
+	
+	public void setLength() {
+		System.out.println("Enter set length");
+//		where ill need a j asker to get the length
+		int p = scan.nextInt();
+		rh.setLength(p);
+	}
+	
+	public void setInstrument(String device) {
+		rh.setInstrument(device);
+	}
+	
+	public void removeRecord() {
+		System.out.println("Enter record to be removed");
+		String recordName = scan.next();
+		rh.removeRecord(recordName);
+	}
+	
+	public int numRecords() {
+
+		return rh.numRecords();
+	}
+	
+	public void addPitch(int p) {
+		rh.addPitch(p);
+	}
+	
+   private void changeRecord(String name) {
+		rh.changeRecord(name);
+	}	
+
+	private String name() {
+		return rh.name();
+	}
+
+
+	private String instrument() {
+		return rh.instrument();
+	}
+
+
+	private int nextPitch() {
+		return rh.nextPitch();
+	}
+
+
+	private void startRecalling() {
+		rh.startRecalling();
+		
 	}
 }

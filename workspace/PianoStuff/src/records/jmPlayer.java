@@ -1,8 +1,13 @@
 package records;
 
+
+	
+
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  * This class loads, saves, and manages all records.
@@ -15,9 +20,15 @@ import java.util.Scanner;
  * The "rhythm" is an inverse measure of durration: 4 means it the note is a quarter note, 1 means it is a whole note, etc.
  * 
  * @author Arvid Gustafson : arvidg@iastate.edu
+ * @author Elvis Kimara: ekimara@iastate.edu
  */
 
-public class RecordHandler {
+
+
+//pausse
+// stop
+
+public class jmPlayer {
 	
 	private ArrayList<String> nameList;
 	private ArrayList<String> instList;
@@ -25,12 +36,8 @@ public class RecordHandler {
 	private ArrayList<Note[]> notes;
 	
 	private int saveIndex;
-	private int recordIndex;
 	private int recallIndex;
-	private Scanner scan;
-	private boolean use;
 	
-	private boolean recording;
 	private boolean recalling;
 	
 	/**
@@ -39,29 +46,99 @@ public class RecordHandler {
 	 * @param args[] The arguments that can be passed into the program when prompted to run.
 	 */
 	public static void main(String args[]) {
-		//Instance A Record Handler
+
+		File file = new File("records/kim.jm");
+		jmPlayer jm = new jmPlayer(file);
+		
+		jm.showEverything();
+		jm.startPlaying();
+
 	}
 	
 	/**
 	 * When constructed, all records are loaded from the Records.jm file.
 	 */
-	public RecordHandler() {
+	public jmPlayer(File name) {
 		nameList = new ArrayList<String>();
 		instList = new ArrayList<String>();
 		tempoList = new ArrayList<Integer>();
 		notes = new ArrayList<Note[]>();
-		load();
+		load(name);
 		saveIndex = 0;
-		scan = new Scanner(System.in);
-		recording = false;
 		recalling = false;
-		use = false;
+	}
+	public void showEverything() {
+		int j, i;
+		//System.out.println("Current Record: " + name());
+		for (i = 1; i < numRecords(); i++) {
+			changeRecord(name(i));
+			System.out.println("Record Name: " + name());
+			System.out.println("Instrument: " + instrument());
+			System.out.println("Tempo: " + tempo());
+			startRecalling();
+			j = 0;
+			while (isRecalling()) {
+				System.out.println(j + " : " + nextPitch() + " : " + 	thisRhythm());
+				j++;
+			}
+			System.out.println("\n\n\n");
+		}
 	}
 	
-	private void load() {
+	public void startPlaying() {
+        int i;
+		
+		System.out.println("\n\n\n\n" + "Current Record: " + name());
+		for (i = 1; i < numRecords(); i++) {
+			changeRecord(name(i));
+			System.out.println("Record Name: " + name());
+			System.out.println("Instrument: " + instrument());
+			System.out.println("Tempo: " + tempo());
+			startRecalling();
+
+			while (isRecalling()) {
+				//System.out.println(j + " : " + bh.nextPitch() + " : " + 	bh.thisRhythm());
+				
+				playFile(nextPitch());
+				
+				try {
+					 int num = thisRhythm();
+					Thread.sleep((num -3) * 1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				
+			}
+			System.out.println("\n\n\n");
+		}
+		
+	}
+	
+	public void playFile(int index) {
+		try {
+			// this directory might change depending mine starts with /C:/Users/elvis/Documents/_________rh.instrument() 
+			File music = new File("Notes/"  + instrument()  + "/Note" + index + ".wav");
+			
+			if (music.exists()) {
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(music);	
+				Clip clip = AudioSystem.getClip();
+				clip.open(audioInput);
+				clip.start();
+			}
+			else {
+				System.out.println("Couldnt find the file");
+			}
+		}
+		catch (Exception ex ) {
+			ex.printStackTrace();
+		}
+	}
+	
+	private void load(File word) {
 		try {
 			DataInputStream stream = new DataInputStream(
-				new FileInputStream("src/records/Records.jm"));
+				new FileInputStream(word));
 			int i;
 			int j;
 			String name;
@@ -96,54 +173,6 @@ public class RecordHandler {
 	}
 	
 	/**
-	 * This saves all records to the Records.jm file.
-	 */
-	private String saveName() {
-		
-		String recordName = "";
-		if (use) {
-			System.out.println("Enter name to save file as");
-		    recordName = scan.next();
-		}
-		else {
-			recordName = "Records";
-		}
-		
-		return recordName;
-	}
-	
-	public void save() {
-		int i;
-		int j;
-		try {
-			DataOutputStream stream = new DataOutputStream(
-				new BufferedOutputStream(
-					new FileOutputStream("records/" + saveName() + ".jm")));
-			stream.writeInt(numRecords());
-			for (i = 0; i < numRecords(); i++) {
-				for (j = 0; j < name(i).length(); j++) {
-					stream.writeChar(name(i).charAt(j));
-				}
-				stream.writeChar('\0');
-				for (j = 0; j < instrument(i).length(); j++) {
-					stream.writeChar(instrument(i).charAt(j));
-				}
-				stream.writeChar('\0');
-				stream.writeInt(tempo(i));
-				stream.writeInt(length(i));
-				for (j = 0; j < length(i); j++) {
-					stream.writeInt(notes.get(i)[j].pitch);
-					stream.writeInt(notes.get(i)[j].rhythm);
-				}
-			}
-			stream.close();
-		}
-		catch (IOException e) {
-			System.out.println("2: " + e);
-		}
-	}
-	
-	/**
 	 * Adds a record. The record is not saved in the Records.jm file until save() is called.
 	 * 
 	 * @param name The name of the record that will be added.
@@ -159,7 +188,6 @@ public class RecordHandler {
 		tempoList.add(60);
 		notes.add(null);
 		setLength(8);
-		use = true;
 	}
 	
 	/**
@@ -167,6 +195,7 @@ public class RecordHandler {
 	 * 
 	 * @param name The name of the record that will be the current record.
 	 */
+
 	public void changeRecord(String name) {
 		saveIndex = getIndex(name);
 		if (saveIndex == -1) {
@@ -174,7 +203,6 @@ public class RecordHandler {
 			System.out.println("Erorr: Record DNE");
 		}
 		else {
-			use = true;
 		}
 	}
 	
@@ -182,27 +210,15 @@ public class RecordHandler {
 	 * Removes a record. This change is not saved in the records.jm file until save() is called.
 	 * @param name The name of the record that will be removed.
 	 */
-	public void removeRecord(String name) {
-		int i;
-		i = getIndex(name);
-		if (i == -1) {
-			System.out.println("Error: Record DNE");
-			return;
-		}
-		nameList.remove(i);
-		instList.remove(i);
-		tempoList.remove(i);
-		notes.remove(i);
-		if (saveIndex >= i) {
-			saveIndex -= 1;
-		}
-	}
+
+	
 	
 	/**
 	 * Returns the total number of records there are.
 	 * 
 	 * @return The number of records there currently are.
 	 */
+	
 	public int numRecords() {
 		return nameList.size();
 	}
@@ -230,21 +246,14 @@ public class RecordHandler {
 		return nameList.get(saveIndex);
 	}
 	
-	/**
-	 * Returns the instrument of a record at a given index.
-	 * 
-	 * @param index The index of a record
-	 * @return The instrument that the given record uses.
-	 */
-	private String instrument(int index) {
-		return instList.get(index);
-	}
+
 	
 	/**
 	 * Returns the instrument the current record uses.
 	 * 
 	 * @return The instrument of the current record.
 	 */
+	
 	public String instrument() {
 		if (numRecords() == 0) {
 			return "(none)";
@@ -252,16 +261,7 @@ public class RecordHandler {
 		return instList.get(saveIndex);
 	}
 	
-	/**
-	 * Returns the tempo of a given record given its index.
-	 * 
-	 * @param index The index of the subject record.
-	 * @return The tempo of an index.
-	 */
-	private int tempo(int index) {
-		return tempoList.get(index);
-	}
-	
+
 	/**
 	 * Returns the tempo of a given record given its index.
 	 * 
@@ -354,31 +354,8 @@ public class RecordHandler {
 		notes.set(saveIndex, n);
 	}
 	
-	/**
-	 * Sets the pitch of a note at a given index, within the current record.
-	 * 
-	 * @param index The index of a note.
-	 * @param p The pitch the note at the given index will have.
-	 */
-	public void setPitch(int index, int p) {
-		if (numRecords() == 0) {
-			return;
-		}
-		notes.get(saveIndex)[index].pitch = p;
-	}
-	
-	/**
-	 * Sets the rhythm of a note at a given index, within the current record.
-	 * 
-	 * @param index The index of a note.
-	 * @param r The rhythm the note at the given index will have.
-	 */
-	public void setRhythm(int index, int r) {
-		if (numRecords() == 0) {
-			return;
-		}
-		notes.get(saveIndex)[index].rhythm = r;
-	}
+
+
 	
 	private void setLength(int index, int length) {
 		if (numRecords() == 0) {
@@ -416,50 +393,9 @@ public class RecordHandler {
 		return -1;
 	}
 	
-	/**
-	 * Begins recording.
-	 * Recording allows for the pitch of each note in the current record to be set from beginning to end.
-	 */
-	public void startRecording() {
-		if (numRecords() == 0) {
-			return;
-		}
-		recordIndex = -1;
-		recording = true;
-	}
+
 	
-	/**
-	 * If recording, sets the pitch of the next note in the current record.
-	 * If the end of the record is reached, stops recording.
-	 * 
-	 * @param p The pitch that may be added to the current record.
-	 */
-	public void addPitch(int p) {
-		if (!recording) {
-			return;
-		}
-		recordIndex += 1;
-		setPitch(recordIndex, p);
-		if (recordIndex == length()) {
-			recording = false;
-		}
-	}
-	
-	/**
-	 * Returns if the RecordHandler is curretnly recording.
-	 * 
-	 * @return True if currently recording; else, False.
-	 */
-	public boolean isRecording() {
-		if (recordIndex == length() - 1) {
-			recording = false;
-		}
-		
-		if (recording) {
-			use = true;
-		}
-		return recording;
-	}
+
 	
 	/**
 	 * Begins Recalling.
