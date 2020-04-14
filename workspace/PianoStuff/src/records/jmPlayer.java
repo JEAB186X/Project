@@ -47,7 +47,7 @@ public class jmPlayer {
 	 */
 	public static void main(String args[]) {
 
-		File file = new File("records/kim.jm");
+		File file = new File("records/lal.jm");
 		jmPlayer jm = new jmPlayer(file);
 		
 		jm.showEverything();
@@ -70,7 +70,7 @@ public class jmPlayer {
 	public void showEverything() {
 		int j, i;
 		//System.out.println("Current Record: " + name());
-		for (i = 1; i < numRecords(); i++) {
+		for (i = 0; i < numRecords(); i++) {
 			changeRecord(name(i));
 			System.out.println("Record Name: " + name());
 			System.out.println("Instrument: " + instrument());
@@ -89,7 +89,7 @@ public class jmPlayer {
         int i;
 		
 		System.out.println("\n\n\n\n" + "Current Record: " + name());
-		for (i = 1; i < numRecords(); i++) {
+		for (i = 0; i < numRecords(); i++) {
 			changeRecord(name(i));
 			System.out.println("Record Name: " + name());
 			System.out.println("Instrument: " + instrument());

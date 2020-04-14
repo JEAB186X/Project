@@ -2,6 +2,7 @@ package audio;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -15,7 +16,9 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+import records.Note;
 import records.RecordHandler;
+import records.SaveNote;
 import records.jmPlayer;
 
 
@@ -25,6 +28,10 @@ public class AudioHandler {
 //	private NewRecordHandler Nh;
 	private Scanner scan;
 	private  boolean so;
+	private ArrayList<Note> note;
+	private static boolean savePressed;
+	private static boolean recordPressed;
+	private int i;
 	
 	public static void main(String[] args) {
 		RecordHandler rh = new RecordHandler();
@@ -32,6 +39,11 @@ public class AudioHandler {
 		AudioHandler audio = new AudioHandler(rh, Nh);
 		
 //		audio.removeRecord();
+		
+		
+		
+		
+		
 		
 	
 		audio.startRecording();
@@ -49,6 +61,10 @@ public class AudioHandler {
 //		this.Nh = Nh;
 		scan = new Scanner(System.in);
 		so = false;
+		note = new ArrayList<Note>();
+		savePressed = false;
+		recordPressed = false;
+		i = 0;
 	}
 	
 	public void playFile(int index) {
@@ -57,10 +73,20 @@ public class AudioHandler {
 			File music = new File("Notes/"  + rh.instrument()  + "/Note" + index + ".wav");
 			
 			if (music.exists()) {
-				AudioInputStream audioInput = AudioSystem.getAudioInputStream(music);	
-				Clip clip = AudioSystem.getClip();
-				clip.open(audioInput);
-				clip.start();
+				
+				
+				if (recordPressed && !savePressed) {
+//					System.out.println("record pressed");
+					Note n = new Note(index, 4);
+					
+					note.add(n);
+					
+					
+				}
+					AudioInputStream audioInput = AudioSystem.getAudioInputStream(music);	
+					Clip clip = AudioSystem.getClip();
+					clip.open(audioInput);
+					clip.start();
 			}
 			else {
 				System.out.println("Couldnt find the file");
@@ -181,7 +207,10 @@ public class AudioHandler {
 	
 	
 	public void startRecording()  {
+		 JOptionPane.showMessageDialog(null, "Recording starts immediately you play!");
+		recordPressed = true;
 		
+		/*
 		addRecord();
 		setLength();
 		
@@ -226,6 +255,7 @@ public class AudioHandler {
 
 
 		System.out.println("Stoppped recording");
+		*/
 	}
 	
 	
@@ -240,7 +270,22 @@ public class AudioHandler {
 	 }
 	
 	public void save() {
-		rh.save();
+		savePressed = true;
+		
+		
+		 if (savePressed) {
+//			System.out.println("saved pressed");
+			
+			SaveNote s = new SaveNote(note, rh.instrument());
+	    	JOptionPane.showMessageDialog(null, "Please enter file name to be saved in terminal!");
+			s.save();
+			System.out.println("File Saved!");
+			note.clear();
+			savePressed = false;
+			recordPressed = false;
+			
+		}
+//		rh.save();
 	}
 
 	public boolean isRecording() {
