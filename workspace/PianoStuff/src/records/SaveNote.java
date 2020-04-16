@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class SaveNote {
 
 	private ArrayList<Note> notes;
@@ -24,8 +26,10 @@ public class SaveNote {
 	
 	
 	private void getName() {
-		System.out.println("Please enter record name");
-		name = scan.next();
+//		System.out.println("Please enter record name");
+		String filename = JOptionPane.showInputDialog("Enter the name the file is to be saved as");
+//		name = scan.next();
+		name = filename;
 		
 	}
 	

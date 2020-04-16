@@ -1,5 +1,6 @@
 package audio;
 
+import java.awt.EventQueue;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,10 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-import records.Note;
-import records.RecordHandler;
-import records.SaveNote;
-import records.jmPlayer;
+import records.*;
+
 
 
 public class AudioHandler {
@@ -55,7 +54,19 @@ public class AudioHandler {
 
 	}
 
-
+//  TODO   Ask kamini about how to use jframe buttons silmultaneously 
+//  TODO   Learn git in eclipse
+//  TODO   Learn netbeans in eclipse 
+//  TODO
+//  TODO
+//  TODO
+//  TODO
+//  TODO
+//  TODO
+//  TODO
+//  TODO
+//  TODO
+	
 	public AudioHandler(RecordHandler rh, NewRecordHandler Nh) {
 		this.rh = rh;
 //		this.Nh = Nh;
@@ -98,10 +109,44 @@ public class AudioHandler {
 	}
 	
 	public void playjmFile(File file) {
-		jmPlayer jm = new jmPlayer(file);
 		
-		jm.showEverything();
-		jm.startPlaying();
+		
+//		OpenedFile op = new OpenedFile(file);
+//		op.startPlaying();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+//					File file = new File("records/lal.jm");			
+					OpenedFile frame = new OpenedFile(file);
+					frame.setVisible(true);
+//					OpenedFile.startPlaying();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		
+		
+		
+//		jmPlayer jm = new jmPlayer(file);
+//		boolean ans = false;
+//		jm.showEverything();
+//		TODO Add JFrame
+//		jm.startPlaying();
 		
 		
 	}
@@ -277,9 +322,12 @@ public class AudioHandler {
 //			System.out.println("saved pressed");
 			
 			SaveNote s = new SaveNote(note, rh.instrument());
-	    	JOptionPane.showMessageDialog(null, "Please enter file name to be saved in terminal!");
+			
+			
+//	    	JOptionPane.showMessageDialog(null, "Please enter file name to be saved in terminal!");
 			s.save();
-			System.out.println("File Saved!");
+			JOptionPane.showMessageDialog(null,"File Saved!");
+//			System.out.println("File Saved!");
 			note.clear();
 			savePressed = false;
 			recordPressed = false;

@@ -38,7 +38,8 @@ public class jmPlayer {
 	private int saveIndex;
 	private int recallIndex;
 	
-	private boolean recalling;
+	private static boolean recalling;
+	private static boolean stop;
 	
 	/**
 	 * For Testing purposes. Please remove only once the project is complete.
@@ -49,9 +50,12 @@ public class jmPlayer {
 
 		File file = new File("records/lal.jm");
 		jmPlayer jm = new jmPlayer(file);
+//		boolean ans = false;
 		
 		jm.showEverything();
+		
 		jm.startPlaying();
+		jm.stopPlaying();
 
 	}
 	
@@ -66,6 +70,7 @@ public class jmPlayer {
 		load(name);
 		saveIndex = 0;
 		recalling = false;
+		stop = false;
 	}
 	public void showEverything() {
 		int j, i;
@@ -96,10 +101,14 @@ public class jmPlayer {
 			System.out.println("Tempo: " + tempo());
 			startRecalling();
 
-			while (isRecalling()) {
+			while (isRecalling() ) {
 				//System.out.println(j + " : " + bh.nextPitch() + " : " + 	bh.thisRhythm());
 				
 				playFile(nextPitch());
+				
+				if (stop) {
+					break;
+				}
 				
 				try {
 					 int num = thisRhythm();
@@ -109,18 +118,29 @@ public class jmPlayer {
 				}
 				
 				
+				
 			}
 			System.out.println("\n\n\n");
 		}
 		
 	}
 	
+	
+	public void stopPlaying() {
+		recalling = false;
+		stop = true;
+		System.exit(0);
+//		exit();
+	}
+	
+	
+	
 	public void playFile(int index) {
 		try {
 			// this directory might change depending mine starts with /C:/Users/elvis/Documents/_________rh.instrument() 
 			File music = new File("Notes/"  + instrument()  + "/Note" + index + ".wav");
 			
-			if (music.exists()) {
+			if (music.exists() && !stop) {
 				AudioInputStream audioInput = AudioSystem.getAudioInputStream(music);	
 				Clip clip = AudioSystem.getClip();
 				clip.open(audioInput);
@@ -171,6 +191,30 @@ public class jmPlayer {
 			e.printStackTrace();
 		}
 	}
+	
+	
+//	TODO Start from here
+	
+	
+	
+	
+	public void pause() {
+		stop = true;
+	}
+	
+	public void resume() {
+		stop = true;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * Adds a record. The record is not saved in the Records.jm file until save() is called.
@@ -457,6 +501,9 @@ public class jmPlayer {
 	 */
 	public boolean isRecalling() {
 		if (recallIndex == length() - 1) {
+			recalling = false;
+		}
+		if (stop) {
 			recalling = false;
 		}
 		return recalling;
