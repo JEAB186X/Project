@@ -57,15 +57,8 @@ public class AudioHandler {
 //  TODO   Ask kamini about how to use jframe buttons silmultaneously 
 //  TODO   Learn git in eclipse
 //  TODO   Learn netbeans in eclipse 
-//  TODO
-//  TODO
-//  TODO
-//  TODO
-//  TODO
-//  TODO
-//  TODO
-//  TODO
-//  TODO
+//	TODO   Learn merging and related
+
 	
 	public AudioHandler(RecordHandler rh, NewRecordHandler Nh) {
 		this.rh = rh;

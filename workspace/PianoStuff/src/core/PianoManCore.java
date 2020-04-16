@@ -41,6 +41,9 @@ public class PianoManCore extends JFrame {
 		ah.playFile(index);
 		
 		
+		
+		
+		
 		int i = 0;
 		if (c.isSelected()) 
 		{

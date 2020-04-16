@@ -128,6 +128,7 @@ public class PianoMan extends PianoManCore {
 		jPanelMain.add(b);
 		b.setBounds(30, 20, 220, 70);
 		
+		
 		//Remove Button:
 		b = new JButton();
 		b.setText("Remove File");
