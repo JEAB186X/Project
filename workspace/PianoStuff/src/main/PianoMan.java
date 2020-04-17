@@ -48,6 +48,8 @@ public class PianoMan extends PianoManCore {
   	String notesRhythm[] = new String[13];
   	JTextField box[] = new JTextField[13];
   	int notes[] = new int[13];
+  	int demoNotes[] = {2, 1, 0, 1, 2, 2, 2, 1, 1, 1, 2, 4, 4, 2, 1, 0, 1, 2, 2, 2, 2, 1, 1, 2, 1, 0, 7};
+  	int demoRhythms[] = {4, 4, 4, 4, 4, 4, 2, 4, 4, 2, 4, 4, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 1};
     
     @SuppressWarnings("unchecked")
     public PianoMan() {
@@ -187,6 +189,22 @@ public class PianoMan extends PianoManCore {
 			}});
 		jPanelMain.add(b);
 		b.setBounds(245, 240, 200, 60);
+		
+		//Play Demo
+		b = new JButton();
+		b.setText("Play Demo");
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+					
+				try {
+					PlaybackSelected(demoNotes, demoRhythms);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}});
+		jPanelMain.add(b);
+		b.setBounds(30, 230, 200, 50);
 		
 	//	JComboBox Message = new JComboBox<>();
 //		
