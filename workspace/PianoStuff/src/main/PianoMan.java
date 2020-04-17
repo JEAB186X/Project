@@ -95,7 +95,12 @@ public class PianoMan extends PianoManCore {
 			final int index = i + 11;
 			b.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					keyPressed(jPanelMain, index, c, notesRhythm, box, notes);
+					try {
+						keyPressed(jPanelMain, index, c, notesRhythm, box, notes);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			}});
 			jPanelMain.add(b);
 			b.setBounds(120 + j, 310, 82, 210);
@@ -113,7 +118,12 @@ public class PianoMan extends PianoManCore {
 			final int index = i;
 			b.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
-					keyPressed(jPanelMain, index, c, notesRhythm, box, notes);
+					try {
+						keyPressed(jPanelMain, index, c, notesRhythm, box, notes);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			}});
 			jPanelMain.add(b);
 			b.setBounds(50 + j, 310, 108, 360);
@@ -158,7 +168,12 @@ public class PianoMan extends PianoManCore {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 
-				RemoveRhythm(jPanelMain, rhythmNotes, rhythms);
+				try {
+					RemoveRhythm(jPanelMain, rhythmNotes, rhythms);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}});
 		jPanelMain.add(b);
 		b.setBounds(270, 140, 150, 30);
@@ -169,7 +184,12 @@ public class PianoMan extends PianoManCore {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 					
-				RemoveNote(jPanelMain, notesRhythm, box);
+				try {
+					RemoveNote(jPanelMain, notesRhythm, box);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}});
 		jPanelMain.add(b);
 		b.setBounds(270, 175, 150, 30);
@@ -206,34 +226,6 @@ public class PianoMan extends PianoManCore {
 		jPanelMain.add(b);
 		b.setBounds(30, 230, 200, 50);
 		
-	//	JComboBox Message = new JComboBox<>();
-//		
-	///	Message.setModel(new DefaultComboBoxModel<>(
-		//	new String[]{"Record", "Pause", "Save"}
-	//	));
-		//Message.addActionListener(new ActionListener() {
-			//public void actionPerformed(ActionEvent evt) {
-				
-	//		if (evt.getSource() == recordButton) {
-		//		try {
-			//		recordPressed();
-				//} catch (LineUnavailableException e) {
-//					// TODO Auto-generated catch block
-	//				e.printStackTrace();
-		//		}
-			//}
-			//else if (evt.getSource() == playbackButton) {
-				
-			//}
-			
-				
-				
-//		}});
-	//	jPanelMain.add(Message);
-		//Message.setBounds(30, 170, 220, 50);
-		
-		
-		
 		//Record Toggle Button:
 		recordButton = new JToggleButton();
 		recordButton.setText("Record");
@@ -243,16 +235,6 @@ public class PianoMan extends PianoManCore {
 		}});
 		jPanelMain.add(recordButton);
 		recordButton.setBounds(30, 170, 220, 50);
-		
-		//Playback Toggle Button:
-		//playbackButton = new JToggleButton();
-		//playbackButton.setText("Playback");
-		//playbackButton.addActionListener(new ActionListener() {
-			//public void actionPerformed(ActionEvent evt) {
-				//playbackPressed();
-		//}});
-		//jPanelMain.add(playbackButton);
-		//playbackButton.setBounds(30, 230, 220, 60);
 		
 		//Change Instrument Combo Button
 		instrument = new JComboBox<>();
@@ -298,11 +280,36 @@ public class PianoMan extends PianoManCore {
 		//Rhythmic Pattern Setter Buttons:
 		jPanel = new JPanel();
 
-		JButton wNote = new JButton();wNote.setIcon(new ImageIcon("Notes/Images/modifiedWholeNote.jpg"));wNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed(jPanelMain, rhythmNotes, rhythms, 1);}});
-		JButton hNote = new JButton();hNote.setIcon(new ImageIcon("Notes/Images/modifiedHalfnote.png"));hNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed(jPanelMain, rhythmNotes, rhythms, 2);}});
-		JButton qNote = new JButton();qNote.setIcon(new ImageIcon("Notes/Images/modifiedQuarterNote.jpg"));qNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed(jPanelMain, rhythmNotes, rhythms, 4);}});
-		JButton eNote = new JButton();eNote.setIcon(new ImageIcon("Notes/Images/modifiedeigthNew.png"));eNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed(jPanelMain, rhythmNotes, rhythms, 8);}});
-		JButton sNote = new JButton();sNote.setIcon(new ImageIcon("Notes/Images/modifiedSixteenthNote.jpg"));sNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){rhythmButtonPressed(jPanelMain, rhythmNotes, rhythms, 16);}});
+		JButton wNote = new JButton();wNote.setIcon(new ImageIcon("Notes/Images/modifiedWholeNote.jpg"));wNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){try {
+			rhythmButtonPressed(jPanelMain, rhythmNotes, rhythms, 1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}});
+		JButton hNote = new JButton();hNote.setIcon(new ImageIcon("Notes/Images/modifiedHalfnote.png"));hNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){try {
+			rhythmButtonPressed(jPanelMain, rhythmNotes, rhythms, 2);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}});
+		JButton qNote = new JButton();qNote.setIcon(new ImageIcon("Notes/Images/modifiedQuarterNote.jpg"));qNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){try {
+			rhythmButtonPressed(jPanelMain, rhythmNotes, rhythms, 4);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}});
+		JButton eNote = new JButton();eNote.setIcon(new ImageIcon("Notes/Images/modifiedeigthNew.png"));eNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){try {
+			rhythmButtonPressed(jPanelMain, rhythmNotes, rhythms, 8);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}});
+		JButton sNote = new JButton();sNote.setIcon(new ImageIcon("Notes/Images/modifiedSixteenthNote.jpg"));sNote.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent evt){try {
+			rhythmButtonPressed(jPanelMain, rhythmNotes, rhythms, 16);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}});
 		GroupLayout jPanelLayout = new GroupLayout(jPanel);jPanel.setLayout(jPanelLayout);//do not question
 		jPanelLayout.setHorizontalGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanelLayout.createSequentialGroup().addGap(3, 3, 3).addComponent(wNote, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE).addGap(18, 18, 18).addComponent(hNote, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(qNote, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(eNote, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE).addGap(18, 18, 18).addComponent(sNote, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 		jPanelLayout.setVerticalGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanelLayout.createSequentialGroup().addGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanelLayout.createSequentialGroup().addGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false).addGroup(jPanelLayout.createSequentialGroup().addContainerGap().addComponent(wNote, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)).addGroup(jPanelLayout.createSequentialGroup().addContainerGap().addComponent(hNote, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)).addGroup(jPanelLayout.createSequentialGroup().addGap(5, 5, 5).addComponent(qNote, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)).addGroup(jPanelLayout.createSequentialGroup().addContainerGap().addComponent(eNote, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE))).addGap(0, 0, Short.MAX_VALUE)).addComponent(sNote, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addContainerGap()));
