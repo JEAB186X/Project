@@ -55,6 +55,8 @@ public class jmPlayer {
 		jm.showEverything();
 		
 		jm.startPlaying();
+		
+		
 		jm.stopPlaying();
 
 	}
