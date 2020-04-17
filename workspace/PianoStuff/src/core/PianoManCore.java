@@ -32,6 +32,8 @@ public class PianoManCore extends JFrame {
 		//Initialize according to the data in the Record Handler.
 	}
 	
+	
+	
 	public void initialize() {
 		instrument.setSelectedItem(rh.instrument());
 	}
