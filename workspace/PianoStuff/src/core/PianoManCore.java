@@ -221,7 +221,7 @@ public class PianoManCore extends JFrame {
 	protected void PlaybackSelected(int notes[], int[] rhythms) throws InterruptedException
 	{
 		int i = 0;
-		while (i < 13)
+		while (i < rhythms.length)
 		{
 			if (rhythms[i] == 0)
 			{
