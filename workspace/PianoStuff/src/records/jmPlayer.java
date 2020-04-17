@@ -1,8 +1,5 @@
 package records;
 
-
-	
-
 import java.io.*;
 import java.util.ArrayList;
 import javax.sound.sampled.AudioInputStream;
@@ -22,11 +19,6 @@ import javax.sound.sampled.Clip;
  * @author Arvid Gustafson : arvidg@iastate.edu
  * @author Elvis Kimara: ekimara@iastate.edu
  */
-
-
-
-//pausse
-// stop
 
 public class jmPlayer {
 	
@@ -197,9 +189,6 @@ public class jmPlayer {
 	
 //	TODO Start from here
 	
-	
-	
-	
 	public void pause() {
 		stop = true;
 	}
@@ -207,16 +196,6 @@ public class jmPlayer {
 	public void resume() {
 		stop = true;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	/**
 	 * Adds a record. The record is not saved in the Records.jm file until save() is called.
