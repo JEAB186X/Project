@@ -12,6 +12,8 @@ import records.jmPlayer;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
@@ -22,7 +24,25 @@ public class OpenedFile extends JFrame {
 	private static Boolean start = false;
 	private static Boolean stop = false;
 	private static jmPlayer jm ;
-
+	
+	
+	int seconds = 0;
+	Timer time = new Timer();
+	TimerTask task = new TimerTask() {
+		public void run() {
+			seconds++;
+			System.out.println(seconds);
+		}
+	};
+	
+	public void start() {
+		time.scheduleAtFixedRate(task, 1000, 1000);
+	}
+	
+	
+	
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -36,6 +56,7 @@ public class OpenedFile extends JFrame {
 					File file = new File("records/lal.jm");			
 					OpenedFile frame = new OpenedFile(file);
 					frame.setVisible(true);
+//					frame.start();
 //					OpenedFile.startPlaying();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -106,6 +127,7 @@ public class OpenedFile extends JFrame {
 		contentPane.add(RecordName);
 		
 		JLabel Duration = new JLabel("Duration");
+		Duration.setText(Integer.toString(seconds));
 		Duration.setBounds(403, 24, 105, 14);
 		contentPane.add(Duration);
 		
