@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import records.NewRecordHandler;
 import javax.sound.sampled.AudioSystem;
@@ -28,7 +30,7 @@ public class AudioHandler {
 	private ArrayList<Note> note;
 	private static boolean savePressed;
 	private static boolean recordPressed;
-	private int i;
+	private int i = 0, w = 0;
 	
 	public static void main(String[] args) {
 		RecordHandler rh = new RecordHandler();
@@ -59,6 +61,28 @@ public class AudioHandler {
 		i = 0;
 	}
 	
+	static int seconds = 0;
+	Timer time = new Timer();
+	TimerTask task = new TimerTask() {
+		public void run() {
+			seconds++;
+//			System.out.println(seconds);
+//			Duration.setText(String.valueOf(seconds));
+		}
+	};
+	
+	public void start() {
+		time.scheduleAtFixedRate(task, 1000, 500);
+	}
+	
+	private int dur(int num) {
+		
+		int diff = num - 0;
+		
+		return diff;
+	}
+	
+	
 	public void playFile(int index) {
 		try {
 			// this directory might change depending mine starts with "C:/Users/elvis/Documents/Notes"  + "/Note" + index + ".wav"
@@ -68,7 +92,13 @@ public class AudioHandler {
 				
 				if (recordPressed && !savePressed) {
 //					System.out.println("record pressed");
-					Note n = new Note(index, 4);
+					
+					int num = seconds - w;
+					if (num == 0) {
+						num = 1;
+					}
+					Note n = new Note(index, num);
+					w = seconds;
 					note.add(n);
 				}
 					AudioInputStream audioInput = AudioSystem.getAudioInputStream(music);	
@@ -204,6 +234,7 @@ public class AudioHandler {
 	public void startRecording()  {
 		 JOptionPane.showMessageDialog(null, "Recording starts the instant you start playing and ends when save pressed!");
 		recordPressed = true;
+		start();
 		
 	}
 	
