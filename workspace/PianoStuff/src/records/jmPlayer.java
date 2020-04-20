@@ -1,8 +1,5 @@
 package records;
 
-
-	
-
 import java.io.*;
 import java.util.ArrayList;
 import javax.sound.sampled.AudioInputStream;
@@ -23,11 +20,6 @@ import javax.sound.sampled.Clip;
  * @author Elvis Kimara: ekimara@iastate.edu
  */
 
-
-
-//pausse
-// stop
-
 public class jmPlayer {
 	
 	private ArrayList<String> nameList;
@@ -37,9 +29,11 @@ public class jmPlayer {
 	
 	private int saveIndex;
 	private int recallIndex;
+	private int fig;
 	
 	private static boolean recalling;
 	private static boolean stop;
+	private static boolean pause;
 	
 	/**
 	 * For Testing purposes. Please remove only once the project is complete.
@@ -53,8 +47,10 @@ public class jmPlayer {
 //		boolean ans = false;
 		
 		jm.showEverything();
-		
+		System.out.println("Length: " + jm.getLength());
 		jm.startPlaying();
+		
+		
 		jm.stopPlaying();
 
 	}
@@ -71,9 +67,11 @@ public class jmPlayer {
 		saveIndex = 0;
 		recalling = false;
 		stop = false;
+		pause = false;
 	}
 	public void showEverything() {
 		int j, i;
+//		System.out.println("Length: " + getLength());
 		//System.out.println("Current Record: " + name());
 		for (i = 0; i < numRecords(); i++) {
 			changeRecord(name(i));
@@ -83,8 +81,9 @@ public class jmPlayer {
 			startRecalling();
 			j = 0;
 			while (isRecalling()) {
-				System.out.println(j + " : " + nextPitch() + " : " + 	thisRhythm());
+				System.out.println(j + " : " + nextPitch() + " : " + 	((double)thisRhythm() / 20));
 				j++;
+				fig += thisRhythm();
 			}
 			System.out.println("\n\n\n");
 		}
@@ -104,15 +103,31 @@ public class jmPlayer {
 			while (isRecalling() ) {
 				//System.out.println(j + " : " + bh.nextPitch() + " : " + 	bh.thisRhythm());
 				
+				/*
+				if (pause) {
+					try {
+						Thread.sleep((3600) * 1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				*/
+				
+				while (pause) {
+					System.out.println();
+				}
+				
 				playFile(nextPitch());
 				
 				if (stop) {
 					break;
 				}
 				
+				
+				
 				try {
 					 int num = thisRhythm();
-					Thread.sleep((num -3) * 1000);
+					Thread.sleep((num) * 50);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -129,7 +144,7 @@ public class jmPlayer {
 	public void stopPlaying() {
 		recalling = false;
 		stop = true;
-		System.exit(0);
+//		System.exit(0);
 //		exit();
 	}
 	
@@ -195,26 +210,13 @@ public class jmPlayer {
 	
 //	TODO Start from here
 	
-	
-	
-	
 	public void pause() {
-		stop = true;
+		pause = true;
 	}
 	
 	public void resume() {
-		stop = true;
+		pause = false;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	/**
 	 * Adds a record. The record is not saved in the Records.jm file until save() is called.
@@ -329,6 +331,10 @@ public class jmPlayer {
 			return 0;
 		}
 		return notes.get(saveIndex).length;
+	}
+//	TODO 
+	public int getLength() {
+		return fig;
 	}
 	
 	/**

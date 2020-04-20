@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import records.NewRecordHandler;
 import javax.sound.sampled.AudioSystem;
@@ -19,8 +21,6 @@ import javax.swing.JOptionPane;
 
 import records.*;
 
-
-
 public class AudioHandler {
 	
 	private RecordHandler rh;
@@ -30,7 +30,7 @@ public class AudioHandler {
 	private ArrayList<Note> note;
 	private static boolean savePressed;
 	private static boolean recordPressed;
-	private int i;
+	private int i = 0, w = 0;
 	
 	public static void main(String[] args) {
 		RecordHandler rh = new RecordHandler();
@@ -38,22 +38,12 @@ public class AudioHandler {
 		AudioHandler audio = new AudioHandler(rh, Nh);
 		
 //		audio.removeRecord();
-		
-		
-		
-		
-		
-		
-	
 		audio.startRecording();
 		audio.save();
-		
-	
 		audio.showEverything();
 		audio.playEverything();
 
 	}
-
 //  TODO   Ask kamini about how to use jframe buttons silmultaneously 
 //  TODO   Learn git in eclipse
 //  TODO   Learn netbeans in eclipse 
@@ -71,6 +61,23 @@ public class AudioHandler {
 		i = 0;
 	}
 	
+	static int seconds = 0;
+	Timer time = new Timer();
+	TimerTask task = new TimerTask() {
+		public void run() {
+			seconds++;
+//			System.out.println(seconds);
+//			Duration.setText(String.valueOf(seconds));
+		}
+	};
+	
+	public void start() {
+		time.scheduleAtFixedRate(task, 1000, 50);
+	}
+	
+
+	
+	
 	public void playFile(int index) {
 		try {
 			// this directory might change depending mine starts with "C:/Users/elvis/Documents/Notes"  + "/Note" + index + ".wav"
@@ -78,14 +85,16 @@ public class AudioHandler {
 			
 			if (music.exists()) {
 				
-				
 				if (recordPressed && !savePressed) {
 //					System.out.println("record pressed");
-					Note n = new Note(index, 4);
 					
+					int num = seconds - w;
+					if (num == 0) {
+						num = 1;
+					}
+					Note n = new Note(index, num);
+					w = seconds;
 					note.add(n);
-					
-					
 				}
 					AudioInputStream audioInput = AudioSystem.getAudioInputStream(music);	
 					Clip clip = AudioSystem.getClip();
@@ -103,22 +112,6 @@ public class AudioHandler {
 	
 	public void playjmFile(File file) {
 		
-		
-//		OpenedFile op = new OpenedFile(file);
-//		op.startPlaying();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -132,16 +125,7 @@ public class AudioHandler {
 			}
 		});
 		
-		
-		
-		
-//		jmPlayer jm = new jmPlayer(file);
-//		boolean ans = false;
-//		jm.showEverything();
 //		TODO Add JFrame
-//		jm.startPlaying();
-		
-		
 	}
 	
 	public void playFile(File file) {
@@ -216,8 +200,6 @@ public class AudioHandler {
 		}
 		
 	}
-	
-	
 	//must start playing the current record in the recordhandler class.
 
 	public void startPlayingRecord() {
@@ -245,64 +227,12 @@ public class AudioHandler {
 	
 	
 	public void startRecording()  {
-		 JOptionPane.showMessageDialog(null, "Recording starts immediately you play!");
+		 JOptionPane.showMessageDialog(null, "Recording starts the instant you start playing and ends when save pressed!");
 		recordPressed = true;
+		start();
 		
-		/*
-		addRecord();
-		setLength();
-		
-		rh.startRecording();
-		
-		if(rh.isRecording()) {
-			System.out.println("recording Started");
-		}
-		else {
-			System.out.println("Didnt start recording");
-		}
-	
-		
-		System.out.println("Manually / Automatically.\n Enter M/A");
-		String ans = scan.next();
-		
-		char a = ans.charAt(0);
-		
-		if (a == 'M' ) {
-			while (rh.isRecording()) {
-				
-
-				int b = scan.nextInt();
-				rh.addPitch(b);
-			}
-		}
-		else if (a == 'A') {
-			Random r = new Random();
-			while (rh.isRecording()) {
-				
-				ran(r);
-			}
-			
-		}
-//		    int i;		
-//			int a = scan.nextInt();
-//			rh.setRhythm(i, a);
-//			int b = scan.nextInt();
-//			rh.setPitch(i, b);
-//			++i;
-			
-
-
-		System.out.println("Stoppped recording");
-		*/
 	}
 	
-	
-	private void ran(Random r) {
-		int q = r.nextInt(18);
-		rh.addPitch(q);
-	}
-
-	// must stop playing the current record if it is playing.
 	public void pauseRecord() {
 		
 	 }
@@ -310,23 +240,16 @@ public class AudioHandler {
 	public void save() {
 		savePressed = true;
 		
-		
 		 if (savePressed) {
-//			System.out.println("saved pressed");
 			
 			SaveNote s = new SaveNote(note, rh.instrument());
-			
-			
-//	    	JOptionPane.showMessageDialog(null, "Please enter file name to be saved in terminal!");
 			s.save();
 			JOptionPane.showMessageDialog(null,"File Saved!");
-//			System.out.println("File Saved!");
 			note.clear();
 			savePressed = false;
 			recordPressed = false;
 			
 		}
-//		rh.save();
 	}
 
 	public boolean isRecording() {
@@ -355,7 +278,7 @@ public class AudioHandler {
 	
 	public void addRecord() {
 		System.out.println("Enter Record name");
-//		where to add the J-asker record name thing
+//	    TODO	where to add the J-asker record name thing
 		String recordName = scan.next();
 		rh.addRecord(recordName);
 		
@@ -398,7 +321,7 @@ public class AudioHandler {
 	
 	public void setLength() {
 		System.out.println("Enter set length");
-//		where ill need a j asker to get the length
+//		TODO where ill need a j asker to get the length
 		int p = scan.nextInt();
 		rh.setLength(p);
 	}

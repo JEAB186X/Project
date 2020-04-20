@@ -12,23 +12,17 @@ import javax.swing.JOptionPane;
 public class SaveNote {
 
 	private ArrayList<Note> notes;
-	private Scanner scan;
 	private String name;
 	private String instrument;
 	
 	public SaveNote(ArrayList<Note> note, String device) {
 		notes = note;
-		scan = new Scanner(System.in);
 		name = "";
 		instrument = device;
 	}
 	
-	
-	
 	private void getName() {
-//		System.out.println("Please enter record name");
 		String filename = JOptionPane.showInputDialog("Enter the name the file is to be saved as");
-//		name = scan.next();
 		name = filename;
 		
 	}
@@ -65,7 +59,5 @@ public class SaveNote {
 		catch (IOException e) {
 			System.out.println("2: " + e);
 		}
-	
-		
 	}
 }

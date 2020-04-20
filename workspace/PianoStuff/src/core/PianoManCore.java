@@ -32,13 +32,19 @@ public class PianoManCore extends JFrame {
 		//Initialize according to the data in the Record Handler.
 	}
 	
+	
+	
 	public void initialize() {
 		instrument.setSelectedItem(rh.instrument());
 	}
 	
 	protected void keyPressed(JPanel x, int index, JCheckBox c, String[] b, 
-										JTextField[] t, int[] notes) throws InterruptedException {
+												JTextField[] t, int[] notes) {
 		ah.playFile(index);
+		
+		
+		
+		
 		
 		int i = 0;
 		if (c.isSelected()) 
@@ -65,7 +71,7 @@ public class PianoManCore extends JFrame {
 				{
 					b[i] = "E";
 				}
-				else if (index == 3 || index == 10 || index == 13)
+				else if (index == 3 || index == 10 | index == 13)
 				{
 					b[i] = "F";
 				}
@@ -124,7 +130,7 @@ public class PianoManCore extends JFrame {
 		rh.setInstrument(instrument.getSelectedItem().toString());
 	}
 	
-	protected void RemoveRhythm(JPanel x, JPanel[] rhythmNotes, int[] rhythms) throws InterruptedException {
+	protected void RemoveRhythm(JPanel x, JPanel[] rhythmNotes, int[] rhythms) {
 		int i = 0;
 		while (rhythmNotes[i] != null)
 		{
@@ -146,7 +152,7 @@ public class PianoManCore extends JFrame {
 		}
 	}
 	
-	protected void RemoveNote(JPanel x, String[] b, JTextField [] t) throws InterruptedException {
+	protected void RemoveNote(JPanel x, String[] b, JTextField [] t) {
 		int i = 0;
 		while (t[i] != null)
 		{
@@ -168,7 +174,7 @@ public class PianoManCore extends JFrame {
 		}
 	}
 	
-	protected void rhythmButtonPressed(JPanel x, JPanel[] rhythmNotes, int[] rhythms, int value) throws InterruptedException {
+	protected void rhythmButtonPressed(JPanel x, JPanel[] rhythmNotes, int[] rhythms, int value) {
 		int i = 0;
 		ImageIcon a;
 		while (rhythmNotes[i] != null)
@@ -217,7 +223,7 @@ public class PianoManCore extends JFrame {
 	protected void PlaybackSelected(int notes[], int[] rhythms) throws InterruptedException
 	{
 		int i = 0;
-		while (i < rhythms.length)
+		while (i < 13)
 		{
 			if (rhythms[i] == 0)
 			{
