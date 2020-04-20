@@ -29,6 +29,7 @@ public class jmPlayer {
 	
 	private int saveIndex;
 	private int recallIndex;
+	private int fig;
 	
 	private static boolean recalling;
 	private static boolean stop;
@@ -46,7 +47,7 @@ public class jmPlayer {
 //		boolean ans = false;
 		
 		jm.showEverything();
-		
+		System.out.println("Length: " + jm.getLength());
 		jm.startPlaying();
 		
 		
@@ -70,6 +71,7 @@ public class jmPlayer {
 	}
 	public void showEverything() {
 		int j, i;
+//		System.out.println("Length: " + getLength());
 		//System.out.println("Current Record: " + name());
 		for (i = 0; i < numRecords(); i++) {
 			changeRecord(name(i));
@@ -79,8 +81,9 @@ public class jmPlayer {
 			startRecalling();
 			j = 0;
 			while (isRecalling()) {
-				System.out.println(j + " : " + nextPitch() + " : " + 	thisRhythm());
+				System.out.println(j + " : " + nextPitch() + " : " + 	((double)thisRhythm() / 20));
 				j++;
+				fig += thisRhythm();
 			}
 			System.out.println("\n\n\n");
 		}
@@ -328,6 +331,10 @@ public class jmPlayer {
 			return 0;
 		}
 		return notes.get(saveIndex).length;
+	}
+//	TODO 
+	public int getLength() {
+		return fig;
 	}
 	
 	/**

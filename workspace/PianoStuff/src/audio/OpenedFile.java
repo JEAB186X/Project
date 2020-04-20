@@ -88,6 +88,12 @@ public class OpenedFile extends JFrame {
 				
 				hope t = new hope(jm);
 				t.start();
+				int n = jm.getLength() / 20;
+				System.out.println("Seconds " + n);
+				
+				
+				
+				
 				 start();
 			}
 			
@@ -101,13 +107,18 @@ public class OpenedFile extends JFrame {
 						seconds = seconds - 1;
 						System.out.println("");
 					}
+					
+					if (jm.getLength() == seconds) {
+						pause = true;
+					}
 //					System.out.println(seconds);
-					Duration.setText(String.valueOf(seconds));
+					int n = seconds / 20;
+					Duration.setText(String.valueOf(n));
 				}
 			};
 			
 			public void start() {
-				time.scheduleAtFixedRate(task, 1000, 1000);
+				time.scheduleAtFixedRate(task, 1000, 50);
 			}
 				
 				
