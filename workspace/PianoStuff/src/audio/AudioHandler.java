@@ -44,10 +44,8 @@ public class AudioHandler {
 		audio.playEverything();
 
 	}
-//  TODO   Ask kamini about how to use jframe buttons silmultaneously 
-//  TODO   Learn git in eclipse
-//  TODO   Learn netbeans in eclipse 
-//	TODO   Learn merging and related
+//  TODO   Ask kamini about documentation, expected finish, extraction 
+//  TODO   Ask jeremy if he needs help
 
 	
 	public AudioHandler(RecordHandler rh, NewRecordHandler Nh) {
@@ -125,7 +123,6 @@ public class AudioHandler {
 			}
 		});
 		
-//		TODO Add JFrame
 	}
 	
 	public void playFile(File file) {
@@ -278,7 +275,6 @@ public class AudioHandler {
 	
 	public void addRecord() {
 		System.out.println("Enter Record name");
-//	    TODO	where to add the J-asker record name thing
 		String recordName = scan.next();
 		rh.addRecord(recordName);
 		
@@ -321,7 +317,6 @@ public class AudioHandler {
 	
 	public void setLength() {
 		System.out.println("Enter set length");
-//		TODO where ill need a j asker to get the length
 		int p = scan.nextInt();
 		rh.setLength(p);
 	}

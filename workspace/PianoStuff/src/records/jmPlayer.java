@@ -208,7 +208,6 @@ public class jmPlayer {
 	}
 	
 	
-//	TODO Start from here
 	
 	public void pause() {
 		pause = true;
@@ -332,7 +331,6 @@ public class jmPlayer {
 		}
 		return notes.get(saveIndex).length;
 	}
-//	TODO 
 	public int getLength() {
 		return fig;
 	}

@@ -186,7 +186,6 @@ public class PianoMan extends PianoManCore {
 				try {
 					PlaybackSelected(notes, rhythms);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}});

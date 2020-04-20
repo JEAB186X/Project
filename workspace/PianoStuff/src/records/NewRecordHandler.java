@@ -59,7 +59,6 @@ public class NewRecordHandler {
 		try {
 			line.open();
 		} catch (LineUnavailableException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
