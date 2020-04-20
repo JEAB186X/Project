@@ -33,10 +33,6 @@ public class OpenedFile extends JFrame {
 	JLabel Duration;
 	
 	
-	
-	
-	
-	
 	/**
 	 * Launch the application.
 	 */
@@ -57,11 +53,6 @@ public class OpenedFile extends JFrame {
 				}
 			}
 		});
-		
-		
-		
-		
-		
 	}
 
 	/**
@@ -85,14 +76,10 @@ public class OpenedFile extends JFrame {
 			public void actionPerformed(ActionEvent em) {
 				start = true;
 				
-				
 				hope t = new hope(jm);
 				t.start();
 				int n = jm.getLength() / 20;
 				System.out.println("Seconds " + n);
-				
-				
-				
 				
 				 start();
 			}
@@ -119,11 +106,7 @@ public class OpenedFile extends JFrame {
 			
 			public void start() {
 				time.scheduleAtFixedRate(task, 1000, 50);
-			}
-				
-				
-				
-			
+			}	
 						
 		});
 		btnNewButton.setBounds(34, 106, 89, 23);
@@ -156,7 +139,6 @@ public class OpenedFile extends JFrame {
 				stop = true;
 				jm.stopPlaying();
 				setVisible(false);
-//				System.exit(0);
 			}
 		});
 		Stop.setBounds(403, 106, 89, 23);
@@ -168,15 +150,9 @@ public class OpenedFile extends JFrame {
 		contentPane.add(RecordName);
 		
 		Duration = new JLabel("Duration");
-//		Duration.setText(String.valueOf(seconds));
 		Duration.setBounds(403, 24, 105, 14);
 		contentPane.add(Duration);
 		
-//        while(true) {
-//			if (start) {
-				//jm.startPlaying(stop);
-//			}
-//		}
 	}
 	
 	public static void startPlaying() {
@@ -184,8 +160,5 @@ public class OpenedFile extends JFrame {
 			jm.startPlaying();
 		}
 	}
-	
-	
-	
-	
+		
 }

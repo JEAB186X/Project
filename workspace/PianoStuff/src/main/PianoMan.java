@@ -3,6 +3,8 @@ package main;
 import core.PianoManCore;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.*;
 /**
@@ -128,6 +130,9 @@ public class PianoMan extends PianoManCore {
 		jPanelMain.add(b);
 		b.setBounds(30, 20, 220, 70);
 		
+		JLabel Duration = new JLabel("T");
+		Duration.setBounds(1060, 5, 1060, 70);
+		jPanelMain.add(Duration);
 		
 		//Remove Button:
 		b = new JButton();
@@ -188,33 +193,7 @@ public class PianoMan extends PianoManCore {
 		jPanelMain.add(b);
 		b.setBounds(245, 240, 200, 60);
 		
-	//	JComboBox Message = new JComboBox<>();
-//		
-	///	Message.setModel(new DefaultComboBoxModel<>(
-		//	new String[]{"Record", "Pause", "Save"}
-	//	));
-		//Message.addActionListener(new ActionListener() {
-			//public void actionPerformed(ActionEvent evt) {
-				
-	//		if (evt.getSource() == recordButton) {
-		//		try {
-			//		recordPressed();
-				//} catch (LineUnavailableException e) {
-//					// TODO Auto-generated catch block
-	//				e.printStackTrace();
-		//		}
-			//}
-			//else if (evt.getSource() == playbackButton) {
-				
-			//}
-			
-				
-				
-//		}});
-	//	jPanelMain.add(Message);
-		//Message.setBounds(30, 170, 220, 50);
-		
-		
+	
 		
 		//Record Toggle Button:
 		recordButton = new JToggleButton();
@@ -222,19 +201,25 @@ public class PianoMan extends PianoManCore {
 		recordButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				recordPressed();
-		}});
+				start();
+		}
+			int seconds = 0;
+			Timer time = new Timer();
+			TimerTask task = new TimerTask() {
+				public void run() {
+					seconds++;
+					int n = seconds / 20;
+					Duration.setText(String.valueOf(n));
+				}
+			};
+			
+			public void start() {
+				time.scheduleAtFixedRate(task, 1000, 50);
+			}
+		});
 		jPanelMain.add(recordButton);
 		recordButton.setBounds(30, 170, 220, 50);
 		
-		//Playback Toggle Button:
-		//playbackButton = new JToggleButton();
-		//playbackButton.setText("Playback");
-		//playbackButton.addActionListener(new ActionListener() {
-			//public void actionPerformed(ActionEvent evt) {
-				//playbackPressed();
-		//}});
-		//jPanelMain.add(playbackButton);
-		//playbackButton.setBounds(30, 230, 220, 60);
 		
 		//Change Instrument Combo Button
 		instrument = new JComboBox<>();
