@@ -72,15 +72,10 @@ public class AudioHandler {
 	};
 	
 	public void start() {
-		time.scheduleAtFixedRate(task, 1000, 500);
+		time.scheduleAtFixedRate(task, 1000, 50);
 	}
 	
-	private int dur(int num) {
-		
-		int diff = num - 0;
-		
-		return diff;
-	}
+
 	
 	
 	public void playFile(int index) {

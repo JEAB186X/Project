@@ -124,7 +124,7 @@ public class jmPlayer {
 				
 				try {
 					 int num = thisRhythm();
-					Thread.sleep((num) * 500);
+					Thread.sleep((num) * 50);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
