@@ -67,7 +67,7 @@ public class PianoManCore extends JFrame {
 				{
 					b[i] = "E";
 				}
-				else if (index == 3 || index == 10 | index == 13)
+				else if (index == 3 || index == 10 || index == 13)
 				{
 					b[i] = "F";
 				}
@@ -219,7 +219,7 @@ public class PianoManCore extends JFrame {
 	protected void PlaybackSelected(int notes[], int[] rhythms) throws InterruptedException
 	{
 		int i = 0;
-		while (i < 13)
+		while (i < rhythms.length)
 		{
 			if (rhythms[i] == 0)
 			{
