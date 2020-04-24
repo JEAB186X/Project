@@ -210,8 +210,6 @@ public class PianoMan extends PianoManCore {
 		jPanelMain.add(b);
 		b.setBounds(245, 240, 200, 60);
 		
-	
-		
 		//Record Toggle Button:
 		recordButton = new JToggleButton();
 		recordButton.setText("Record");
@@ -236,7 +234,6 @@ public class PianoMan extends PianoManCore {
 		});
 		jPanelMain.add(recordButton);
 		recordButton.setBounds(30, 170, 220, 50);
-		
 		
 		//Change Instrument Combo Button
 		instrument = new JComboBox<>();

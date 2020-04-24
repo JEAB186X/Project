@@ -7,12 +7,10 @@ public class hope extends Thread {
 	public hope(jmPlayer play) {
 		this.play = play;
 	}
-	
-	
+		
 	public void run() {
 		synchronized(play) {
 			play.startPlaying();
 		}
 	}
-	
 }

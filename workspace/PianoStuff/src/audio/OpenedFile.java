@@ -37,17 +37,12 @@ public class OpenedFile extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
-		
-		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					File file = new File("records/grace.jm");			
 					OpenedFile frame = new OpenedFile(file);
 					frame.setVisible(true);
-//					frame.start();
-//					OpenedFile.startPlaying();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -80,8 +75,7 @@ public class OpenedFile extends JFrame {
 				t.start();
 				int n = jm.getLength() / 20;
 				System.out.println("Seconds " + n);
-				
-				 start();
+				start();
 			}
 			
 			
@@ -98,7 +92,6 @@ public class OpenedFile extends JFrame {
 					if (jm.getLength() == seconds) {
 						pause = true;
 					}
-//					System.out.println(seconds);
 					int n = seconds / 20;
 					Duration.setText(String.valueOf(n));
 				}

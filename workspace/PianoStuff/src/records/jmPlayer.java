@@ -44,13 +44,10 @@ public class jmPlayer {
 
 		File file = new File("records/lal.jm");
 		jmPlayer jm = new jmPlayer(file);
-//		boolean ans = false;
 		
 		jm.showEverything();
 		System.out.println("Length: " + jm.getLength());
 		jm.startPlaying();
-		
-		
 		jm.stopPlaying();
 
 	}
@@ -71,8 +68,6 @@ public class jmPlayer {
 	}
 	public void showEverything() {
 		int j, i;
-//		System.out.println("Length: " + getLength());
-		//System.out.println("Current Record: " + name());
 		for (i = 0; i < numRecords(); i++) {
 			changeRecord(name(i));
 			System.out.println("Record Name: " + name());
@@ -100,19 +95,7 @@ public class jmPlayer {
 			System.out.println("Tempo: " + tempo());
 			startRecalling();
 
-			while (isRecalling() ) {
-				//System.out.println(j + " : " + bh.nextPitch() + " : " + 	bh.thisRhythm());
-				
-				/*
-				if (pause) {
-					try {
-						Thread.sleep((3600) * 1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-				*/
-				
+			while (isRecalling() ) {				
 				while (pause) {
 					System.out.println();
 				}
@@ -122,30 +105,23 @@ public class jmPlayer {
 				if (stop) {
 					break;
 				}
-				
-				
-				
+					
 				try {
 					 int num = thisRhythm();
 					Thread.sleep((num) * 50);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				
-				
-				
+							
 			}
 			System.out.println("\n\n\n");
 		}
-		
 	}
 	
 	
 	public void stopPlaying() {
 		recalling = false;
 		stop = true;
-//		System.exit(0);
-//		exit();
 	}
 	
 	
