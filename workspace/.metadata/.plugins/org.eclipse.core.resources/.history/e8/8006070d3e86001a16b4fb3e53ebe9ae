@@ -229,27 +229,27 @@ public class PianoManCore extends JFrame {
 			if (rhythms[i] == 1)
 			{
 				ah.playFile(notes[i]);
-				TimeUnit.MILLISECONDS.sleep(4000);
+				TimeUnit.MILLISECONDS.sleep(4800);
 			}
 			else if (rhythms[i] == 2)
 			{
 				ah.playFile(notes[i]);
-				TimeUnit.MILLISECONDS.sleep(2000);
+				TimeUnit.MILLISECONDS.sleep(2400);
 			}
 			else if (rhythms[i] == 4)
 			{
 				ah.playFile(notes[i]);
-				TimeUnit.MILLISECONDS.sleep(1000);
+				TimeUnit.MILLISECONDS.sleep(1200);
 			}
 			else if (rhythms[i] == 8)
 			{
 				ah.playFile(notes[i]);
-				TimeUnit.MILLISECONDS.sleep(500);
+				TimeUnit.MILLISECONDS.sleep(600);
 			}
 			else
 			{
 				ah.playFile(notes[i]);
-				TimeUnit.MILLISECONDS.sleep(250);
+				TimeUnit.MILLISECONDS.sleep(300);
 			}
 			i++;
 		}
