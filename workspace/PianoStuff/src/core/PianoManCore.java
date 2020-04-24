@@ -41,11 +41,7 @@ public class PianoManCore extends JFrame {
 	protected void keyPressed(JPanel x, int index, JCheckBox c, String[] b, 
 												JTextField[] t, int[] notes) {
 		ah.playFile(index);
-		
-		
-		
-		
-		
+
 		int i = 0;
 		if (c.isSelected()) 
 		{

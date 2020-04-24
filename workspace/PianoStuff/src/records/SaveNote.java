@@ -28,7 +28,6 @@ public class SaveNote {
 	}
 	
 	public void save() {
-
 		getName();
 		int i;
 		int j;
@@ -36,7 +35,6 @@ public class SaveNote {
 			DataOutputStream stream = new DataOutputStream(
 				new BufferedOutputStream(
 					new FileOutputStream("records/" + name + ".jm")));
-//			numRecords()
 			stream.writeInt(1);
 			for (i = 0; i < 1; i++) {
 				for (j = 0; j < name.length(); j++) {
