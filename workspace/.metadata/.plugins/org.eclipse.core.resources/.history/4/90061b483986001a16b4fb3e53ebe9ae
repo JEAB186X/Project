@@ -224,7 +224,7 @@ public class AudioHandler {
 	
 	
 	public void startRecording()  {
-		 JOptionPane.showMessageDialog(null, "Recording starts the instant you start playing and ends when you press save!");
+		 JOptionPane.showMessageDialog(null, "Recording starts the instant you start playing and ends when save pressed!");
 		recordPressed = true;
 		start();
 		
